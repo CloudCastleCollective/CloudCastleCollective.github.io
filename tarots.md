@@ -1,7 +1,7 @@
 ---
 title: Tarots
 layout: collection
-permalink: /tarot/
+permalink: /tarots/
 collection: tarots
 entries_layout: grid
 ---
