@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bandit CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Bandit CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by OverTheWire @ https://overthewire.org/wargames/bandit/ This OverTheWire CTF is a quite simple linux command line challenge, with a little bit of debugging. It is suggested for beginners both in Linux and in reverse engineering. It doesn’t require to install anything, you only need a ssh connection to the target machine." />
+<meta property="og:description" content="CTF by OverTheWire @ https://overthewire.org/wargames/bandit/ This OverTheWire CTF is a quite simple linux command line challenge, with a little bit of debugging. It is suggested for beginners both in Linux and in reverse engineering. It doesn’t require to install anything, you only need a ssh connection to the target machine." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/03/Bandit.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/03/Bandit.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-03T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bandit CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-03T00:00:00+01:00","datePublished":"2023-11-03T00:00:00+01:00","description":"CTF by OverTheWire @ https://overthewire.org/wargames/bandit/ This OverTheWire CTF is a quite simple linux command line challenge, with a little bit of debugging. It is suggested for beginners both in Linux and in reverse engineering. It doesn’t require to install anything, you only need a ssh connection to the target machine.","headline":"Bandit CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/03/Bandit.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/03/Bandit.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  bandit-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Bandit CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">16 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-03T00:00:00+01:00"><a class="u-url" href="">November 3, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2020/10/26/16/56/man-5687861_1280.png" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>OverTheWire</strong> @ <a href="https://overthewire.org/wargames/bandit/">https://overthewire.org/wargames/bandit/</a></p>
+
+<p>This OverTheWire CTF is a quite simple linux command line challenge, with a little bit of debugging. It is suggested for beginners both in Linux and in reverse engineering. It doesn’t require to install anything, you only need a ssh connection to the target machine.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="install">Install</a></td>
+      <td><a href="bandit-06">Bandit 06</a></td>
+      <td><a href="bandit-13">Bandit 13</a></td>
+      <td><a href="bandit-20">Bandit 20</a></td>
+      <td><a href="bandit-27">Bandit 27</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-00">Bandit 00</a></td>
+      <td><a href="bandit-07">Bandit 07</a></td>
+      <td><a href="bandit-14">Bandit 14</a></td>
+      <td><a href="bandit-21">Bandit 21</a></td>
+      <td><a href="bandit-28">Bandit 28</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-01">Bandit 01</a></td>
+      <td><a href="bandit-08">Bandit 08</a></td>
+      <td><a href="bandit-15">Bandit 15</a></td>
+      <td><a href="bandit-22">Bandit 22</a></td>
+      <td><a href="bandit-29">Bandit 29</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-02">Bandit 02</a></td>
+      <td><a href="bandit-09">Bandit 09</a></td>
+      <td><a href="bandit-16">Bandit 16</a></td>
+      <td><a href="bandit-23">Bandit 23</a></td>
+      <td><a href="bandit-30">Bandit 30</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-03">Bandit 03</a></td>
+      <td><a href="bandit-10">Bandit 10</a></td>
+      <td><a href="bandit-17">Bandit 17</a></td>
+      <td><a href="bandit-24">Bandit 24</a></td>
+      <td><a href="bandit-31">Bandit 31</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-04">Bandit 04</a></td>
+      <td><a href="bandit-11">Bandit 11</a></td>
+      <td><a href="bandit-18">Bandit 18</a></td>
+      <td><a href="bandit-25">Bandit 25</a></td>
+      <td><a href="bandit-32">Bandit 32</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="bandit-05">Bandit 05</a></td>
+      <td><a href="bandit-12">Bandit 12</a></td>
+      <td><a href="bandit-19">Bandit 19</a></td>
+      <td><a href="bandit-26">Bandit 26</a></td>
+      <td><a href="bandit-33">Bandit 33</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>All the challenges can be accessed with ssh. The syntax is the following, and you will find the passwords along the way: ]
+<code class="language-plaintext highlighter-rouge">ssh banditX@bandit.labs.overthewire.org -p 2220</code> <br />
+In the machine there are a couple of tools already installed, in particular <code class="language-plaintext highlighter-rouge">PEDA</code>: this is a gdb extension that shows registers, assembly and stack automatically, reducing a lot of the usual pain when using gdb. To start it, run gdb as usual and then source to the peda.py file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb <span class="nt">--args</span> filetoinspect param1 param2
+<span class="o">&gt;</span> <span class="nb">source</span> /usr/local/peda/peda.py
+</code></pre></div></div>
+
+<h3 id="bandit-00">[Bandit 00]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit0@bandit.labs.overthewire.org -p 2220</code> <br />
+Password: bandit0</p>
+
+<p>The home folder contains a readme file that we can simply open:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>readme
+</code></pre></div></div>
+
+<h3 id="bandit-01">[Bandit 01]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit1@bandit.labs.overthewire.org -p 2220</code></p>
+
+<p>The home folder contains a file called <code class="language-plaintext highlighter-rouge">-.</code> It is slightly tricky to realize it is actually there, and to open it we can’t use just the dash but we have to pass the path <code class="language-plaintext highlighter-rouge">./-</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+file ./-
+<span class="o">&gt;</span> ASCII text
+<span class="nb">cat</span> ./-
+</code></pre></div></div>
+
+<h3 id="bandit-02">[Bandit 02]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit2@bandit.labs.overthewire.org -p 2220</code> <br />
+The name of the file is <code class="language-plaintext highlighter-rouge">spaces in this filename</code>. To overcome this we can go the easy way and just use tab completion, or escape the spaces in the name with the ‘' character.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>spaces<span class="se">\ </span><span class="k">in</span><span class="se">\ </span>this<span class="se">\ </span>filename 
+</code></pre></div></div>
+
+<h3 id="bandit-03">[Bandit 03]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit3@bandit.labs.overthewire.org -p 2220</code> <br />
+A folder contains a hidden file that we have to read. Per default, hidden files have a name that starts with ‘.’. After going into the folder we could just use that for tab completion, but the parameters that we use for the ls command already show us the complete name.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd </span>inhere
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat</span> .hidden
+</code></pre></div></div>
+
+<h3 id="bandit-04">[Bandit 04]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit4@bandit.labs.overthewire.org -p 2220</code> <br />
+In the given folder there is a bunch of files, and only one of them is readable. To find out which one, we use the file command, that tells us what kind of file we are handling. We have to give the path as the names start with a dash, and we can check all the files at once using the ‘*’ char, which tells to go through all the files that follow the given pattern.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd </span>inhere
+file ./-file<span class="k">*</span>
+<span class="nb">cat</span> ./-file07
+</code></pre></div></div>
+
+<h3 id="bandit-05">[Bandit 05]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit5@bandit.labs.overthewire.org -p 2220</code> <br />
+Not only a bunch of files, but also a bunch of folders in which to look. However, we have enough information to uniquely identify the file: it is human-readable, 1033 bytes in size and not executable. <br />
+What we do is find the files: instead of giving a specific pattern we look for everything, asking to print out all the details. We pipe this output into grep, filtering out for the file size. We are lucky, and only one file corresponds to our target.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd </span>inhere
+find <span class="nb">.</span> <span class="nt">-print</span> <span class="nt">-ls</span> | <span class="nb">grep </span>1033
+<span class="nb">cat</span> ./maybehere07/.file2
+</code></pre></div></div>
+
+<h3 id="bandit-06">[Bandit 06]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit6@bandit.labs.overthewire.org -p 2220</code> \ 
+This time the file is ‘somewhere on the server’. What we know is that is it is owned by user bandit7, owned by group bandit6 and 33 bytes in size. <br />
+The approach is the same as the last challenge, we just pipe the output multiple times to filter it down.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd</span> /
+find <span class="nb">.</span> <span class="nt">-print</span> <span class="nt">-ls</span> | <span class="nb">grep </span>bandit7 | <span class="nb">grep </span>bandit6
+<span class="nb">cat</span> ./var/lib/dpkg/info/bandit7.password
+</code></pre></div></div>
+
+<h3 id="bandit-07">[Bandit 07]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit7@bandit.labs.overthewire.org -p 2220</code> \ 
+We have a file containing a lot of data, but we know that our flag is stored next to the word ‘millionth’. We can therefore cat the file and grep for the keyword.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>data.txt | <span class="nb">grep </span>millionth
+</code></pre></div></div>
+
+<h3 id="bandit-08">[Bandit 08]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit8@bandit.labs.overthewire.org -p 2220</code> \ 
+Again a file with lot of data, and the only hint is that our flag is the only one appearing exactly once. <br />
+What we do is use the command <code class="language-plaintext highlighter-rouge">sort</code> to output the content of data.txt in alphabetical order, and then pipe this output to the command <code class="language-plaintext highlighter-rouge">uniq</code>. By giving the -u parameter to uniq, the output will be the only line that is not repeated. To note is that uniq only works on adjacent lines (meaning sorted input).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">sort </span>data.txt | <span class="nb">uniq</span> <span class="nt">-u</span>
+</code></pre></div></div>
+
+<h3 id="bandit-09">[Bandit 09]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit9@bandit.labs.overthewire.org -p 2220</code> \ 
+This file looks weird, and using file confirms that it is binary data. However, we know that there are human readable strings: to collect them we can use the strings command, and pipe the output to a grep to look for the ‘===’ chars that mark the flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+file data.txt
+strings data.txt | <span class="nb">grep</span> <span class="o">===</span>
+</code></pre></div></div>
+
+<h3 id="bandit-10">[Bandit 10]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit10@bandit.labs.overthewire.org -p 2220</code> \ 
+The data.txt file contains a base64 encoded string. It is enough to use <code class="language-plaintext highlighter-rouge">base64 -d</code> on it to decode the content.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">base64</span> <span class="nt">-d</span> data.txt
+</code></pre></div></div>
+
+<h3 id="bandit-11">[Bandit 11]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit11@bandit.labs.overthewire.org -p 2220</code> \ 
+This time in data.txt we find a rot13 encoded string. This just means that every letter has been substituted with the one that comes 13 steps after in the alphabet.
+To shift the letters back, we can use the <code class="language-plaintext highlighter-rouge">tr</code>` command: as first parameter we give our alphabet, and as second parameter the corresponding alphabet with which to substitute the input. Each letter in the input will be swapped with the corresponding letter in the output. <br />
+Alternatively, we can copy the data to <a href="https://gchq.github.io/CyberChef/">CyerChef</a> and use it to solve the challenge.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>data.txt | <span class="nb">tr</span> <span class="s1">'[a-zA-Z]'</span> <span class="s1">'[n-za-mN-ZA-M]'</span>
+</code></pre></div></div>
+
+<h3 id="bandit-12">[Bandit 12]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit12@bandit.labs.overthewire.org -p 2220</code> \ 
+We receive a file that is a hexdump of something that has been compressed multiple times with multiple tools. We first rebuild the original file using <code class="language-plaintext highlighter-rouge">xxd -r</code>, which reverses the hexdump, then in a loop we check the format of the file, we rename the file properly and we call the tool to decompress it. <br />
+We work in a dedicated folder that we create in /tmp/, so that we have writing permissions and the system stays clean.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xxd <span class="nt">-r</span> data.txt /tmp/work/data
+<span class="nb">cd</span> /tmp/work
+file data <span class="c">#gzip archive</span>
+<span class="nb">mv </span>data data.gz
+<span class="nb">gunzip </span>data.gz
+file data <span class="c">#bzip2 archive</span>
+<span class="nb">mv </span>data data.bz2
+bzip2 <span class="nt">-d</span> data.bz2 
+file data <span class="c">#gzip archive</span>
+<span class="nb">mv </span>data data.gz
+<span class="nb">gunzip </span>data.gz 
+file data <span class="c">#tar archive</span>
+<span class="nb">mv </span>data data.tar
+<span class="nb">tar</span> <span class="nt">-xvf</span> data.tar 
+file data5.bin <span class="c">#tar archive</span>
+<span class="nb">mv </span>data5.bin data5.bin.tar
+<span class="nb">tar</span> <span class="nt">-xvf</span> data5.bin.tar 
+file data6.bin <span class="c">#bzip archive</span>
+<span class="nb">mv </span>data6.bin data6.bin.bz2
+bzip2 <span class="nt">-d</span> data6.bin.bz2 
+file data6.bin <span class="c">#tar archive</span>
+<span class="nb">mv </span>data6.bin data6.bin.tar
+<span class="nb">tar</span> <span class="nt">-xvf</span> data6.bin.tar 
+file data8.bin <span class="c">#gzip archive</span>
+<span class="nb">mv </span>data8.bin data8.bin.gz
+<span class="nb">gunzip </span>data8.bin.gz 
+file data8.bin <span class="c">#ASCII text</span>
+<span class="nb">cat </span>data8.bin
+</code></pre></div></div>
+
+<h3 id="bandit-13">[Bandit 13]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit13@bandit.labs.overthewire.org -p 2220</code> \ 
+We have to look for the flag stored in <code class="language-plaintext highlighter-rouge">/etc/bandit_pass/bandit14</code>. We don’t have the rights for that file, but we get a private SSH key so that we can login in the next level as the right user. <br />
+We can either cat the private key, save it locally and change its permission so that only the current user can access it; or just access bandit14 directly from within bandit 13. The command to use ssh with a private key is <code class="language-plaintext highlighter-rouge">ssh -i [path to key]</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-i</span> sshkey.private bandit14@localhost
+<span class="nb">cat</span> /etc/bandit_pass/bandit14
+</code></pre></div></div>
+
+<h3 id="bandit-14">[Bandit 14]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit14@bandit.labs.overthewire.org -p 2220</code> \ 
+We are instructed that to get the new flag we have to submit the old one on localhost, on port 30000. For that we can use netcat: <code class="language-plaintext highlighter-rouge">nc [ip address] [port]</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc localhost 30000 <span class="o">[</span><span class="nb">paste </span>the last flag after connection]
+</code></pre></div></div>
+
+<h3 id="bandit-15">[Bandit 15]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit15@bandit.labs.overthewire.org -p 2220</code> \ 
+The idea is exactly the same as in the last challenge: submit the last flag on localhost on port 30000. The only difference is that we need to use ssl for encryption. Netcat does not provide it, but ncat does and the command is basically the same.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ncat <span class="nt">--ssl</span> localhost 30001 <span class="o">[</span><span class="nb">paste </span>the last flag after connection]
+</code></pre></div></div>
+
+<h3 id="bandit-16">[Bandit 16]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit16@bandit.labs.overthewire.org -p 2220</code> \ 
+We have an interval of ports that might or might not be open, and one of them will be open and waiting for an ssl connection. We have to find out which one, and send the current password, if it’s the correct one we will get credentials instead of a mirrored input. <br />
+To find out who is open to our connection we nmap the port range. The scan returns only two ports listening, and therefore we ssl-ncat into both of them and test which one will give the new flag after inputting the current one. <br />
+With a more aggressive nmap (using the -A option) we see directly which port is just echoing whatever is sent to it, and which one is actually returning content.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap <span class="nt">-A</span> localhost <span class="nt">-p</span> 31000-32000
+ncat <span class="nt">--ssl</span> localhost 31790 <span class="o">[</span><span class="nb">paste </span>the last flag after connection]
+</code></pre></div></div>
+
+<h3 id="bandit-17">[Bandit 17]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit17@bandit.labs.overthewire.org -p 2220</code> \ 
+We receive two files, and we know that the only difference between them is the flag: a line in the old file has been updated with the new flag. To find it it is enough to diff the files. <br />
+As the diff gives both the old and the new line, to be sure which one has been removed and which one has been inserted we can just cat the new file and try to grep with what we think is the new flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff passwords.new passwords.old
+</code></pre></div></div>
+
+<h3 id="bandit-18">[Bandit 18]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit18@bandit.labs.overthewire.org -p 2220</code> \ 
+We can’t login in the machine, but we know exactly what we are looking for: a file called readme in the home directory. We can simply copy it to the local machine and read it locally.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Do not ssh into bandit18, execute this locally]
+scp <span class="nt">-P</span> 2220 bandit18@bandit.labs.overthewire.org:~/readme flag18
+<span class="nb">cat </span>flag18
+</code></pre></div></div>
+
+<h3 id="bandit-19">[Bandit 19]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit19@bandit.labs.overthewire.org -p 2220</code> \ 
+In this challenge we finally encounter the infamous suid flag. A file with this flag can be run by a normal user but will execute with the permissions of its owner (this is a terrible summary of suid. You can read more on wiki about it). <br />
+When executing the file we find in the machine, it tells us it will run whatever command we pass to it. With <code class="language-plaintext highlighter-rouge">ls -lah</code> we see that the owner is bandit20: this means that if we cat the password file, we will actually have the permissions required to read it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+./bandit20-do <span class="nb">cat</span> /etc/bandit_pass/bandit20
+</code></pre></div></div>
+
+<h3 id="bandit-20">[Bandit 20]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit20@bandit.labs.overthewire.org -p 2220</code> \ 
+For this challenge we need two active ssh connections to bandit20: on one we will start a netcat listener, and on the other we will execute the given file. <br />
+What the file does is connect to a listener (the one that we set up ourselves), receive a flag from it and, if the received flag is the current one, it will send back the new one. What is important to realize is that we don’t have to look for a service that will send the new flag to us, as it will be the executable itself providing it to us as soon as somebody sends the old flag to it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="o">[</span>current_flag] | nc <span class="nt">-l</span> <span class="nt">-p</span> 56565 <span class="c"># on connection 1</span>
+./suconnect 56565 <span class="c"># on connection 2</span>
+<span class="c"># on connection 1 new flag is received</span>
+</code></pre></div></div>
+
+<h3 id="bandit-21">[Bandit 21]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit21@bandit.labs.overthewire.org -p 2220</code> \ 
+We are told that there is a cronjob running and we are told where to look for it. A cronjob is just a script running automatically at given intervals. In the given location we find where the script is, and looking into the script we can see where to look for the password file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/cron.d
+<span class="nb">ls
+cat </span>cronjob_bandit22 
+<span class="nb">cat</span> /usr/bin/cronjob_bandit22.sh
+<span class="nb">cat</span> /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+</code></pre></div></div>
+
+<h3 id="bandit-22">[Bandit 22]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit22@bandit.labs.overthewire.org -p 2220</code> \ 
+Same as in the last challenge, we find a script run by a cronjob. The only difference is that we have to find out the name of the file where the flag is written.
+We see that the target is the result of the whoami command, and in our case it should be bandit23. Then we run the line with the echo command with the proper target name, and that is the name of our file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/cron.d
+<span class="nb">ls
+cat </span>cronjob_bandit23 
+<span class="nb">cat</span> /usr/bin/cronjob_bandit23.sh
+<span class="nb">whoami</span> <span class="o">[</span>it says bandit22, but we want the file <span class="k">for </span>bandit23]
+<span class="nb">echo </span>I am user bandit23 | <span class="nb">md5sum</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">' '</span> <span class="nt">-f</span> 1
+<span class="nb">cat</span> /tmp/8ca319486bfbbc3663ea0fbe81326349
+</code></pre></div></div>
+
+<h3 id="bandit-23">[Bandit 23]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit23@bandit.labs.overthewire.org -p 2220</code> \ 
+Yet again, a cronjob is running on the system. What it does is accessing a folder and running whatever script is there, with bandit24 permissions. Therefore, we create a script that reads the password file and prints it to a place that we can access. <br />
+First of all we create a working folder in /tmp. In there, we create our script: it just cats the password file and writes the output to a file in our working folder. We have to make sure that the script is executable and that our folder can be accessed by everybody, so that bandit24 can write in it even though it is not the owner.To do this, we use the <code class="language-plaintext highlighter-rouge">chmod 777</code> command on both the file and the folder. What is left to do is to copy the script in the folder visited by the cronjob, and wait for a minute.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /etc/cron.d/cronjob_bandit24
+<span class="nb">cat</span> /usr/bin/cronjob_bandit24.sh
+<span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+nano b24.sh
+    <span class="o">&gt;</span> <span class="c">#!/bin/sh</span>
+    <span class="o">&gt;</span> <span class="nb">cat</span> /etc/bandit_pass/bandit24 <span class="o">&gt;</span> /tmp/olaola/flag24
+<span class="nb">chmod </span>777 b24.sh
+<span class="nb">chmod </span>777 /tmp/olaola
+<span class="nb">cp </span>b24.sh /var/spool/bandit24/b24.sh
+<span class="nb">cat </span>flag24 
+</code></pre></div></div>
+
+<h3 id="bandit-24">[Bandit 24]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit24@bandit.labs.overthewire.org -p 2220</code> \ 
+We are told that we will get the new flag if we connect to port 30002 and send the current flag and a 4-digit pin. Also, the only way to get the pin is to try all the combinations. <br />
+What we do is create a file in our /tmp folder that contains all the ‘flag PIN’ combinations, one per line. We can then cat it and pipe the output to a netcat connection. That is enough to have all the lines submitted one by one until we find the correct pin giving the new flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+nano b25.sh
+    <span class="o">&gt;</span> <span class="c">#!/bin/bash</span>
+    <span class="o">&gt;</span> <span class="k">for </span>a <span class="k">in</span> <span class="o">{</span>0000..9999<span class="o">}</span>
+    <span class="o">&gt;</span> <span class="k">do</span>
+    <span class="o">&gt;</span>    <span class="nb">echo</span> <span class="s2">"UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ </span><span class="nv">$a</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> pins
+    <span class="o">&gt;</span> <span class="k">done</span>
+    <span class="o">&gt;</span> <span class="nb">cat </span>pins | nc localhost 30002
+chomd +x b25.sh
+./b25.sh
+</code></pre></div></div>
+
+<h3 id="bandit-25">[Bandit 25]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit25@bandit.labs.overthewire.org -p 2220</code> \ 
+Although we are provided with the ssh key, trying to access bandit26 kicks us out immediately. We are told that bandit26 uses a non standard shell, so we look into that: the <code class="language-plaintext highlighter-rouge">/etc/passwd</code> file contains a bunch of information, among which user name, user home directory and login shell for every user on that machine. Given that all the bandits are on the same machine, we cat the file and grep for bandit26, looking for that last bit of information. <br />
+We now know where the shell is located, and we cat for that too to see what is going on in there: the only command invoked is more, and the way to exploit it (thanks Google) is to make the shell so small that upon ssh connection the script will be shown basically line by line. This allows to pass commands to the ‘more’ screen, and we can enter vim with the ‘v’ instruction. From vim, we use the ‘:e’ instruction to see the password file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /etc/passwd | <span class="nb">grep </span>bandit26
+<span class="nb">cat</span> /usr/bin/showtext
+<span class="c"># ssh into bandit26 with the terminal window as small as possible</span>
+v
+:e /etc/bandit_pass/bandit26 
+<span class="c"># to insert commands in vim, first press esc</span>
+</code></pre></div></div>
+
+<h3 id="bandit-26">[Bandit 26]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit26@bandit.labs.overthewire.org -p 2220</code> \ 
+To get access to bandit26 use the same approach as the last challenge. When we are in vim, it’s time to get a shell. Vim does have a ‘shell’ command, but it takes us back to the non-default one. However, we can tell it to use our own shell with ``:set shell=/bin/sh<code class="language-plaintext highlighter-rouge"> and then calling </code>:shell`. <br />
+Now that we have a shell we see that there is an executable suid file, and we cat the flag with it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ssh into bandit26 with the terminal window as small as possible]
+v
+:set <span class="nv">shell</span><span class="o">=</span>/bin/sh <span class="o">[</span>to insert commands <span class="k">in </span>vim, first press esc]
+:shell
+<span class="nb">ls</span> <span class="nt">-lah</span>
+file bandit27-do
+./bandit27-do <span class="nb">cat</span> /etc/bandit_pass/bandit27
+</code></pre></div></div>
+
+<h3 id="bandit-27">[Bandit 27]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit27@bandit.labs.overthewire.org -p 2220</code> \ 
+We know the link to the git repo and its password, we just have to clone it in a working folder in tmp, access it and cat the README</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+<span class="nb">cd </span>repo/
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>README
+</code></pre></div></div>
+
+<h3 id="bandit-28">[Bandit 28]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit28@bandit.labs.overthewire.org -p 2220</code> \ 
+We know the link to the git repo and its password. After cloning it and checking the README, we realize that at some point there might have been a password in that file. Checking the log of commits we have the confirmation, as one of the commits is done to fix an info leak. If we take the hash of that commit and use the git show command we get the flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+git clone ssh://bandit28-git@localhost/home/bandit27-git/repo
+<span class="nb">cd </span>repo/
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>README
+git log
+git show 073c27c130e6ee407e12faad1dd3848a110c4f95
+</code></pre></div></div>
+
+<h3 id="bandit-29">[Bandit 29]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit29@bandit.labs.overthewire.org -p 2220</code> \ 
+Again, clone the repo and check the README. There is nothing in there, but the comment on the password line is a hint: no passwords in production. So what about passwords in other branches? <br />
+To check which branches exist we use <code class="language-plaintext highlighter-rouge">git branch -a</code>, and to switch to the dev branch we use git checkout dev. If we look into README now, we will find the flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+git clone ssh://bandit29-git@localhost/home/bandit27-git/repo
+<span class="nb">cd </span>repo/
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>README
+git branch <span class="nt">-a</span>
+git checkout dev
+<span class="nb">ls</span>  <span class="nt">-lah</span>
+<span class="nb">cat </span>README.md 
+</code></pre></div></div>
+
+<h3 id="bandit-30">[Bandit 30]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit30@bandit.labs.overthewire.org -p 2220</code> \ 
+Turns out that git has a few ways to leave messages in the branches, commits and versions. So let’s clone the repo and check the README, but it’s empty. So let’s go through the options: noting in the logs or previous commits, no other branches. However, issuing <code class="language-plaintext highlighter-rouge">git tag</code> tells us that there is a ‘secret’ tag. We can look into it with the git show command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+git clone ssh://bandit30-git@localhost/home/bandit27-git/repo
+<span class="nb">cd </span>repo/
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>README
+git tag
+git show secret
+</code></pre></div></div>
+
+<h3 id="bandit-31">[Bandit 31]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit31@bandit.labs.overthewire.org -p 2220</code> \ 
+After cloning and checking the README, we get instructions: we have to crate a file named key.txt, containing ‘May I come in?’ and push it to the master branch.
+To do that we create the file, add it to the staged files (we have to use the -f flag because the .gitignore file is trying to prevent .txt files from being loaded), we commit and we push.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/olaola
+<span class="nb">cd</span> /tmp/olaola
+git clone ssh://bandit30-git@localhost/home/bandit27-git/repo
+<span class="nb">cd </span>repo/
+<span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cat </span>README
+nano key.txt
+git add <span class="nt">-f</span> key.txt 
+git status
+git commit <span class="nt">-m</span> <span class="s1">'gimme the key'</span>
+git push
+</code></pre></div></div>
+
+<h3 id="bandit-32">[Bandit 32]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit32@bandit.labs.overthewire.org -p 2220</code> \ 
+We get a shell, but everything is in upper case. To get a usable shell we have to do something that does not require letters: using positinal parameters. These are predefined variables that work as follows: executing <code class="language-plaintext highlighter-rouge">./script.sh Hello World'</code> will make <code class="language-plaintext highlighter-rouge">$0 = ./script.sh; $1 = Hello; $2 = World</code>. Therefore, if whatever is happening has been started by a shell, by typing $0 we should get our shell back. And from there, we can cat the password file.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$0</span>
+<span class="nb">cat</span> /etc/bandit_pass/bandit33
+</code></pre></div></div>
+
+<h3 id="bandit-33">[Bandit 33]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh bandit33@bandit.labs.overthewire.org -p 2220</code> \ 
+Cat the readme and be happy, Bandit is over!</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>README.txt
+</code></pre></div></div>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FBandit.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Bandit+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FBandit.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FBandit.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Bandit+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FBandit.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/tarot/2023/09/13/Latinoamericana.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Latinoamericana
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/ctf/2023/11/03/Leviathan.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Leviathan CTF
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

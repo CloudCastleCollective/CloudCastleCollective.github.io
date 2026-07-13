@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Leviathan CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Leviathan CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by OverTheWire @ https://overthewire.org/wargames/leviathan/ As per the official description: this wargame doesn’t require any knowledge about programming - just a bit of common sense and some knowledge about basic *nix commands." />
+<meta property="og:description" content="CTF by OverTheWire @ https://overthewire.org/wargames/leviathan/ As per the official description: this wargame doesn’t require any knowledge about programming - just a bit of common sense and some knowledge about basic *nix commands." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/03/Leviathan.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/03/Leviathan.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-03T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Leviathan CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-03T00:00:00+01:00","datePublished":"2023-11-03T00:00:00+01:00","description":"CTF by OverTheWire @ https://overthewire.org/wargames/leviathan/ As per the official description: this wargame doesn’t require any knowledge about programming - just a bit of common sense and some knowledge about basic *nix commands.","headline":"Leviathan CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/03/Leviathan.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/03/Leviathan.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  leviathan-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Leviathan CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-03T00:00:00+01:00"><a class="u-url" href="">November 3, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2012/05/02/19/01/whale-46013_1280.png" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>OverTheWire</strong> @ <a href="https://overthewire.org/wargames/leviathan/">https://overthewire.org/wargames/leviathan/</a></p>
+
+<p>As per the official description: this wargame doesn’t require any knowledge about programming - just a bit of common sense and some knowledge about basic *nix commands.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#install">Install</a></td>
+      <td><a href="#leviathan-00">Leviathan 00</a></td>
+      <td><a href="#leviathan-04">Leviathan 04</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#leviathan-01">Leviathan 01</a></td>
+      <td><a href="#leviathan-05">Leviathan 05</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#leviathan-02">Leviathan 02</a></td>
+      <td><a href="#leviathan-06">Leviathan 06</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#leviathan-03">Leviathan 03</a></td>
+      <td><a href="#leviathan-07">Leviathan 07</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>All the challenges can be accessed with ssh. The syntax is the following: <br />
+<code class="language-plaintext highlighter-rouge">ssh leviathanX@leviathan.labs.overthewire.org -p 2223</code> <br />
+All the flags are in <code class="language-plaintext highlighter-rouge">/etc/leviathan_pass/</code>, so those are the files we should aim to read in each level. Obviously, we need to gain the right permissions first. <br />
+In the machine there are a couple of tools already installed, in particular PEDA: this is a gdb extension that shows registers, assembly and stack automatically, reducing a lot of the usual pain when using gdb. To start it, run gdb as usual and then source to the peda.py file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdb <span class="nt">--args</span> filetoinspect param1 param2
+<span class="o">&gt;</span> <span class="nb">source</span> /usr/local/peda/peda.py
+</code></pre></div></div>
+
+<h3 id="leviathan-00">[Leviathan 00]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan0@leviathan.labs.overthewire.org -p 2223</code> <br />
+Password: leviathan0</p>
+
+<p>The home folder contains a hidden folder, which contains a single file. We look into it to see if it contains anything labelled as flag for this level.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd</span> .backup/
+<span class="nb">ls</span> <span class="nt">-alh</span>
+bookmarks.html | <span class="nb">grep </span>leviathan
+</code></pre></div></div>
+
+<h3 id="leviathan-01">[Leviathan 01]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan1@leviathan.labs.overthewire.org -p 2223</code> <br />
+The home folder contains an executable with suid, meaning (in a really basic summary) that it will run with the permissions of the creator and not of the user. We can see that the creator has permissions to see the password file that we need, so we have to execute this file. If we give the right password, we will have a shell with proper permissions. <br />
+We could use gdb to step through the execution, but the ltrace command shows immediately what we need, so we will take the easy way. After seeing the password from the string compare, we can run the program on its own and get a shell from which we can cat the file.</p>
+
+<blockquote>
+  <p>ltrace: this program runs the specified command and intercepts all library and system calls.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+ltrace ./check <span class="o">[</span>insert random password when prompted]
+<span class="o">&gt;</span> strcmp<span class="o">(</span><span class="s2">"AAA"</span>, <span class="s2">"sex"</span><span class="o">)</span> 
+./check <span class="o">[</span>insert password <span class="s1">'sex'</span> when prompted]
+<span class="nb">cat</span> /etc/leviathan_pass/leviathan2
+</code></pre></div></div>
+
+<h3 id="leviathan-02">[Leviathan 02]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan2@leviathan.labs.overthewire.org -p 2223</code> <br />
+This challenge is based on a little bug in how the <code class="language-plaintext highlighter-rouge">printfile</code> executable works. The bug can be spotted after playing around a bit with filenames passed to the executable: <code class="language-plaintext highlighter-rouge">ltrace</code>-ing shows how when passing a file with a space in its name, only the word before the space is used in the <code class="language-plaintext highlighter-rouge">access()</code> call. <br />
+When trying to access the password file directly, we are warned that we can’t access it. But we can exploit the bug by creating a symlink to that file called ‘password’, and then creating a file with the name ‘password bug’. When trying to access ‘password bug’ with the executable, it will check permissions on ‘password bug’ without triggering the warning, and then go on and print ‘password’.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+ltrace ./printfile name space
+<span class="o">&gt;</span> access<span class="o">(</span><span class="s2">"name"</span>, 4<span class="o">)</span>
+<span class="nb">ln</span> <span class="nt">-s</span> /etc/leviathan_pass/leviathan3 <span class="s1">'/tmp/password'</span>
+<span class="nb">touch</span> <span class="s1">'/tmp/password bug'</span>
+./printfile <span class="s1">'/tmp/password bug'</span>
+</code></pre></div></div>
+
+<h3 id="leviathan-03">[Leviathan 03]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan3@leviathan.labs.overthewire.org -p 2223</code> <br />
+This challenge is really similar to the one in level 01. The only difference is that there is another string compare to try and confuse us.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+ltrace ./level3 <span class="o">[</span>insert random password when prompted]
+<span class="o">&gt;</span> strcmp<span class="o">(</span><span class="s2">"AAAA</span><span class="se">\n</span><span class="s2">"</span>, <span class="s2">"snlprintf</span><span class="se">\n</span><span class="s2">"</span><span class="o">)</span>  
+./level3 <span class="o">[</span>insert password <span class="s1">'snlprintf'</span> when prompted]
+<span class="nb">cat</span> /etc/leviathan_pass/leviathan4
+</code></pre></div></div>
+
+<h3 id="leviathan-04">[Leviathan 04]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan4@leviathan.labs.overthewire.org -p 2223</code> <br />
+The flag in this challenge is not hidden, but encoded. After executing the file, we get a string of binary numbers. <br />
+Checking their values we get hex numbers within the ASCII range, and from there on it’s just a matter of looking up the ASCII table.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+<span class="nb">cd</span> .trash
+./bin
+<span class="o">&gt;</span> 01010100 01101001 01110100 01101000 00110100 01100011 01101111 01101011 01100101 01101001 00001010
+<span class="o">&gt;</span> 0x54 0x69 0x74 0x68 0x34 0x63 0x6F 0x6B 0x65 0x69 0x0A
+</code></pre></div></div>
+
+<h3 id="leviathan-05">[Leviathan 05]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan5@leviathan.labs.overthewire.org -p 2223</code> <br />
+When executing the file with ltrace, we can see that it is trying to open a file that does not exist. The only thing we need to do is create that file, with the content that we want, and to do that we use a symlink.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+ltrace ./leviathan5
+<span class="o">&gt;</span> fopen<span class="o">(</span><span class="s2">"/tmp/file.log"</span>, <span class="s2">"r"</span><span class="o">)</span>
+<span class="nb">ln</span> <span class="nt">-s</span> /etc/leviathan_pass/leviathan6 /tmp/file.log
+./leviathan5
+</code></pre></div></div>
+
+<h3 id="leviathan-06">[Leviathan 06]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan6@leviathan.labs.overthewire.org -p 2223</code> <br />
+In this challenge <code class="language-plaintext highlighter-rouge">ltrace</code> is not enough because the compare is done with a value in memory, and not between strings. The <code class="language-plaintext highlighter-rouge">atoi()</code> method just reads the input string and casts it to integer, which is stored in eax as hex value after the method returns. <br />
+A few instructions after we have a compare between that value and a value stored in memory, which is our password. We only have to give that password as input, in decimal format.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-lah</span>
+gdb <span class="nt">--args</span> leviathan6 1111
+<span class="o">&gt;</span> atoi<span class="o">(</span>4444<span class="o">)</span> -&gt; eax <span class="o">=</span> 0x1BD3
+<span class="o">&gt;</span> cmp eax, 0x1BD3
+</code></pre></div></div>
+
+<h3 id="level-07">[Level 07]</h3>
+<p><code class="language-plaintext highlighter-rouge">ssh leviathan7@leviathan.labs.overthewire.org -p 2223</code> <br />
+Congratulations, no more challenges. Leviathan is complete.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FLeviathan.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Leviathan+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FLeviathan.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FLeviathan.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Leviathan+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F03%2FLeviathan.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ctf/2023/11/03/Bandit.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Bandit CTF
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/ctf/2023/11/03/Narnia.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Narnia CTF
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

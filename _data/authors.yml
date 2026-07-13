@@ -1,0 +1,12 @@
+# Sample Authors
+# Remove file or replace with your own
+
+P2:
+  name: P2
+  picture: /images/profile.png
+  # twitter: "@billyrick"
+  # links:
+  #   - title: Twitter
+  #     url: https://twitter.com/billyrick
+  #     icon: fab fa-twitter-square
+
