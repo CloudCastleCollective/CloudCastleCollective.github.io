@@ -3,7 +3,8 @@ title: "Latinoamericana"
 excerpt_separator: "<!--more-->"
 tags:
   - Tarot
-collection: tarot
+collection:
+  - tarot
 ---
 
 ![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
