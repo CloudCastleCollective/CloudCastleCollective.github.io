@@ -2,6 +2,6 @@
 title: Tarots
 layout: collection
 permalink: /tarots/
-collection: tarots
+collection: posts/tarots
 entries_layout: grid
 ---
