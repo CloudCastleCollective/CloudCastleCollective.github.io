@@ -83,7 +83,7 @@ plugins:
 collections:
   tarots:
     output: true
-    permalink: /:collection/:path/
+    permalink: /posts/:collection/:path/
 
 # Front Matter Defaults
 defaults:
