@@ -1,10 +1,6 @@
 ---
 title: "Latinoamericana"
 excerpt_separator: "<!--more-->"
-image: 
-  path: /images/logo.png
-  thumbnail: /images/logo.png
-  caption: "Photo from [Pexels](https://www.pexels.com)"
 tags:
   - Tarot
 ---
