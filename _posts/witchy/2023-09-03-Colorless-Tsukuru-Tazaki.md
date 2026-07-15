@@ -2,7 +2,7 @@
 title: "Colorless Tsukuru Tazaki"
 excerpt_separator: "<!--more-->"
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/The Hanged Man.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}

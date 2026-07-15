@@ -2,7 +2,7 @@
 title: "The Dividing"
 excerpt_separator: "<!--more-->"
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Three of Swords.jpg){: width="100px" height="200px"}
