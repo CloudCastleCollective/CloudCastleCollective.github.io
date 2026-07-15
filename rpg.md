@@ -1,7 +1,7 @@
 ---
 title: RPGs
 layout: collection
-permalink: /rpgs/
+permalink: /rpg/
 collection: rpg
 entries_layout: grid
 ---
