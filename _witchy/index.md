@@ -7,3 +7,6 @@ show_excerpts: true
 ---
 
 {% assign entries = site.categories.witchy %}
+{% for entry in entries %}
+  {% include entry.html %}
+{% endfor %}
