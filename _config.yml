@@ -81,9 +81,18 @@ plugins:
 
 # Collections
 collections:
-  tarots:
+  witchy:
     output: true
-    permalink: /posts/:collection/:path/
+    permalink: /:collection/:path/
+  rpg:
+    output: true
+    permalink: /:collection/:path/
+  shedbd:
+    output: true
+    permalink: /:collection/:path/
+  tech:
+    output: true
+    permalink: /:collection/:path/
 
 # Front Matter Defaults
 defaults:
