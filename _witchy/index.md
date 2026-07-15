@@ -7,8 +7,8 @@ show_excerpts: true
 ---
 
 {% assign entries = site.categories.witchy %}
-<div class="entries-{{ page.entries_layout | default: 'list' }}">
+<div class="entries-grid">
 {% for entry in entries %}
-  {% include entries-grid.html %}
+  {% include entry.html %}
 {% endfor %}
 </div>
