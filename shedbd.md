@@ -1,7 +1,7 @@
 ---
-title: Tarots
+title: She DBD
 layout: collection
-permalink: /tarots/
-collection: posts/tarots
+permalink: /shedbd/
+collection: shedbd
 entries_layout: grid
 ---
