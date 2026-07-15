@@ -2,7 +2,7 @@
 title: "Dave Ex Machina"
 excerpt_separator: "<!--more-->"
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvNzIwMDUwLzM5OTE4NzkuanBn/original/UTlvdL.jpg){: .align-center width="500px" height="400px"}
