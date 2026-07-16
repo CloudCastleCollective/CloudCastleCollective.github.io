@@ -1,6 +1,9 @@
 ---
 title: "The Dividing"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
   - witchy
 ---

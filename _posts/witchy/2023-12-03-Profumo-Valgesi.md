@@ -1,8 +1,11 @@
 ---
 title: "The Scent of the Valgesi"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Ace of Wands.jpg){: width="100px" height="200px"}

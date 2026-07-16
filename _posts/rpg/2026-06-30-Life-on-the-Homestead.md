@@ -1,8 +1,10 @@
 ---
 title: "Life on the Homestead"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvMTU1MDc0MC85MDQ4MjQ5LnBuZw==/original/csqxXx.png){: .align-center width="500px" height="400px"}

@@ -1,8 +1,11 @@
 ---
 title: "Dead Poets Society"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Five of Swords.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}

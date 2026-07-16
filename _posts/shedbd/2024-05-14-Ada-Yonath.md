@@ -2,8 +2,10 @@
 title: "Ada E. Yonath"
 permalink: /shedbd/ada-yonath
 excerpt_separator: "<!--more-->"
+tags:
+  - shedbd
 categories:
-  - she.dbd
+  - shedbd
 ---
 
 ![center-aligned-image](https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Yonath_Weizmann_Institute_of_Science.jpg){: .align-center width="50%"}

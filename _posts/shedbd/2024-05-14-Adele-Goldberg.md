@@ -2,8 +2,10 @@
 title: "Adele Goldberg"
 permalink: /shedbd/adele-goldberg
 excerpt_separator: "<!--more-->"
+tags:
+  - shedbd
 categories:
-  - she.dbd
+  - shedbd
 ---
 
 

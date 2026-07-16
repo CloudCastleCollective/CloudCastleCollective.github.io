@@ -1,8 +1,10 @@
 ---
 title: "Nine Reasons To..."
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://cdn.pixabay.com/photo/2021/10/27/19/02/nine-of-swords-6748175_1280.jpg){: .align-center width="200px" height="400px"}

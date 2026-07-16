@@ -1,8 +1,10 @@
 ---
 title: "No One Dies Alone In Revolution"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvNjU4MDQzLzM1NjU4NjguanBn/347x500/8qCNmI.jpg){: .align-center width="500px" height="400px"}

@@ -2,8 +2,10 @@
 title: "Ada Blackjack"
 permalink: /shedbd/ada-blackjack
 excerpt_separator: "<!--more-->"
+tags:
+  - shedbd
 categories:
-  - she.dbd
+  - shedbd
 ---
 
 ![center-aligned-image](https://upload.wikimedia.org/wikipedia/commons/1/16/Ada_Blackjack_in_winter_costume.jpg){: .align-center width="50%"}

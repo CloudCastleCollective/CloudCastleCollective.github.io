@@ -1,8 +1,10 @@
 ---
 title: "Binary Bomb"
 excerpt_separator: "<!--more-->"
+tags:
+  - ctf
 categories:
-  - CTF
+  - tech
 ---
 
 ![center-aligned-image](https://cdn.pixabay.com/photo/2017/06/14/15/22/bomb-2402460_1280.png){: .align-center}

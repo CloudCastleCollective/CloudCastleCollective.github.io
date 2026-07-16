@@ -1,8 +1,10 @@
 ---
 title: "Gossip Squirrel"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvNTkzMDUxLzMxMzY5NjAuanBn/794x1000/gm5oMf.jpg){: .align-center width="400px" height="600px"}

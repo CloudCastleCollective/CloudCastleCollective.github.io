@@ -1,8 +1,11 @@
 ---
 title: "Shape of Water"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Nine of Wands.jpg){: width="100px" height="200px"}

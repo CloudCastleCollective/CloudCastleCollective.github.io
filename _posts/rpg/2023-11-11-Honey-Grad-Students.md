@@ -1,8 +1,10 @@
 ---
 title: "Honey I shrunk the grad students!"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvNzQyNzA2LzQxMzg1MTQucG5n/original/WK1848.png){: .align-center width="400px" height="500px"}

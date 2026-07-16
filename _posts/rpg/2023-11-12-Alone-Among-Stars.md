@@ -1,8 +1,10 @@
 ---
 title: "Alone among the Stars"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvMzQzMDc2LzE5MzE0OTEucG5n/794x1000/YsRyA6.png){: .align-center width="400px" height="500px"}

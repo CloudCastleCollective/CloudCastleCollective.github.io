@@ -1,8 +1,11 @@
 ---
 title: "Vampire Academy"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Seven of Cups.jpg){: width="100px" height="200px"}

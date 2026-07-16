@@ -2,8 +2,10 @@
 title: "Agatha Christie"
 permalink: /shedbd/agatha-christie
 excerpt_separator: "<!--more-->"
+tags:
+  - shedbd
 categories:
-  - she.dbd
+  - shedbd
 ---
 
 

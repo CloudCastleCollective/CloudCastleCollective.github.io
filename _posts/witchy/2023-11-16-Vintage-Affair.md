@@ -1,8 +1,11 @@
 ---
 title: "A Vintage Affair"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/Two of Cups.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}

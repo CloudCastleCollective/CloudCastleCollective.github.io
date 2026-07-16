@@ -2,10 +2,13 @@
 title: "Latinoamericana"
 excerpt_separator: "<!--more-->"
 tags:
-  - Tarot
+  - tarots
+  - book
 categories:
   - witchy
 ---
+
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." %}
 
 ![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
 ![](/images/tarots/Two of Swords.jpg){: width="100px" height="200px"}

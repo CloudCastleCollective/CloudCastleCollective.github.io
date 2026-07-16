@@ -1,8 +1,11 @@
 ---
 title: "Sky Burial"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
-  - Tarot
+  - witchy
 ---
 
 ![](/images/tarots/The Hanged Man.jpg){: width="100px" height="200px"}

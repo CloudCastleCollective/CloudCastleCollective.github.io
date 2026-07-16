@@ -1,6 +1,9 @@
 ---
 title: "Colorless Tsukuru Tazaki"
 excerpt_separator: "<!--more-->"
+tags:
+  - tarots
+  - book
 categories:
   - witchy
 ---

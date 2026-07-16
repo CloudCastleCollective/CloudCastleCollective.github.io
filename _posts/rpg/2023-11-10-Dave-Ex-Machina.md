@@ -1,6 +1,8 @@
 ---
 title: "Dave Ex Machina"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
   - rpg
 ---

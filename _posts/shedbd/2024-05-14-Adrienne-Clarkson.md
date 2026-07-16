@@ -2,8 +2,10 @@
 title: "Adrienne Clarkson"
 permalink: /shedbd/adrienne-clarkson
 excerpt_separator: "<!--more-->"
+tags:
+  - shedbd
 categories:
-  - she.dbd
+  - shedbd
 ---
 
 

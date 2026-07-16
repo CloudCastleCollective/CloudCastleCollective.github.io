@@ -1,8 +1,10 @@
 ---
 title: "Dreamy Paws"
 excerpt_separator: "<!--more-->"
+tags:
+  - soloRPG
 categories:
-  - RPG
+  - rpg
 ---
 
 ![center-aligned-image](https://img.itch.zone/aW1hZ2UvODgyODEwLzQ5NzE5NzUucG5n/794x1000/YDJJ6O.png){: .align-center width="600px" height="300px"}

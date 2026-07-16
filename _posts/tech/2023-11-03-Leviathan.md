@@ -1,8 +1,10 @@
 ---
 title: "Leviathan CTF"
 excerpt_separator: "<!--more-->"
+tags:
+  - ctf
 categories:
-  - CTF
+  - tech
 ---
 
 ![center-aligned-image](https://cdn.pixabay.com/photo/2012/05/02/19/01/whale-46013_1280.png){: .align-center}
