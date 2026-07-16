@@ -14,7 +14,7 @@ categories:
 /images/tarots/Four of Wands.jpg
 " | split: "," %}
 
-{% include image.html images=site.data.images caption="Deck: Primero Tarot" %}
+{% include image.html images=site.data.images caption="Deck: Primero Tarot" width="100px" height="200px" %}
 
 <!--{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
 {% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
