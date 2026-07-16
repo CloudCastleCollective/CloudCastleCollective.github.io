@@ -14,7 +14,7 @@ categories:
 /images/tarots/Four of Wands.jpg
 " | split: "," %}
 
-{% include gallery.html
+{% include image.html
    images=site.data.myimages %}
 
 <!--{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
@@ -23,13 +23,13 @@ categories:
 {% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
 {% include image.html src="/images/tarots/Two of Wands.jpg" caption="This is the subtext." width="100px" height="200px" %}-->
 
-![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
+<!--![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
 ![](/images/tarots/Two of Swords.jpg){: width="100px" height="200px"}
-![](/images/tarots/Death.jpg){: width="100px" height="200px"}
+![](/images/tarots/The Death.jpg){: width="100px" height="200px"}
 ![](/images/tarots/Knight of Swords.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
 ![](/images/tarots/Three of Wands.jpg){: width="100px" height="200px"}
 ![](/images/tarots/Nine of Coins.jpg){: width="100px" height="200px"}
-![](/images/tarots/Three of Coins.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
+![](/images/tarots/Three of Coins.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}-->
 
 **Title:** Latinoamericana \
 **Author:** Ernesto Che Guevara \
