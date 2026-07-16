@@ -8,19 +8,13 @@ categories:
   - witchy
 ---
 
-{% assign images = "
+{% assign image_list = "
 /images/tarots/Two of Wands.jpg,
 /images/tarots/Three of Wands.jpg,
 /images/tarots/Four of Wands.jpg
 " | split: "," %}
 
-{% include image.html images=site.data.images caption="Deck: Primero Tarot" width="100px" height="200px" %}
-
-<!--{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
-{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
-{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
-{% include image.html src="/images/tarots/Two of Wands.jpg" width="100px" height="200px" %}
-{% include image.html src="/images/tarots/Two of Wands.jpg"  width="100px" height="200px" %}-->
+{% include image.html images=image_list caption="Deck: Primero Tarot" width="100px" height="200px" %}
 
 <!--![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
 ![](/images/tarots/Two of Swords.jpg){: width="100px" height="200px"}
