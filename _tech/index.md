@@ -3,6 +3,7 @@ layout: page
 title: Tech
 permalink: /tech/
 entries_layout: grid
+show_excerpts: true
 ---
 
 {% assign entries = site.categories.tech %}
