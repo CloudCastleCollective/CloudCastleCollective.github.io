@@ -1,6 +1,15 @@
-<!--<figure>
-  <img src="{{ include.src }}" alt="{{ include.alt }}" width="{{ include.width }}" height="{{ include.height }}">
-  <figcaption>{{ include.caption }}</figcaption>
-</figure>-->
+<figure class="gallery">
+  <div class="gallery-images">
+    {% for image in include.images %}
+      <img
+        src="{{ image.src }}"
+        alt="{{ image.alt | default: '' }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}">
+    {% endfor %}
+  </div>
 
-<img src="{{ include.src }}" alt="{{ include.alt }}" width="{{ include.width }}" height="{{ include.height }}" title="{{ include.caption }}">>
+  {% if include.caption %}
+    <figcaption>{{ include.caption }}</figcaption>
+  {% endif %}
+</figure>
