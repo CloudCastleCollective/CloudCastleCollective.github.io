@@ -6,9 +6,10 @@
         width="{{ include.width }}"
         height="{{ include.height }}">
     {% endfor %}
-  </div>
 
-  {% if include.caption %}
+    {% if include.caption %}
     <figcaption align="right">{{ include.caption }}</figcaption>
   {% endif %}
+
+  </div>
 </figure>

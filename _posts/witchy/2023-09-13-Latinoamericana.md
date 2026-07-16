@@ -16,14 +16,6 @@ categories:
 
 {% include image.html images=image_list caption="Deck: Primero Tarot" width="100px" height="200px" %}
 
-<!--![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
-![](/images/tarots/Two of Swords.jpg){: width="100px" height="200px"}
-![](/images/tarots/The Death.jpg){: width="100px" height="200px"}
-![](/images/tarots/Knight of Swords.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
-![](/images/tarots/Three of Wands.jpg){: width="100px" height="200px"}
-![](/images/tarots/Nine of Coins.jpg){: width="100px" height="200px"}
-![](/images/tarots/Three of Coins.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}-->
-
 **Title:** Latinoamericana \
 **Author:** Ernesto Che Guevara \
 **Character:** Ernesto Che Guevara
