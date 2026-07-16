@@ -3,7 +3,7 @@ layout: page
 title: Witchy
 permalink: /witchy/
 entries_layout: grid
-show_excerpts: true
+show_excerpts: false
 ---
 
 {% assign entries = site.categories.witchy %}

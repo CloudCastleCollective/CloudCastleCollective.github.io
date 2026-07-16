@@ -8,7 +8,11 @@ categories:
   - witchy
 ---
 
-{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." %}
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." width="100px" height="200px" %}
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." width="100px" height="200px" %}
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." width="100px" height="200px" %}
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." width="100px" height="200px" %}
+{% include image.html src="/images/tarots/Two of Wands.jpg" alt="Alt text" caption="This is the subtext." width="100px" height="200px" %}
 
 ![](/images/tarots/Two of Wands.jpg){: width="100px" height="200px" style="transform:rotate(180deg);"}
 ![](/images/tarots/Two of Swords.jpg){: width="100px" height="200px"}
